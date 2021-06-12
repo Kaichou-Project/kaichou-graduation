@@ -1,0 +1,2 @@
+# kaichou-graduation
+o7
