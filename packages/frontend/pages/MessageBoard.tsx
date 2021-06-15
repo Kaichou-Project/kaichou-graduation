@@ -8,6 +8,7 @@ export function Message( {message} ) {
             <p>Message:</p>
             <p>{message.msg}</p>
             <p>[DEBUG]MessageID: {message.id}</p>
+            <br></br>
         </div>
     )
 }
@@ -17,7 +18,6 @@ export function MessageList({ messages }) {
         messages.map(message => {
             return <Message key={message.id} message={message}/>
         })
-        
     )
 }
 
@@ -49,8 +49,8 @@ export default function MessageBoard() {
         <br></br>
         <button onClick={uploadMessage}>Submit!</button>
         <br></br>
-        <h3>Messages for Coco</h3>
         <br></br>
+        <h3>Messages for Coco</h3>
         <MessageList messages={messages}/>
         </>
     )
