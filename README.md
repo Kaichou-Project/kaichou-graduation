@@ -38,3 +38,17 @@ The `globals.scss` is mainly used for standardization and should rarely be touch
 The backend uses express as a server for hosting a REST API, which is all set up inside the `index.ts`.
 
 ## Contributing
+
+You do not need to be a member of the Kaichou-Project organization to contribute. Follow these steps:
+
+1. Fork the repository from [here](https://github.com/Kaichou-Project/kaichou-graduation).
+
+2. Clone your fork locally.
+
+3. Optional, but recommended: Create a new branch on the latest commit of the branch you want to contribute to.
+
+4. Commit to the new branch (or the branch you want to contribute to, if you decided not to make a new branch).
+
+5. Push to your fork.
+
+6. [Create a pull request](https://github.com/Kaichou-Project/kaichou-graduation/pulls) from the branch you committed to *in your fork* to the branch you want to contribute to in the organization repository. We don't have a format for pull request descriptions, but please include any details that would help a reviewer.
