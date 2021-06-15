@@ -1,0 +1,38 @@
+{
+  "name": "kaichou-graduation",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/Kaichou-Project/kaichou-graduation.git",
+  "author": "Kaichou Project",
+  "license": "MIT",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"cd packages/backend && yarn dev\"  \"cd packages/frontend && yarn dev\"",
+    "start": "concurrently \"yarn start:client\" \"yarn start:server\"",
+    "start:client": "yarn workspace @kaichou-graduation/client start",
+    "start:server": "yarn workspace @kaichou-graduation/server start",
+    "lint": "eslint . --format=pretty --cache --color"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "concurrently": "^6.2.0",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "2.3.1",
+    "typescript": "^4.3.2",
+    "eslint-config-prettier": "^8.3.0"
+  },
+  "engines": {
+    "node": ">=12.x"
+  }
+}
