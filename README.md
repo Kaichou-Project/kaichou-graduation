@@ -1,6 +1,6 @@
 # Kaichou Graduation Project
 
-The Kaichou Project is a graduation tribute website for the V-Tuber [Kiryu Coco](https://www.youtube.com/channel/UCS9uQI-jC3DE0L4IpXyvr6w).
+The Kaichou Project is a graduation tribute website for the VTuber [Kiryu Coco](https://www.youtube.com/channel/UCS9uQI-jC3DE0L4IpXyvr6w).
 
 ## Setup
 
