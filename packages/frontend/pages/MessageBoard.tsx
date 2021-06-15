@@ -13,15 +13,13 @@ export function MessageList({ messages }) {
 
 export default function MessageBoard() {
     const [messages, setMessages] = useState([])
-    const messageNameRef = useRef()
-    const messageMsgRef = useRef()
+    const messageNameRef = React.useRef<HTMLInputElement>(null)
+    const messageMsgRef = React.useRef<HTMLTextAreaElement>(null)
 
     function uploadMessage(e){
-        const messageName = messageNameRef.current.value
-        const messageMsg = messageMsgRef.current.value
+        const messageName:String = messageNameRef.current.value
+        const messageMsg:String = messageMsgRef.current.value
         if(messageName === "" || messageMsg === "") return
-        //console.log(messageName)
-        //console.log(messageMsg)
         setMessages(prevMessages => {
             return [...prevMessages, {id:uuidv4(), name:messageName, msg:messageMsg}]
         })
@@ -37,7 +35,7 @@ export default function MessageBoard() {
         <p>Display Name:</p>
         <input ref={messageNameRef} type="text" />
         <p>Your Message:</p>
-        <textarea ref={messageMsgRef} name="message" cols="" rows="5"></textarea>
+        <textarea ref={messageMsgRef} name="message" cols={40} rows={5}></textarea>
         <br></br>
         <button onClick={uploadMessage}>Submit!</button>
         <br></br>
