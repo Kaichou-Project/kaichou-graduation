@@ -1,6 +1,16 @@
 import React, { useState, useRef, useEffect} from 'react'
-import Message from './Message'
 import { v4 as uuidv4 } from 'uuid'
+
+export function Message( {message} ) {
+    return (
+        <div>
+            <h4>Name: {message.name}</h4>
+            <p>Message:</p>
+            <p>{message.msg}</p>
+            <p>[DEBUG]MessageID: {message.id}</p>
+        </div>
+    )
+}
 
 export function MessageList({ messages }) {
     return (
