@@ -1,25 +1,26 @@
 import React, { useState, useRef, useEffect} from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import MessageList from './MessageList'
 import { Mongoose } from 'mongoose'
+
+import MessageList from './MessageList'
+import ImageList from './ImageList'
+import VideoList from './VideoList'
 
 export default function MessageBoard() {
     const [messages, setMessages] = useState([])
-    const messageNameRef = React.useRef<HTMLInputElement>(null)
-    const messageMsgRef = React.useRef<HTMLTextAreaElement>(null)
+    const messageAuthorRef = React.useRef<HTMLInputElement>(null)
+    const messageContentRef = React.useRef<HTMLTextAreaElement>(null)
 
     function uploadMessage(e){
-        const messageAuthor:String = messageNameRef.current.value
+        const messageAuthor:String = messageAuthorRef.current.value
         const messageAvatar:String = null
-        const messageContent:String = messageMsgRef.current.value
-
-
+        const messageContent:String = messageContentRef.current.value
 
         if(messageAuthor === "" || messageContent === "") return
-        setMessages(prevMessages => [...prevMessages, {id:uuidv4(), name:messageAuthor, msg:messageContent}])
+        setMessages(prevMessages => [...prevMessages, {id:uuidv4(), author:messageAuthor, content:messageContent}])
 
-        messageNameRef.current.value = null
-        messageMsgRef.current.value = null
+        messageAuthorRef.current.value = null
+        messageContentRef.current.value = null
     }
 
     return (
@@ -27,9 +28,9 @@ export default function MessageBoard() {
         <h2>Welcome to the Message Board</h2>
         <h3>Write New Message!</h3>
         <p>Display Name:</p>
-        <input ref={messageNameRef} type="text" />
+        <input ref={messageAuthorRef} type="text" />
         <p>Your Message:</p>
-        <textarea ref={messageMsgRef} name="message" cols={40} rows={5}></textarea>
+        <textarea ref={messageContentRef} name="message" cols={40} rows={5}></textarea>
         <br/>
         <button onClick={uploadMessage}>Submit!</button>
         <br/>
