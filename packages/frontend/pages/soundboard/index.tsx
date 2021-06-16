@@ -2,7 +2,7 @@ import Navigation from "../../components/Navigation"
 
 function Soundboard() {
     return <>
-        <Navigation title="Soundboard" />
+        <Navigation title="Soundboard" page="Soundboard" />
         <div>Soundboard</div>
     </>
 }

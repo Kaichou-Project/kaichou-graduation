@@ -2,7 +2,7 @@ import Navigation from "../../components/Navigation"
 
 function Credits() {
     return <>
-        <Navigation title="Credits" />
+        <Navigation title="Credits" page="Credits" />
         <div>Credits</div>
     </>
 }

@@ -5,7 +5,7 @@ import React from 'react'
 import Navigation from '../components/Navigation'
 
 const Home = () => <>
-    <Navigation title="Graduation of Kiryu Coco" />
+    <Navigation title="Graduation of Kiryu Coco" page="Home" />
     <div>
         Home
     </div>    
