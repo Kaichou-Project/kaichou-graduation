@@ -1,7 +1,4 @@
-@mixin bgImage($name) {
-    $location: '../public/navigation/' + $name + '.png';
-    background-image: url($location);
-}
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@1,300&display=swap');
 
 .navigation {
     background-image: url('../public/navigation/sakura-trees.jpg');
@@ -17,29 +14,42 @@
         height: 100vh;
     }
 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas:
+        "name  navbar"
+        "title image";
+
+    .name {
+        grid-area: name;
+        justify-self: left;
+        max-width: 50%;
+
+        svg text{
+            fill: #FFFFFF;
+            font-size: 4em;
+            transform: rotate(-11.97deg);
+        }
+    }
+
     .navigators {
-        display: flex;
-        flex-direction: row;
+        grid-area: navbar;
+        justify-self: right;
+        max-width: 75%;
+    }
 
-        .homeBtn {
-            @include bgImage('home')
-        }
-        .clipsBtn {
-            @include bgImage('clips')
-        }
-        .messagesBtn {
-            @include bgImage('messages')
-        }
-        .soundboardBtn {
-            @include bgImage('soundboard')
-        }
-        .creditsBtn {
-            @include bgImage('credits')
-        }
+    .title {
+        grid-area: title;
+        justify-self: center;
+        align-self: center;
+        max-width: 75%;
 
-        & > a {
-            padding: 1.5rem;
-            background-size: contain;
+        svg text {
+            fill: #FFFFFF;
+            font-family: 'K2D', sans-serif;
+            font-size: 3.5rem;
+            transform: rotate(-1.69deg);
         }
     }
 }

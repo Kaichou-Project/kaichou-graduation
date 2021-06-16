@@ -1,14 +1,23 @@
 import Link from 'next/link';
 interface NavItemProps {
-    style: string,
+    x: string,
+    y: string,
+    width: string,
+    height: string,
+    path: string,
     href: string
 }
 
-function NavigationItem({style, href}:NavItemProps) {
+function NavigationItem({x, y, width, height, path, href}:NavItemProps) {
     return (
-    <Link href={href}>
-        <a className={style}></a>
-    </Link>)
+    <>
+        <path d={path} fill="white"></path>
+        <Link href={href}>
+            <a>
+                <rect x={x} y={y} width={width} height={height} fill="#0000"></rect>
+            </a>
+        </Link>
+    </>)
 }
 
 export default NavigationItem
