@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import MessageList from './MessageList'
-
+import { Mongoose } from 'mongoose'
 
 export default function MessageBoard() {
     const [messages, setMessages] = useState([])
@@ -9,10 +9,14 @@ export default function MessageBoard() {
     const messageMsgRef = React.useRef<HTMLTextAreaElement>(null)
 
     function uploadMessage(e){
-        const messageName:String = messageNameRef.current.value
-        const messageMsg:String = messageMsgRef.current.value
-        if(messageName === "" || messageMsg === "") return
-        setMessages(prevMessages => [...prevMessages, {id:uuidv4(), name:messageName, msg:messageMsg}])
+        const messageAuthor:String = messageNameRef.current.value
+        const messageAvatar:String = null
+        const messageContent:String = messageMsgRef.current.value
+
+
+
+        if(messageAuthor === "" || messageContent === "") return
+        setMessages(prevMessages => [...prevMessages, {id:uuidv4(), name:messageAuthor, msg:messageContent}])
 
         messageNameRef.current.value = null
         messageMsgRef.current.value = null
