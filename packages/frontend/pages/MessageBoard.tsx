@@ -1,25 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import MessageList from './MessageList'
 
-export function Message( {message} ) {
-    return (
-        <div>
-            <h4>Name: {message.name}</h4>
-            <p>Message:</p>
-            <p>{message.msg}</p>
-            <p>[DEBUG]MessageID: {message.id}</p>
-            <br></br>
-        </div>
-    )
-}
-
-export function MessageList({ messages }) {
-    return (
-        messages.map(message => {
-            return <Message key={message.id} message={message}/>
-        })
-    )
-}
 
 export default function MessageBoard() {
     const [messages, setMessages] = useState([])
@@ -30,9 +12,7 @@ export default function MessageBoard() {
         const messageName:String = messageNameRef.current.value
         const messageMsg:String = messageMsgRef.current.value
         if(messageName === "" || messageMsg === "") return
-        setMessages(prevMessages => {
-            return [...prevMessages, {id:uuidv4(), name:messageName, msg:messageMsg}]
-        })
+        setMessages(prevMessages => [...prevMessages, {id:uuidv4(), name:messageName, msg:messageMsg}])
 
         messageNameRef.current.value = null
         messageMsgRef.current.value = null
@@ -46,10 +26,10 @@ export default function MessageBoard() {
         <input ref={messageNameRef} type="text" />
         <p>Your Message:</p>
         <textarea ref={messageMsgRef} name="message" cols={40} rows={5}></textarea>
-        <br></br>
+        <br/>
         <button onClick={uploadMessage}>Submit!</button>
-        <br></br>
-        <br></br>
+        <br/>
+        <br/>
         <h3>Messages for Coco</h3>
         <MessageList messages={messages}/>
         </>
