@@ -1,5 +1,6 @@
 import React from 'react'
 import SoundCard from './SoundCard'
+import styles from '../styles/SoundBoard.module.scss'
 
 export default function SoundCardList({ list }) {
   const cards = []
@@ -7,5 +8,5 @@ export default function SoundCardList({ list }) {
     const { title, url } = list[key]
     cards.push(<SoundCard key={key} title={title} url={url} />)
   }
-  return <>{cards}</>
+  return <div className={styles.grid}>{cards}</div>
 }

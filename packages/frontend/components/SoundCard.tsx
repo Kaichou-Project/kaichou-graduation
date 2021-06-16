@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from '../styles/SoundBoard.module.scss'
 
 let audio
 if (typeof Audio !== 'undefined') {
@@ -32,9 +33,10 @@ function playAudio(url: string) {
 export default function SoundCard({ title, url }) {
   const [isPlaying, setIsPlaying] = useState(false)
   return (
-    <div>
-      <div>{title}</div>
-      <button
+    <div className={styles.card}>
+      <div className={styles.title}>{title}</div>
+      <div
+        className={styles.playButton}
         onClick={async () => {
           if (isPlaying) {
             stopAudio()
@@ -45,8 +47,8 @@ export default function SoundCard({ title, url }) {
           }
         }}
       >
-        {isPlaying ? 'Stop' : 'Play'}
-      </button>
+        {isPlaying ? '⏸️' : '▶️'}
+      </div>
     </div>
   )
 }

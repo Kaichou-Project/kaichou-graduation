@@ -1,0 +1,23 @@
+.grid {
+  width:100%;
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
+  grid-gap: 10px;
+}
+
+.card {
+  padding: 1rem;
+  aspect-ratio: 1.2;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: auto 20px;
+}
+
+.title {
+
+}
+
+.playButton {
+  text-align: center;
+}

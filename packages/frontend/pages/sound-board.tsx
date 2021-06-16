@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import SoundCardList from './SoundCardList'
+import React from 'react'
+import SoundCardList from '../components/SoundCardList'
 
 const soundList = {
   'good-morning': {
@@ -39,13 +38,13 @@ const soundList = {
     title: 'Row row row your boat',
     url: '/sounds/kiryu-coco-row-row-row-your-boat.mp3',
   },
+  'shut-up': {
+    title: 'Shut up u son of a',
+    url: '/sounds/coco_shut_up_son_of_a.mp3',
+  },
 }
 
 export default function SoundBoard() {
-  const [messages, setMessages] = useState([])
-  const messageNameRef = React.useRef<HTMLInputElement>(null)
-  const messageMsgRef = React.useRef<HTMLTextAreaElement>(null)
-
   return (
     <>
       <h2>Coco Sound Board</h2>
