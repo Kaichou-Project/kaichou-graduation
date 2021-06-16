@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
-import routes from './route'
-import Logger from './logger'
-import morganMiddleware from './middlewares/morgan.middleware'
+import routes from '@router'
+import Logger from '@logger'
+import morganMiddleware from '@middleware/morgan'
 import dotnev from 'dotenv'
 
 // Load env variables

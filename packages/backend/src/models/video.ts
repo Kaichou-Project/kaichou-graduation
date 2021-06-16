@@ -1,6 +1,6 @@
 import { Document, model, Model } from 'mongoose'
-import { MODEL_VIDEO } from '../constant/general.constant'
-import { VideoSchema } from './schemas/video.schemas'
+import { MODEL_VIDEO } from '@constant/general'
+import { VideoSchema } from '@model/schemas/video'
 
 export interface VideoInterface {
   creator: string

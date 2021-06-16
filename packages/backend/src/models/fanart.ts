@@ -1,6 +1,6 @@
 import { Document, model, Model } from 'mongoose'
-import { MODEL_FANART } from '../constant/general.constant'
-import { FanartSchema } from './schemas/fanart.schemas'
+import { MODEL_FANART } from '@constant/general'
+import { FanartSchema } from '@model/schemas/fanart'
 
 export interface FanartInterface {
   creator: string

@@ -1,6 +1,6 @@
 import { Document, model, Model } from 'mongoose'
-import { MODEL_MESSAGE } from '../constant/general.constant'
-import { MessageSchema } from './schemas/message.schemas'
+import { MODEL_MESSAGE } from '@constant/general'
+import { MessageSchema } from '@model/schemas/message'
 
 export interface MessageInterface {
   author: string
