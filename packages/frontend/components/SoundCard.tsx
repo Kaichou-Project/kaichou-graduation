@@ -33,22 +33,23 @@ function playAudio(url: string) {
 export default function SoundCard({ title, url }) {
   const [isPlaying, setIsPlaying] = useState(false)
   return (
-    <div className={styles.card}>
-      <div className={styles.title}>{title}</div>
-      <div
-        className={styles.playButton}
-        onClick={async () => {
-          if (isPlaying) {
-            stopAudio()
-          } else {
-            setIsPlaying(true)
-            await playAudio(url)
-            setIsPlaying(false)
-          }
-        }}
-      >
-        {isPlaying ? '⏸️' : '▶️'}
+    <div 
+      className={styles.card}
+      onClick={async () => {
+        if (isPlaying) {
+          stopAudio()
+        } else {
+          setIsPlaying(true)
+          await playAudio(url)
+          setIsPlaying(false)
+        }
+      }}
+     >
+      <div className={styles.playButton}>
+        <img src={isPlaying ? '/pause-icon.svg' : '/play-icon.svg'} />
       </div>
+      <div className={styles.title}>{title}</div>
+      <div className={styles.buttomLine} />
     </div>
   )
 }
