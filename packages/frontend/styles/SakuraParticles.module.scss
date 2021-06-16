@@ -1,7 +1,5 @@
-@import "../styles/variables";
-
 .particles {
-	z-index: -1;
+	z-index: 0;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -10,6 +8,6 @@
 	pointer-events: none !important;
 
 	canvas {
-		pointer-events: inherit;
+		pointer-events: none !important;
 	}
 }
