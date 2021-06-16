@@ -6,6 +6,10 @@
   font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
     "Arial", sans-serif;
 }
+html, body {
+  border: 0;
+  margin: 0;
+}
 html{
   cursor: url('../public/asacoco.cur'), default;
 }
