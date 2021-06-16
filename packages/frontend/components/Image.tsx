@@ -4,7 +4,7 @@ export default function Image({ image }) {
   return (
     <div>
       <h4>Creator: {image.creator}</h4>
-      <p>PlaceHolder for Imagestuff</p>
+      <img src={image.url} width={300} height={250}></img>
     </div>
   )
 }
