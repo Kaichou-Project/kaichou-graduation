@@ -48,7 +48,7 @@ export default function SoundBoard() {
 
   return (
     <>
-      <h2>Sound Board</h2>
+      <h2>Coco Sound Board</h2>
       <SoundCardList list={soundList} />
     </>
   )
