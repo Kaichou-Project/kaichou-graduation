@@ -2,16 +2,21 @@ $card: #FE7D3E;
 $bg: #202020;
 $text: #ffffff;
 
+.text{
+    color: $text;
+}
+
+.cardInfo{
+    color: $text;
+    display: inline;
+}
+
 .listContainer{
     display: grid;
     grid-template-columns: auto auto;
     grid-column-gap: 30px;
     background-color: $bg;
     justify-content: center;
-}
-
-.text{
-    color: $text;
 }
 
 .card{
