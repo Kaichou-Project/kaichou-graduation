@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-
 import VideoList from './VideoList'
 
 export default function VideoBoard() {
@@ -8,7 +7,7 @@ export default function VideoBoard() {
   const videoCreatorRef = React.useRef<HTMLInputElement>(null)
   const videoLinkRef = React.useRef<HTMLInputElement>(null)
 
-  function uploadVideo(_e) {
+  function uploadVideo(e) {
     const videoCreator: string = videoCreatorRef.current.value
     const videoLink: string = videoLinkRef.current.value
 
