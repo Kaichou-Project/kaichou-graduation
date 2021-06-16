@@ -1,5 +1,5 @@
 import MessageList from "./MessageList";
-import style from './HomeBlock.module.scss'
+import style from './SampleHomeBlock.module.scss'
 
 export default function HomeBlock() {
     const messages=[{name:'user', id:1, msg:'message1'}, {name:'Jane',msg:'msg 2'}]

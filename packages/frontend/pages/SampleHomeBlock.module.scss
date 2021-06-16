@@ -3,6 +3,8 @@
     background-image: radial-gradient(to bottom left, #ffb62f 70%, rgb(250, 198, 56) 70%);
     min-height: 100px;
     min-width: 100px;
+    height: 100vh;
+    box-sizing: border-box;
 }
 .content {
     width: 79%;
@@ -37,9 +39,6 @@
         margin-top:0;
         margin-bottom:0;
         padding:0;
-    }
-    .msgBody {
-        display: none;
     }
     background: transparent;
     border-radius: 3px;

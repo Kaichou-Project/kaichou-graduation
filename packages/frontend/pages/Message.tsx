@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 
 export default function Message( {message, msgClass=""}) {
     return (
