@@ -1,0 +1,45 @@
+@mixin bgImage($name) {
+    $location: '../public/navigation/' + $name + '.png';
+    background-image: url($location);
+}
+
+.navigation {
+    background-image: url('../public/navigation/sakura-trees.jpg');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: #FFFFFF;
+    width: 100vw;
+    height: calc(100vw * 9 / 16);
+
+    @media (orientation: landscape) {
+        height: 100vh;
+    }
+
+    .navigators {
+        display: flex;
+        flex-direction: row;
+
+        .homeBtn {
+            @include bgImage('home')
+        }
+        .clipsBtn {
+            @include bgImage('clips')
+        }
+        .messagesBtn {
+            @include bgImage('messages')
+        }
+        .soundboardBtn {
+            @include bgImage('soundboard')
+        }
+        .creditsBtn {
+            @include bgImage('credits')
+        }
+
+        & > div {
+            padding: 1.5rem;
+            background-size: contain;
+        }
+    }
+}
