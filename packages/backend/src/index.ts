@@ -1,12 +1,33 @@
 import express from 'express'
 import cors from 'cors'
+import routes from './route'
+import Logger from './logger'
+import morganMiddleware from './middlewares/morgan.middleware'
+import dotnev from 'dotenv'
 
+// Load env variables
+dotnev.config()
+
+// this backend service Port
 const PORT = process.env.PORT ?? 5000
 
-const app = express()
+// this app
+const app: express.Application = express()
 
+// CORS middleware for allowing cross-origin requests
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
+
+// JSON middleware for parse all incoming request as JSON
 app.use(express.json())
 
+// Morgan middleware for logging HTTP request
+app.use(morganMiddleware)
+
+// Apply the routes
+app.use('/public/v1', routes())
+
+// Start the server
 // eslint-disable-next-line no-console
-app.listen(PORT, () => console.log(`🚀 listening on port ${PORT}!`))
+app.listen(PORT, () =>
+  Logger.debug(`🚀 listening on http://localhost:${PORT}!`)
+)
