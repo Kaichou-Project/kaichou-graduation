@@ -1,8 +1,7 @@
 import MessageList from "./MessageList";
 import style from './SampleHomeBlock.module.scss'
 
-export default function HomeBlock() {
-    const messages=[{name:'user', id:1, msg:'message1'}, {name:'Jane',msg:'msg 2'}]
+export default function HomeBlock({ messages=[{name:'J. Doe', id:1, msg:'Hello! This is the first message.'}] }) {
     return (
         <>
         <div id={style.home}>

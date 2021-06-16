@@ -21,13 +21,19 @@
     background-color: white;
 }
 .message {
+    background: transparent;
+    border-radius: 3px;
+    max-width: 500px;
+    margin-left:auto;
+    margin-right: auto;
+
     h4 {
         background: white;
         text-align: center;
         margin-left:auto;
         margin-right:auto;
         margin-bottom:0px;
-        max-width: 100px;
+        max-width: 150px;
         border-radius: 15px;
         box-shadow: lightgray 3px 2px;
         position: relative;
@@ -40,7 +46,4 @@
         margin-bottom:0;
         padding:0;
     }
-    background: transparent;
-    border-radius: 3px;
-    max-width: 500px;
 }
