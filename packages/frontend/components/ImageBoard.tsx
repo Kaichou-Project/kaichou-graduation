@@ -4,5 +4,41 @@ import { v4 as uuidv4 } from 'uuid'
 import ImageList from './ImageList'
 
 export default function ImageBoard() {
-  return <div></div>
+  const [images, setImages] = useState([])
+  const imageCreatorRef = React.useRef<HTMLInputElement>(null)
+  const imageUrlRef = React.useRef<HTMLInputElement>(null)
+
+  function uploadImage(e) {
+    const imageCreator: string = imageCreatorRef.current.value
+    const imageUrl: string = imageUrlRef.current.value
+
+    if (imageCreator === '' || imageUrl === '') return
+    setImages((prevImages) => [
+      ...prevImages,
+      {
+        id: uuidv4(),
+        creator: imageCreator,
+        content: imageUrl,
+      },
+    ])
+    imageCreatorRef.current.value = null
+    imageUrlRef.current.value = null
+  }
+
+  return (
+    <>
+      <h2>Welcome to the Video Board</h2>
+      <h3>Share new Video!</h3>
+      <p>Creator Name:</p>
+      <input ref={imageCreatorRef} type="text" />
+      <p>Image URL:</p>
+      <input ref={imageUrlRef} type="url" />
+      <br />
+      <button onClick={uploadImage}>Submit!</button>
+      <br />
+      <br />
+      <h3>Fanart for Coco</h3>
+      <ImageList images={images} />
+    </>
+  )
 }
