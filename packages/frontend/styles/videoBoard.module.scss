@@ -1,0 +1,28 @@
+$card: #FE7D3E;
+$bg: #202020;
+$text: #ffffff;
+
+.listContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 30px;
+    background-color: $bg;
+    justify-content: center;
+}
+
+.text{
+    color: $text;
+}
+
+.card{
+    grid-column: 1;
+    background-color: $bg;
+    width: 50%;
+}
+
+.player{
+    border: 10px solid $card;
+    width: 50%;
+    height: auto;
+}
+

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import VideoList from './VideoList'
+import styles from '../styles/videoBoard.module.scss'
 
 export default function VideoBoard() {
   const [videos, setVideos] = useState([])
@@ -43,7 +44,9 @@ export default function VideoBoard() {
       <br />
       <br />
       <h3>Videos for Coco</h3>
-      <VideoList videos={videos} />
+      <div className={styles.listContainer}>
+        <VideoList videos={videos} />
+      </div>
     </>
   )
 }

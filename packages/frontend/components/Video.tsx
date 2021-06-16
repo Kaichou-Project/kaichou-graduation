@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
+import styles from '../styles/videoBoard.module.scss'
 
 export default function Video({ video }) {
   return (
     <div>
-      <h4>Creator: {video.creator}</h4>
-      <h4>Title: {video.title}</h4>
-      <ReactPlayer url={video.url} />
+      <h3 className={styles.text}>
+        {video.title} - {video.creator}
+      </h3>
+      <ReactPlayer className={styles.player} url={video.url} />
     </div>
   )
 }
