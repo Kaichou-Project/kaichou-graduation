@@ -1,11 +1,10 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 
-export default function Message( {message} ) {
+export default function Message( {message, msgClass=""}) {
     return (
-        <div>
-            <h4>Name: {message.name}</h4>
-            <p>Message:</p>
-            <p>{message.msg}</p>
+        <div className={msgClass}>
+            <h4><span className="label">Name: </span>{message.name}</h4>
+            <p className="msgBody"><span className="label">Message: </span>{message.msg}</p>
             <br/>
         </div>
     )
