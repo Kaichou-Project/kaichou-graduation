@@ -10,7 +10,7 @@
     background-size: cover;
 
     color: #FFFFFF;
-    width: 100vw;
+    width: 100%;
     height: calc(100vw * 9 / 16);
 
     @media (orientation: landscape) {
@@ -37,7 +37,7 @@
             @include bgImage('credits')
         }
 
-        & > div {
+        & > a {
             padding: 1.5rem;
             background-size: contain;
         }

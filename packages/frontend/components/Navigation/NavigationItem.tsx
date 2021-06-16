@@ -1,10 +1,14 @@
+import Link from 'next/link';
 interface NavItemProps {
-    style: string
+    style: string,
+    href: string
 }
 
-function NavigationItem({style}:NavItemProps) {
+function NavigationItem({style, href}:NavItemProps) {
     return (
-    <div className={style}></div>)
+    <Link href={href}>
+        <a className={style}></a>
+    </Link>)
 }
 
 export default NavigationItem

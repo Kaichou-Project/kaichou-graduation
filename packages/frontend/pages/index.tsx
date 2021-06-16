@@ -1,5 +1,14 @@
+//React Import
 import React from 'react'
 
-const Home = () => <div></div>
+//Project imports
+import Navigation from '../components/Navigation'
+
+const Home = () => <>
+    <Navigation title="Graduation of Kiryu Coco" />
+    <div>
+        Home
+    </div>    
+</>
 
 export default Home
