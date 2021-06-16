@@ -3,6 +3,10 @@ import cors from 'cors'
 import routes from './route'
 import Logger from './logger'
 import morganMiddleware from './middlewares/morgan.middleware'
+import dotnev from 'dotenv'
+
+// Load env variables
+dotnev.config()
 
 // this backend service Port
 const PORT = process.env.PORT ?? 5000
