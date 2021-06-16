@@ -27,8 +27,8 @@ export default function ImageBoard() {
 
   return (
     <>
-      <h2>Welcome to the Video Board</h2>
-      <h3>Share new Video!</h3>
+      <h2>Welcome to the Image Board</h2>
+      <h3>Share new Image!</h3>
       <p>Creator Name:</p>
       <input ref={imageCreatorRef} type="text" />
       <p>Image URL:</p>
