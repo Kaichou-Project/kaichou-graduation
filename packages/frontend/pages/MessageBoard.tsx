@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { Mongoose } from 'mongoose'
 
 import MessageList from './MessageList'
-import ImageList from './ImageList'
-import VideoList from './VideoList'
 
 export default function MessageBoard() {
     const [messages, setMessages] = useState([])
