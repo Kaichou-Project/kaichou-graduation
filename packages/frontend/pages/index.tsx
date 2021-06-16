@@ -1,36 +1,37 @@
-import React from 'react';
-import styles from "./index.module.scss";
-import Particles from "react-particles-js";
+import React from 'react'
+import styles from './index.module.scss'
+import Particles from 'react-particles-js'
 
-const Home = () =>
+const Home = () => (
   <div>
     <Particles
       className={styles.particles}
-      canvasClassName={styles.canvas}
       params={{
         particles: {
           shape: {
-            type: "image",
-            image: [{
-              src: "./sakura-particles/sakura.png",
-              width: 400,
-              height: 200
-            },
-            {
-              src: "./sakura-particles/sakura2.png",
-              width: 400,
-              height: 200
-            },
-            {
-              src: "./sakura-particles/sakura3.png",
-              width: 400,
-              height: 200
-            },
-            {
-              src: "./sakura-particles/sakura4.png",
-              width: 400,
-              height: 200
-            }]
+            type: 'image',
+            image: [
+              {
+                src: './sakura-particles/sakura.png',
+                width: 400,
+                height: 200,
+              },
+              {
+                src: './sakura-particles/sakura2.png',
+                width: 400,
+                height: 200,
+              },
+              {
+                src: './sakura-particles/sakura3.png',
+                width: 400,
+                height: 200,
+              },
+              {
+                src: './sakura-particles/sakura4.png',
+                width: 400,
+                height: 200,
+              },
+            ],
           },
           number: {
             value: 80,
@@ -52,12 +53,13 @@ const Home = () =>
           move: {
             random: true,
             speed: 0.5,
-            direction: "bottom",
-            out_mode: "out"
+            direction: 'bottom',
+            out_mode: 'out',
           },
         },
       }}
     />
   </div>
+)
 
 export default Home

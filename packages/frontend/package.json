@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:types": "yarn tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "next": "10.2.3",
