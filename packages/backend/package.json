@@ -4,7 +4,8 @@
   "main": "index.ts",
   "private": "true",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only src/index.ts"
+    "dev": "ts-node-dev --transpile-only src/index.ts",
+    "test:types": "yarn tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.8",
