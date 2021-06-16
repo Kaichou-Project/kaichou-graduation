@@ -4427,11 +4427,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-<<<<<<< HEAD
-lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.21:
-=======
-lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
->>>>>>> 47985203bf8a03568f8685d6a89512d505c37c0d
+lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -7162,14 +7158,6 @@ tslib@^1.13.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-<<<<<<< HEAD
-tsparticles@^1.18.10:
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.1.tgz#2391098ef83a1d8ee5d962aa743fcb19059fe3c9"
-  integrity sha512-zaeH2xPGax2ENltIxjYRgy3HixIKAagixHjWz5CyljsYweBO0nrjCQ6YalOHC3REJpGJAHfJsWWu02r5iYiiXA==
-  optionalDependencies:
-    pathseg "^1.2.0"
-=======
 tslint@^6.1.3:
   version "6.1.3"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-6.1.3.tgz#5c23b2eccc32487d5523bd3a470e9aa31789d904"
@@ -7189,13 +7177,19 @@ tslint@^6.1.3:
     tslib "^1.13.0"
     tsutils "^2.29.0"
 
+tsparticles@^1.18.10:
+  version "1.28.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.1.tgz#2391098ef83a1d8ee5d962aa743fcb19059fe3c9"
+  integrity sha512-zaeH2xPGax2ENltIxjYRgy3HixIKAagixHjWz5CyljsYweBO0nrjCQ6YalOHC3REJpGJAHfJsWWu02r5iYiiXA==
+  optionalDependencies:
+    pathseg "^1.2.0"
+
 tsutils@^2.29.0:
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.29.0.tgz#32b488501467acbedd4b85498673a0812aca0b99"
   integrity sha512-g5JVHCIJwzfISaXpXE1qvNalca5Jwob6FjI4AoPlqMusJ6ftFE7IkkFoMhVLRgK+4Kx3gkzb8UZK5t5yTTvEmA==
   dependencies:
     tslib "^1.8.1"
->>>>>>> 47985203bf8a03568f8685d6a89512d505c37c0d
 
 tsutils@^3.21.0:
   version "3.21.0"
@@ -7429,14 +7423,11 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-<<<<<<< HEAD
-=======
 uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
->>>>>>> 47985203bf8a03568f8685d6a89512d505c37c0d
 uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
