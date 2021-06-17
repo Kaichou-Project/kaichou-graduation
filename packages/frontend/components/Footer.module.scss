@@ -1,0 +1,103 @@
+@import '../styles/variables';
+
+.footer {
+  overflow: hidden;
+}
+
+.footer_container {
+  display: block;
+  z-index: 2;
+
+  min-width: 95%;
+  padding: 40px 20vw 40px 60px;
+
+  background-color: $orange;
+  color: $white;
+
+  transform: rotate(3deg);
+  transform-origin: 0 0 0;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+  
+    h2 {
+      margin: 0;
+      font-size: 36px;
+    }
+    
+    p {
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+
+  .subtitle {
+    margin: 0;
+  }
+
+  .links {
+    display: flex;
+    margin: 32px 0;
+  
+    .column {
+      display: flex;
+      flex-direction: column;
+      margin-right: 160px;
+      font-size: 18px;
+    }
+  
+    p {
+      font-weight: bold;
+      margin: 1px;
+    }
+  
+    a {
+      opacity: 0.7;
+	    margin: 1px;
+	    color: $white;
+	    text-decoration: none;
+      cursor: url('../public/asacoco.cur'), default;
+	  }
+	
+	  a:hover {
+      opacity: 1;
+      text-shadow: 0 0 3px $dark-orange;
+	  }
+  
+    img {
+      opacity: 0.9;
+      margin-right: 110px;
+    }
+
+    img:hover {
+      opacity: 1;
+      filter: drop-shadow(0 0 3px $dark-orange);
+    }
+  }
+}
+
+.footer_bg_container {
+  display: flex;
+  transform: rotate(4deg);
+  transform-origin: 0 0 0;
+
+  .bg {
+    z-index: 1;
+
+    width: 95%;
+    height: 50px;
+
+    background-color: $dark-orange;
+  }
+
+  .end {
+    z-index: 1;
+    width: 100px;
+    height: 50px;
+    background-color: $dark-orange;
+
+    transform: rotate(45deg);
+    transform-origin: 0 0 0;
+  }
+}

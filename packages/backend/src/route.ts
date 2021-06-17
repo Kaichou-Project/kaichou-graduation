@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { indexController } from './controllers/index.controller'
+import { indexController } from '@controller/front'
 
 const routes = () => {
   const router: Router = Router()
