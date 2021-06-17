@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ImageInterface } from './Image'
-import { ImageListProps } from './ImageList'
 import ImageList from './ImageList'
 
 export default function ImageBoard() {
