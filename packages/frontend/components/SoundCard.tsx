@@ -6,16 +6,33 @@ let audio: HTMLAudioElement
 if (typeof Audio !== 'undefined') {
   audio = new Audio()
 }
-function stopAudio() {
-  audio.pause()
-  audio.currentTime = 0
-  audio.onended(new Event('end'))
-  audio.onended = null
-}
 
-function playAudio(url: string) {
-  return new Promise((resolve) => {
-    if (!audio) return resolve(false)
+export default function SoundCard(props: soundInfo) {
+  const { title, url } = props
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentProgress, setCurrentProgress] = useState(0)
+
+  let timer: number
+  function onAudioEnd() {
+    audio.onended = null
+    setIsPlaying(false)
+    setCurrentProgress(0)
+
+    window.clearInterval(timer)
+  }
+
+  function stopAudio() {
+    audio.pause()
+    audio.currentTime = 0
+    audio.onended = null
+
+    onAudioEnd()
+  }
+
+  function playAudio() {
+    if (!audio) return setIsPlaying(false)
+
+    setIsPlaying(true)
 
     // Call previous callback
     if (!audio.paused && typeof audio.onended === 'function') {
@@ -24,34 +41,27 @@ function playAudio(url: string) {
 
     audio.src = url
     audio.play()
-    audio.onended = function () {
-      audio.onended = null
-      resolve(true)
-    }
-  })
-}
+    audio.onended = onAudioEnd
 
-export default function SoundCard(props: soundInfo) {
-  const { title, url } = props
-  const [isPlaying, setIsPlaying] = useState(false)
+    timer = window.setInterval(() => {
+      const percentage = Math.round((audio.currentTime / audio.duration) * 100)
+      setCurrentProgress(percentage)
+    }, 60)
+  }
+
   return (
     <div
       className={styles.card}
-      onClick={async () => {
-        if (isPlaying) {
-          stopAudio()
-        } else {
-          setIsPlaying(true)
-          await playAudio(url)
-          setIsPlaying(false)
-        }
-      }}
+      onClick={() => (isPlaying ? stopAudio() : playAudio())}
     >
       <div className={styles.playButton}>
         <img src={isPlaying ? '/pause-icon.svg' : '/play-icon.svg'} />
       </div>
       <div className={styles.title}>{title}</div>
-      <div className={styles.buttomLine} />
+      <div
+        style={{ width: `${currentProgress}%` }}
+        className={styles.progressBar}
+      />
     </div>
   )
 }
