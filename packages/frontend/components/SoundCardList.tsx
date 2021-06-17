@@ -1,6 +1,6 @@
 import React from 'react'
 import SoundCard from './SoundCard'
-import { soundInfo } from '../components/soundList'
+import soundInfo from '../interfaces/soundInfo'
 import styles from '../styles/SoundBoard.module.scss'
 
 export default function SoundCardList(props: { list: soundInfo[] }) {
