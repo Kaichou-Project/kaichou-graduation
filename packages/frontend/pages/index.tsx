@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './index.module.scss'
 import Particles from 'react-particles-js'
+import ToTheTopButton from '../components/ToTheTopButton'
 import Footer from '../components/Footer'
 
 const Home = () => (
@@ -60,6 +61,7 @@ const Home = () => (
         },
       }}
     />
+    <ToTheTopButton />
     <Footer />
   </div>
 )

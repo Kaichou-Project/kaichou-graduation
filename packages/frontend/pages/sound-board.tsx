@@ -1,6 +1,7 @@
 import React from 'react'
 import SoundCardList from '../components/SoundCardList'
 import soundCategory from '../interfaces/soundCategory'
+import ToTheTopButton from '../components/ToTheTopButton'
 import Footer from '../components/Footer'
 
 const soundCategoryList: soundCategory[] = [
@@ -68,6 +69,7 @@ export default function SoundBoard() {
       {soundCategoryList.map((soundCategory, i) => (
         <SoundCardList key={i} {...soundCategory} />
       ))}
+      <ToTheTopButton />
       <Footer />
     </>
   )

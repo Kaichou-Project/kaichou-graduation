@@ -1,13 +1,14 @@
 // Used for overriding defaults
 
-@import "variables";
+@import 'variables';
 
 * {
-  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
-    "Arial", sans-serif;
+  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+    'Arial', sans-serif;
 }
-html{
+html {
   cursor: url('../public/asacoco.cur'), default;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;

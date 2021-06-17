@@ -1,0 +1,33 @@
+@import './variables';
+
+.container {
+  display: grid;
+  justify-content: center;
+}
+
+.button {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+
+  color: $white;
+  background: #373737;
+  height: 2.4em;
+  width: 8.4em;
+  border-radius: 10px;
+
+  font-family: Roboto;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+
+  img {
+    width: 1em;
+    right: 0;
+    margin: auto;
+  }
+}
+
+.button:hover {
+  background: #2c2c2c;
+}
