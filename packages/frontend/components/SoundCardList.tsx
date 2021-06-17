@@ -1,16 +1,14 @@
 import React from 'react'
 import SoundCard from './SoundCard'
-import soundInfo from '../interfaces/soundInfo'
 import styles from '../styles/SoundBoard.module.scss'
+import soundCategory from '../interfaces/soundCategory'
 
-export default function SoundCardList(props: { list: soundInfo[] }) {
-  const cards = props.list.map(({ title, url }, i) => (
-    <SoundCard key={i} title={title} url={url} />
-  ))
+export default function SoundCardList(props: soundCategory) {
+  const cards = props.list.map((sound, i) => <SoundCard key={i} {...sound} />)
 
   return (
     <div className={styles.container}>
-      <h2>Category</h2>
+      <h2>{props.name}</h2>
       <div className={styles.grid}>{cards}</div>
     </div>
   )

@@ -1,25 +1,25 @@
 .container {
-  background: #2C2C2C;
+  background: #2c2c2c;
   padding: 2em 2.5em;
-  margin: 0 2em;
+  margin: 1em 2em;
   border-radius: 1.5em;
   font-size: 1.7rem;
-  color:white;
+  color: white;
 
   h2 {
     margin-top: 0;
-    margin-bottom: 1em;;
+    margin-bottom: 1em;
   }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(12em, 1fr) );
+  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
   grid-gap: 1.5em 1.2em;
 }
 
 .card {
-  background: #FE7D3E;
+  background: #fe7d3e;
   aspect-ratio: 5;
   border-radius: 10px;
   overflow: hidden;
@@ -55,4 +55,3 @@
     grid-row: 2;
   }
 }
-

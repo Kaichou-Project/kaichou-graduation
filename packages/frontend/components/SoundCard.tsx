@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import soundInfo from '../interfaces/soundInfo'
 import styles from '../styles/SoundBoard.module.scss'
 
 let audio: HTMLAudioElement
@@ -30,7 +31,8 @@ function playAudio(url: string) {
   })
 }
 
-export default function SoundCard({ title, url }) {
+export default function SoundCard(props: soundInfo) {
+  const { title, url } = props
   const [isPlaying, setIsPlaying] = useState(false)
   return (
     <div
