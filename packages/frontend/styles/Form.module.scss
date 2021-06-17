@@ -2,9 +2,28 @@
 $normal-font-size: 24px;
 
 .form {
-  max-width: 600px;
+  max-width: 700px;
   padding: 50px;
   margin: auto;
+}
+
+.tabs {
+  width: 100%;
+  font-size: $normal-font-size;
+  color: $white;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px 0.5em;
+
+  label {
+    grid-column: 1 / 4;
+    grid-row: 1;
+  }
+
+  .button.selected {
+    background: $orange;
+  }
 }
 
 .textInput {
@@ -27,24 +46,44 @@ $normal-font-size: 24px;
 
   textarea {
     resize: vertical;
+    height: 6em;
   }
 
   input,
   textarea {
-    width: 100%;
+    width: calc(100% - 20px);
+    padding: 0 10px;
     background: #3f3f3f;
     border: none;
     border-radius: 10px;
-    padding: 0 10px;
-
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
   }
 
   textarea:focus,
   input:focus {
     outline: none;
-    border: 6px solid $orange;
+    box-shadow: 0 0 0 6px $orange;
   }
+}
+
+.button,
+.button_submit {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: center;
+
+  color: $white;
+  background: #373737;
+  height: 2.3em;
+  border-radius: 10px;
+
+  font-size: $normal-font-size;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.button_submit {
+  background: $orange;
+  width: 8em;
+  margin-left: auto;
 }
