@@ -1,5 +1,6 @@
 //Project imports
 import styles from '../styles/Navigation.module.scss';
+import SakuraParticles from './SakuraParticles';
 import { HomeSvg, ClipsSvg, MessagesSvg, SoundboardSvg, CreditsSvg } from './Navigation/NavigationList';
 
 enum CircleX {
@@ -57,6 +58,7 @@ function Navigation({ title, page }:NavProps) {
         <div className={styles.image}>
 
         </div>
+        <SakuraParticles />
     </div>)
 }
 

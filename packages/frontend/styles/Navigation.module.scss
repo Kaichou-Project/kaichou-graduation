@@ -6,6 +6,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+    position: relative; /* To contain Particles just in this screen */
     color: #FFFFFF;
     width: 100%;
     height: calc(100vw * 9 / 16);
@@ -24,7 +25,7 @@
     .name {
         grid-area: name;
         justify-self: left;
-        max-width: 50%;
+        width: 50%;
 
         svg text{
             fill: #FFFFFF;
@@ -36,14 +37,14 @@
     .navigators {
         grid-area: navbar;
         justify-self: right;
-        max-width: 75%;
+        width: 75%;
     }
 
     .title {
         grid-area: title;
         justify-self: center;
         align-self: center;
-        max-width: 75%;
+        width: 75%;
 
         svg text {
             fill: #FFFFFF;
