@@ -2,7 +2,7 @@ import React from 'react'
 import Video from './Video'
 
 interface VideoList {
-  videos: Video[]
+  videos: VideoInterface[]
 }
 
 export default function VideoList({ videos }) {
