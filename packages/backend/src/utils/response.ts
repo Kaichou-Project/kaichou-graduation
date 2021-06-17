@@ -1,6 +1,6 @@
 import { Response } from 'express'
 import { Error, Error as MongooseError } from 'mongoose'
-import { findAttributeMessage } from './helper.util'
+import { findAttributeMessage } from '@util/helper'
 
 type ErrorsResponse = Array<string | Error> | any
 type GeneralError =

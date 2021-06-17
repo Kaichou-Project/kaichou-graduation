@@ -1,7 +1,26 @@
 {
   "extends": "@tsconfig/node12",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": "src",
+    "paths": {
+      "@router": ["route.ts"],
+      "@logger": ["logger.ts"],
+      "@config/*": ["config/*"],
+      "@constant/*": ["constant/*"],
+      "@controller/*": ["controllers/*"],
+      "@middleware/*": ["middlewares/*"],
+      "@model/*": ["models/*"],
+      "@schema/*": ["models/schemas/*"],
+      "@service/*": ["services/*"],
+      "@util/*": ["utils/*"],
+      "@response-util": ["utils/response.util.ts"]
+    }
   },
   "exclude": ["node_modules", "**/*.spec.ts", "dist/**/*"],
   "include": ["src/**/*.ts"]
