@@ -2,19 +2,24 @@ import React from 'react'
 import ReactPlayer from 'react-player'
 import styles from '../styles/videoBoard.module.scss'
 
-interface Video {
+interface VideoInterface {
   title: string
   creator: string
   url: string
 }
 
-export default function Video({ video }) {
+interface VideoProps {
+  key: string
+  video: VideoInterface
+}
+
+export default function Video(props: VideoProps) {
   return (
     <div>
-      <h3 className={styles.cardInfo}>{video.title}</h3>
-      <h4 className={styles.cardInfo}> - {video.creator}</h4>
+      <h3 className={styles.cardInfo}>{props.video.title}</h3>
+      <h4 className={styles.cardInfo}> - {props.video.creator}</h4>
       <div className={styles.playerWrapper}>
-        <ReactPlayer className={styles.player} url={video.url} />
+        <ReactPlayer className={styles.player} url={props.video.url} />
       </div>
     </div>
   )
