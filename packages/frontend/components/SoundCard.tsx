@@ -24,9 +24,8 @@ export default function SoundCard(props: soundInfo) {
   function stopAudio() {
     audio.pause()
     audio.currentTime = 0
+    audio.onended(new Event('end'))
     audio.onended = null
-
-    onAudioEnd()
   }
 
   function playAudio() {
