@@ -6,5 +6,11 @@ export interface ImageListProps {
 }
 
 export default function ImageList({ images }: ImageListProps) {
-  return images.map((image) => <Image key={image.id} image={image} />)
+  return (
+    <>
+      {images.map((image) => (
+        <Image key={image.id} image={image} />
+      ))}
+    </>
+  )
 }
