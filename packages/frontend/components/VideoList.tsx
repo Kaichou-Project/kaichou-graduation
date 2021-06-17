@@ -1,7 +1,7 @@
 import React from 'react'
 import Video from './Video'
 
-interface VideoList {
+interface VideoListProps {
   videos: VideoInterface[]
 }
 
