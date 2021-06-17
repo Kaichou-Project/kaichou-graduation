@@ -1,6 +1,10 @@
 import React from 'react'
 
-interface Image {
+interface ImageInterface {
+  id: string
+  creator: string
+  url: string
+}
   creator: string
   url: string
 }
