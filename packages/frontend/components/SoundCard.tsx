@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import styles from '../styles/SoundBoard.module.scss'
 
-let audio
+let audio: HTMLAudioElement
 if (typeof Audio !== 'undefined') {
   audio = new Audio()
 }
 function stopAudio() {
   audio.pause()
   audio.currentTime = 0
-  audio.onended()
+  audio.onended(new Event('end'))
   audio.onended = null
 }
 
@@ -18,7 +18,7 @@ function playAudio(url: string) {
 
     // Call previous callback
     if (!audio.paused && typeof audio.onended === 'function') {
-      audio.onended()
+      audio.onended(new Event('end'))
     }
 
     audio.src = url
@@ -33,7 +33,7 @@ function playAudio(url: string) {
 export default function SoundCard({ title, url }) {
   const [isPlaying, setIsPlaying] = useState(false)
   return (
-    <div 
+    <div
       className={styles.card}
       onClick={async () => {
         if (isPlaying) {
@@ -44,7 +44,7 @@ export default function SoundCard({ title, url }) {
           setIsPlaying(false)
         }
       }}
-     >
+    >
       <div className={styles.playButton}>
         <img src={isPlaying ? '/pause-icon.svg' : '/play-icon.svg'} />
       </div>
