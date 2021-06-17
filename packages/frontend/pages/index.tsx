@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './index.module.scss'
 import Particles from 'react-particles-js'
+import Footer from '../components/Footer'
 
 const Home = () => (
   <div>
@@ -59,6 +60,7 @@ const Home = () => (
         },
       }}
     />
+    <Footer />
   </div>
 )
 
