@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player'
 import styles from '../styles/videoBoard.module.scss'
 
 export interface VideoInterface {
+  id: string
   title: string
   creator: string
   url: string
