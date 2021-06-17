@@ -1,5 +1,9 @@
 @import '../styles/variables';
 
+.footer {
+  overflow: hidden;
+}
+
 .footer_container {
   display: block;
   z-index: 2;
@@ -12,6 +16,46 @@
 
   transform: rotate(3deg);
   transform-origin: 0 0 0;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+  
+    h2 {
+      margin: 0;
+    }
+    
+    p {
+      margin: 0;
+    }
+  }
+
+  .links {
+    display: flex;
+    margin: 20px 0;
+  
+    .column {
+      display: flex;
+      flex-direction: column;
+      margin-right: 100px;
+      font-size: 14px;
+    }
+  
+    p {
+      font-weight: bold;
+      margin: 1px;
+    }
+  
+    a {
+      opacity: 0.9;
+      margin: 1px;
+    }
+  
+    img {
+      margin-right: 100px;
+    }
+  }
+  
 }
 
 .footer_bg_container {
@@ -37,43 +81,4 @@
     transform: rotate(45deg);
     transform-origin: 0 0 0;
   }
-}
-
-.footer_title_container {
-  display: flex;
-  justify-content: space-between;
-
-  h2 {
-    margin: 0;
-  }
-  
-  p {
-    margin: 0;
-  }
-}
-
-.footer_links_container {
-  display: flex;
-  margin: 20px 0;
-
-  p {
-    font-weight: bold;
-    margin: 1px;
-  }
-
-  a {
-    opacity: 0.9;
-    margin: 1px;
-  }
-}
-
-.footer_links_column {
-  display: flex;
-  flex-direction: column;
-  margin-right: 100px;
-  font-size: 14px;
-}
-
-.footer_link_social {
-  margin-right: 50px;
 }
