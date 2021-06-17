@@ -1,7 +1,7 @@
 import React from 'react'
-import Video from './Video'
+import Video, { VideoInterface } from './Video'
 
-export interface VideoListProps {
+interface VideoListProps {
   videos: VideoInterface[]
 }
 

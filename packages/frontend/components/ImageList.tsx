@@ -1,10 +1,10 @@
 import React from 'react'
-import Image from './Image'
+import Image, { ImageInterface } from './Image'
 
-interface ImageList {
+export interface ImageListProps {
   images: ImageInterface[]
 }
 
-export default function ImageList({ images }) {
+export default function ImageList({ images }: ImageListProps) {
   return images.map((image) => <Image key={image.id} image={image} />)
 }

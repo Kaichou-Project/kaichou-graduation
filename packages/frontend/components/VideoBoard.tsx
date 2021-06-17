@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import VideoList from './VideoList'
+import { VideoInterface } from './Video'
 import styles from '../styles/videoBoard.module.scss'
 
 export default function VideoBoard() {
-  const [videos, setVideos] = useState([])
+  const [videos, setVideos] = useState<VideoInterface[]>([])
   const videoCreatorRef = React.useRef<HTMLInputElement>(null)
   const videoTitleRef = React.useRef<HTMLInputElement>(null)
   const videoLinkRef = React.useRef<HTMLInputElement>(null)

@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface ImageInterface {
+export interface ImageInterface {
   id: string
   creator: string
   url: string
