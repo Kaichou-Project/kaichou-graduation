@@ -41,7 +41,5 @@
   "engines": {
     "node": ">=12.x"
   },
-  "dependencies": {
-    "mongoose": "^5.12.14"
-  }
+  "dependencies": {}
 }
