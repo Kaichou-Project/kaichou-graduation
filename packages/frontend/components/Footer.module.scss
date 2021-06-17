@@ -1,13 +1,11 @@
 @import '../styles/variables';
 
 .footer_container {
-  position: fixed;                /* remove this if footer should not be sticky */
-  left: 0;
-  bottom: 0;
+  display: block;
   z-index: 2;
 
-  width: 95%;
-  padding: 40px;
+  min-width: 95%;
+  padding: 40px 20vw 40px 40px;
 
   background-color: $orange;
   color: $white;
@@ -16,38 +14,57 @@
   transform-origin: 0 0 0;
 }
 
-.footer_bg {
-  position: fixed;
-  left: 0;
-  bottom: 250px;
-  right: 50px;
-  z-index: 1;
-
-  height: 100px;
-
-  border-top-right-radius: 30px;
-  background-color: $dark-orange;
-
+.footer_bg_container {
+  display: flex;
   transform: rotate(4deg);
   transform-origin: 0 0 0;
+
+  .bg {
+    z-index: 1;
+
+    width: 95%;
+    height: 50px;
+
+    background-color: $dark-orange;
+  }
+
+  .end {
+    z-index: 1;
+    width: 100px;
+    height: 50px;
+    background-color: $dark-orange;
+
+    transform: rotate(45deg);
+    transform-origin: 0 0 0;
+  }
 }
 
 .footer_title_container {
   display: flex;
   justify-content: space-between;
-}
 
-.footer_title {
-  margin: 0;
-}
-
-.footer_subtitle {
-  margin: 0;
+  h2 {
+    margin: 0;
+  }
+  
+  p {
+    margin: 0;
+  }
 }
 
 .footer_links_container {
   display: flex;
   margin: 20px 0;
+
+  p {
+    font-weight: bold;
+    margin: 1px;
+  }
+
+  a {
+    opacity: 0.9;
+    margin: 1px;
+  }
 }
 
 .footer_links_column {
@@ -55,16 +72,6 @@
   flex-direction: column;
   margin-right: 100px;
   font-size: 14px;
-}
-
-.footer_links_title {
-  font-weight: bold;
-  margin: 1px;
-}
-
-.footer_link {
-  opacity: 0.9;
-  margin: 1px;
 }
 
 .footer_link_social {
