@@ -6,28 +6,36 @@ $text: #ffffff;
     color: $text;
 }
 
-.cardInfo{
-    color: $text;
-    display: inline;
-}
-
 .listContainer{
     display: grid;
     grid-template-columns: auto auto;
     grid-column-gap: 30px;
+    grid-row-gap: 30px;
     background-color: $bg;
     justify-content: center;
 }
 
 .card{
     grid-column: 1;
-    background-color: $bg;
     width: 50%;
 }
 
+.cardInfo{
+    color: $text;
+    display: inline;
+}
+
+.playerWrapper{
+    position: relative;
+    //padding-top: 56.25%;
+}
+
 .player{
+    //position: absolute;
+    //top: 0;
+    //left: 0;
+    width: 100%;
+    height: 100%;
     border: 10px solid $card;
-    width: 50%;
-    height: auto;
 }
 
