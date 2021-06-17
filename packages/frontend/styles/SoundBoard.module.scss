@@ -1,10 +1,14 @@
+@import '../styles/variables';
+
+$progress-bar-height: 10px;
+
 .container {
   background: #2c2c2c;
   padding: 2em 2.5em;
-  margin: 1em 2em;
+  margin: 2em;
   border-radius: 1.5em;
   font-size: 1.7rem;
-  color: white;
+  color: $white;
 
   h2 {
     margin-top: 0;
@@ -19,39 +23,46 @@
 }
 
 .card {
-  background: #fe7d3e;
-  aspect-ratio: 5;
+  background: $orange;
+  aspect-ratio: 4.5;
   border-radius: 10px;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 2em auto 2em;
-  grid-template-rows: calc(100% - 8px) 8px;
-  align-content: center;
 
-  .title {
-    grid-column: 2 / 4;
-    padding: 0.5em;
-
+  & > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: grid;
+    grid-template-columns: 2em auto;
     align-content: center;
-  }
 
-  .playButton {
-    display: grid;
-    align-items: center;
-    align-content: center;
-    padding-left: 0.5em;
+    .title {
+      display: grid;
+      align-content: center;
+      padding: 0.5em;
+    }
 
-    img {
-      width: 1em;
+    .play_button {
+      display: grid;
+      align-items: center;
+      align-content: center;
+      padding-left: 0.5em;
+
+      img {
+        width: 1em;
+      }
+    }
+
+    .progress_bar {
+      position: absolute;
+      background: $white;
+      height: $progress-bar-height;
+      width: 0;
+      bottom: 0;
     }
   }
+}
 
-  .buttomLine {
-    background: white;
-    border-radius: 0 5px 5px 0;
-    height: 10px;
-    grid-column: 1 / 3;
-    grid-row: 2;
-  }
+.card:hover {
+  background: $dark-orange;
 }
