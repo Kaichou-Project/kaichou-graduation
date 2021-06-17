@@ -18,7 +18,7 @@ export default function ImageBoard() {
       {
         id: uuidv4(),
         creator: imageCreator,
-        content: imageUrl,
+        url: imageUrl,
       },
     ])
     imageCreatorRef.current.value = null
