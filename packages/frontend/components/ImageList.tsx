@@ -2,7 +2,7 @@ import React from 'react'
 import Image from './Image'
 
 interface ImageList {
-  images: Image[]
+  images: ImageInterface[]
 }
 
 export default function ImageList({ images }) {
