@@ -1,6 +1,7 @@
 import React from 'react'
 import SoundCardList from '../components/SoundCardList'
 import soundCategory from '../interfaces/soundCategory'
+import Footer from '../components/Footer'
 
 const soundCategoryList: soundCategory[] = [
   {
@@ -58,14 +59,16 @@ const soundCategoryList: soundCategory[] = [
 export default function SoundBoard() {
   return (
     <>
-      <h2>
+      {/*TODO remove this when header done*/}
+      <h1 style={{ color: 'white' }}>
         Coco Sound Board
         <br />
         -- Pending for header--{' '}
-      </h2>
+      </h1>
       {soundCategoryList.map((soundCategory, i) => (
         <SoundCardList key={i} {...soundCategory} />
       ))}
+      <Footer />
     </>
   )
 }
