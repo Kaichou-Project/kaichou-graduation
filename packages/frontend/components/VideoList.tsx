@@ -1,10 +1,10 @@
 import React from 'react'
 import Video from './Video'
 
-interface VideoList {
+export interface VideoListProps {
   videos: VideoInterface[]
 }
 
-export default function VideoList({ videos }) {
+export default function VideoList({ videos }: VideoListProps) {
   return videos.map((video) => <Video key={video.id} video={video} />)
 }
