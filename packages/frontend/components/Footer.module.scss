@@ -9,7 +9,7 @@
   z-index: 2;
 
   min-width: 95%;
-  padding: 40px 20vw 40px 40px;
+  padding: 40px 20vw 40px 60px;
 
   background-color: $orange;
   color: $white;
@@ -23,22 +23,28 @@
   
     h2 {
       margin: 0;
+      font-size: 36px;
     }
     
     p {
       margin: 0;
+      font-weight: bold;
     }
+  }
+
+  .subtitle {
+    margin: 0;
   }
 
   .links {
     display: flex;
-    margin: 20px 0;
+    margin: 32px 0;
   
     .column {
       display: flex;
       flex-direction: column;
-      margin-right: 100px;
-      font-size: 14px;
+      margin-right: 160px;
+      font-size: 18px;
     }
   
     p {
@@ -47,15 +53,28 @@
     }
   
     a {
-      opacity: 0.9;
-      margin: 1px;
-    }
+      opacity: 0.7;
+	    margin: 1px;
+	    color: $white;
+	    text-decoration: none;
+      cursor: url('../public/asacoco.cur'), default;
+	  }
+	
+	  a:hover {
+      opacity: 1;
+      text-shadow: 0 0 3px $dark-orange;
+	  }
   
     img {
-      margin-right: 100px;
+      opacity: 0.9;
+      margin-right: 110px;
+    }
+
+    img:hover {
+      opacity: 1;
+      filter: drop-shadow(0 0 3px $dark-orange);
     }
   }
-  
 }
 
 .footer_bg_container {
