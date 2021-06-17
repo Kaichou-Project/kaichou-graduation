@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#Meckis Test files
+./components/*Board.tsx
