@@ -53,14 +53,16 @@ export default function SoundCard(props: soundInfo) {
       className={styles.card}
       onClick={() => (isPlaying ? stopAudio() : playAudio())}
     >
-      <div className={styles.playButton}>
-        <img src={isPlaying ? '/pause-icon.svg' : '/play-icon.svg'} />
+      <div>
+        <div className={styles.play_button}>
+          <img src={isPlaying ? '/pause-icon.svg' : '/play-icon.svg'} />
+        </div>
+        <div className={styles.title}>{title}</div>
+        <div
+          style={{ width: `${currentProgress}%` }}
+          className={styles.progress_bar}
+        />
       </div>
-      <div className={styles.title}>{title}</div>
-      <div
-        style={{ width: `${currentProgress}%` }}
-        className={styles.progressBar}
-      />
     </div>
   )
 }
