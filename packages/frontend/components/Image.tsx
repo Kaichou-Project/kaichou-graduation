@@ -8,7 +8,10 @@ interface ImageInterface {
   creator: string
   url: string
 }
-
+interface ImageProps {
+  key: string
+  image: ImageInterface
+}
 export default function Image({ image }) {
   return (
     <div>
