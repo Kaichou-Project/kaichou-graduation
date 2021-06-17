@@ -1,5 +1,10 @@
 import React from 'react'
 
+interface Image {
+  creator: string
+  url: string
+}
+
 export default function Image({ image }) {
   return (
     <div>
