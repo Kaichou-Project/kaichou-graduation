@@ -5,7 +5,17 @@ import VideoBoard from '../components/VideoBoard'
 
 export default function test() {
   return (
-    <div>
+<>
+      <div>
+        <VideoBoard />
+      </div>
+      <div>
+        <ImageBoard />
+      </div>
+      <div>
+        <MessageBoard />
+      </div>
+    </>
       <VideoBoard />
     </div>
   )
