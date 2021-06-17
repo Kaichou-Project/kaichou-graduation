@@ -1,0 +1,50 @@
+@import '../styles/variables';
+$normal-font-size: 24px;
+
+.form {
+  max-width: 600px;
+  padding: 50px;
+  margin: auto;
+}
+
+.textInput {
+  margin: 20px 0;
+
+  label,
+  input,
+  textarea {
+    font-size: $normal-font-size;
+    color: $white;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input {
+    height: 2.3em;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    background: #3f3f3f;
+    border: none;
+    border-radius: 10px;
+    padding: 0 10px;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+
+  textarea:focus,
+  input:focus {
+    outline: none;
+    border: 6px solid $orange;
+  }
+}

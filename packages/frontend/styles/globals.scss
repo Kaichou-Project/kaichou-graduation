@@ -3,13 +3,14 @@
 @import 'variables';
 
 * {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
+	font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+		'Arial', sans-serif;
 }
 html {
-  cursor: url('../public/asacoco.cur'), default;
-  scroll-behavior: smooth;
+	cursor: url('../public/asacoco.cur'), default;
+	scroll-behavior: smooth;
+	background: #202020;
 }
 body {
-  margin: 0;
+	margin: 0;
 }
