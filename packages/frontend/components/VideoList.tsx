@@ -6,5 +6,11 @@ interface VideoListProps {
 }
 
 export default function VideoList({ videos }: VideoListProps) {
-  return videos.map((video) => <Video key={video.id} video={video} />)
+ return (
+    <>
+      {videos.map((video) => (
+        <Video key={video.id} video={video} />
+      ))}
+    </>
+  )
 }
