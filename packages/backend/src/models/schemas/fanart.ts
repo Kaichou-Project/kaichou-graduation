@@ -10,6 +10,11 @@ export const FanartSchema: Schema = new Schema(
       type: String,
       required: true,
     },
+    isVerified: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   {
     timestamps: true,

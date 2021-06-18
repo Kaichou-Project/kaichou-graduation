@@ -2,7 +2,7 @@ import { Schema } from 'mongoose'
 
 export const MessageSchema: Schema = new Schema(
   {
-    author: {
+    creator: {
       type: String,
       required: true,
     },
@@ -13,6 +13,11 @@ export const MessageSchema: Schema = new Schema(
     content: {
       type: String,
       required: true,
+    },
+    isVerified: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
   {
