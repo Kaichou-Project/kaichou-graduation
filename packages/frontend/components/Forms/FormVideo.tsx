@@ -44,6 +44,8 @@ export default function FormVideo({ hidden }) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
 
+    setErrors({})
+
     // ToDo call API to send data
     console.log(data)
   }

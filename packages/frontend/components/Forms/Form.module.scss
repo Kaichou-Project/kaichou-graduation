@@ -16,7 +16,9 @@ $error: red;
 }
 
 .form.hide {
-  display: none;
+  visibility: hidden;
+  position: absolute;
+  left: -100%;
 }
 
 .tabs {
@@ -71,11 +73,10 @@ $error: red;
   }
 
   input:-webkit-autofill,
-  input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     -webkit-text-fill-color: $white;
-    -webkit-box-shadow: none;
+    -webkit-box-shadow: $grey;
     transition: background-color 99999s ease-in-out 0s;
   }
 
@@ -152,6 +153,7 @@ $error: red;
   }
 
   .check_container:hover span {
+    cursor: pointer;
     background-color: $dark-grey;
   }
 }
@@ -162,6 +164,7 @@ $error: red;
   align-items: center;
   justify-content: center;
 
+  cursor: pointer;
   color: $white;
   background: $dark-grey;
   height: 2.3em;
