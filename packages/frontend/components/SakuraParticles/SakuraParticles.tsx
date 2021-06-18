@@ -1,11 +1,8 @@
-//React imports
 import React from 'react'
-
-//Project imports
 import Particles from 'react-particles-js'
-import styles from '../styles/SakuraParticles.module.scss'
+import styles from './SakuraParticles.module.scss'
 
-function SakuraParticles() {
+export default function SakuraParticles() {
   return (
     <Particles
       className={styles.particles}
@@ -64,5 +61,3 @@ function SakuraParticles() {
     />
   )
 }
-
-export default SakuraParticles
