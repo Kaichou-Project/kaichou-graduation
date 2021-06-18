@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../styles/Form.module.scss'
+import styles from './Form.module.scss'
 
 export default function FormTabs({ onChange }) {
   const [currentTab, setCurrentTab] = useState('message')

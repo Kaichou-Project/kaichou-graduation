@@ -3,7 +3,7 @@ import TextInput from './TextInput'
 import TextArea from './TextArea'
 import CheckConfirm from './CheckConfirm'
 import PropTypes from 'prop-types'
-import styles from '../../styles/Form.module.scss'
+import styles from './Form.module.scss'
 
 interface dataType {
   creator: string
