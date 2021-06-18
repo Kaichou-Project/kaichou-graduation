@@ -1,6 +1,6 @@
 import React from 'react'
-import FormMessage from '../components/FormMessage'
-import FormTabs from '../components/FormTabs'
+import FormMessage from '../components/Forms/FormMessage'
+import FormTabs from '../components/Forms/FormTabs'
 import Footer from '../components/Footer'
 import styles from '../styles/Form.module.scss'
 

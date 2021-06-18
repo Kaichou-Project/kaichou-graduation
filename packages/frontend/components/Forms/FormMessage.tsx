@@ -1,7 +1,7 @@
 import React from 'react'
-import TextInput from '../components/TextInput'
-import TextArea from '../components/TextArea'
-import styles from '../styles/Form.module.scss'
+import TextInput from './TextInput'
+import TextArea from './TextArea'
+import styles from '../../styles/Form.module.scss'
 
 export default function FormMessage() {
   function onSubmit(evt: React.FormEvent<HTMLFormElement>) {

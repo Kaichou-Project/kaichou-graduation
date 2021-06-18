@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from '../styles/Form.module.scss'
+import styles from '../../styles/Form.module.scss'
 
 export default function FormTabs() {
   const selected = true

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/Form.module.scss'
+import styles from '../../styles/Form.module.scss'
 import PropTypes from 'prop-types'
 
 export default function TextArea({ name, label }) {
