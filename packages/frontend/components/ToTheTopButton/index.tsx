@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/ToTheTopButton.module.scss'
+import styles from './ToTheTopButton.module.scss'
 
 function goToTop() {
   window.scrollTo(0, 0)
