@@ -2,25 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap');
 
 
-.container {
-    background: #2c2c2c;
-    padding: 2em 2.5em;
-    margin: 1em 2em;
-    border-radius: 1.5em;
-    font-size: 1.7rem;
-    color: white;
-  
-    h2 {
-      margin-top: 0;
-      margin-bottom: 1em;
-    }
-  }
-.grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
-    grid-gap: 1.5em 1.2em;
-}
-
 .card{
     background-color: $orange;
     border-radius: 25px;
@@ -28,8 +9,6 @@
     color: $white;
     overflow: hidden;
     font-family: "Open Sans";
-    grid-template-columns: 2em auto 2em;
-    grid-template-rows: calc(100% - 8px) 8px;
 
 
     .title{
