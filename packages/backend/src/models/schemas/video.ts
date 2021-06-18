@@ -14,6 +14,7 @@ export const VideoSchema: Schema = new Schema(
       type: Boolean,
       required: true,
       default: false,
+      index: true,
     },
   },
   {

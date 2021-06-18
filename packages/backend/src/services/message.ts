@@ -1,10 +1,10 @@
 import { MessageDoc, MessageInterface, MessageModel } from '@model/message'
 
 /**
- * Get all message
+ * Get all messages
  * @returns array of message document
  */
-export const getAllMessage = async (): Promise<MessageDoc[]> =>
+export const getAllMessages = async (): Promise<MessageDoc[]> =>
   await MessageModel.find()
 
 /**

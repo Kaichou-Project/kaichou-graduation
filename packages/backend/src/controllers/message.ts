@@ -1,5 +1,5 @@
 import { MessageDoc } from '@model/message'
-import { getAllMessage, storeMessage } from '@service/message'
+import { getAllMessages, storeMessage } from '@service/message'
 import {
   responseBadRequest,
   responseCreated,
@@ -8,9 +8,9 @@ import {
 } from '@util/response'
 import { Request, Response } from 'express'
 
-export const getAllMessageController = async (_: Request, res: Response) => {
+export const getAllMessagesController = async (_: Request, res: Response) => {
   try {
-    const messages: MessageDoc[] = await getAllMessage()
+    const messages: MessageDoc[] = await getAllMessages()
 
     return responseSuccess(res, messages)
   } catch (error) {
