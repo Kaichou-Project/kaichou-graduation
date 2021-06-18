@@ -1,8 +1,8 @@
 import React from 'react'
-import SoundCardList from '../components/SoundCardList'
+import SoundCardList from '../components/SoundBoard/SoundCardList'
 import soundCategory from '../interfaces/soundCategory'
 import ToTheTopButton from '../components/ToTheTopButton'
-import Footer from '../components/Footer'
+import Footer from '../components/Footer/Footer'
 
 const soundCategoryList: soundCategory[] = [
   {

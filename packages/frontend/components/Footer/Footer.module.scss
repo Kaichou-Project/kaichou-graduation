@@ -1,7 +1,8 @@
-@import '../styles/variables';
+@import 'styles/variables';
 
 .footer {
   overflow: hidden;
+  margin-top: 20rem;
 }
 
 .footer_container {
@@ -20,12 +21,12 @@
   .title {
     display: flex;
     justify-content: space-between;
-  
+
     h2 {
       margin: 0;
       font-size: 36px;
     }
-    
+
     p {
       margin: 0;
       font-weight: bold;
@@ -39,35 +40,35 @@
   .links {
     display: flex;
     margin: 32px 0;
-  
+
     .column {
       display: flex;
       flex-direction: column;
       margin-right: 160px;
       font-size: 18px;
     }
-  
+
     p {
       font-weight: bold;
       margin: 1px;
     }
-  
+
     a {
       opacity: 0.7;
-	    margin: 1px;
-	    color: $white;
-	    text-decoration: none;
-      cursor: url('../public/asacoco.cur'), default;
-	  }
-	
-	  a:hover {
+      margin: 1px;
+      color: $white;
+      text-decoration: none;
+    }
+
+    a:hover {
       opacity: 1;
       text-shadow: 0 0 3px $dark-orange;
-	  }
-  
+    }
+
     img {
       opacity: 0.9;
       margin-right: 110px;
+      cursor: pointer;
     }
 
     img:hover {

@@ -1,18 +1,14 @@
-//React Import
 import React from 'react'
 import ToTheTopButton from '../components/ToTheTopButton'
+import Navigation, { Page } from '../components/Navigation/Navigation'
+import Footer from '../components/Footer/Footer'
 
-//Project imports
-import Navigation from '../components/Navigation'
-import Footer from '../components/Footer'
-
-const Home = () => (
-  <>
-    <Navigation title="Graduation of Kiryu Coco" page="Home" />
-    <div>Home</div>
-    <ToTheTopButton />
-    <Footer />
-  </>
-)
-
-export default Home
+export default function Home() {
+  return (
+    <>
+      <Navigation title="Graduation of Kiryu Coco" page={Page.HOME} />
+      <ToTheTopButton />
+      <Footer />
+    </>
+  )
+}

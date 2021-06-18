@@ -28,7 +28,7 @@
   <defs
      id="defs12" />
   <sodipodi:namedview
-     pagecolor="#ffffff"
+     pagecolor="#fff"
      bordercolor="#666666"
      borderopacity="1"
      objecttolerance="10"
@@ -59,7 +59,7 @@
      rx="1"
      ry="1"
      id="rect4"
-     style="fill:#ffffff" />
+     style="fill: #fff" />
   <rect
      width="6"
      height="16"
@@ -68,5 +68,5 @@
      rx="1"
      ry="1"
      id="rect6"
-     style="fill:#ffffff" />
+     style="fill: #fff" />
 </svg>
