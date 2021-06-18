@@ -1,16 +1,12 @@
-//React imports
 import React from 'react'
+import Navigation, { Page } from '../../components/Navigation/Navigation'
+import Footer from '../../components/Footer/Footer'
 
-//Project imports
-import Navigation from '../../components/Navigation'
-
-function Messages() {
+export default function Messages() {
   return (
     <>
-      <Navigation title="Messages" page="Messages" />
-      <div>Messages</div>
+      <Navigation title="Messages" page={Page.MESSAGES} />
+      <Footer />
     </>
   )
 }
-
-export default Messages

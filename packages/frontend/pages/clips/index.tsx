@@ -1,16 +1,12 @@
-//React imports
 import React from 'react'
+import Navigation, { Page } from '../../components/Navigation/Navigation'
+import Footer from '../../components/Footer/Footer'
 
-//Project imports
-import Navigation from '../../components/Navigation'
-
-function Clips() {
+export default function Clips() {
   return (
     <>
-      <Navigation title="Clips & Videos" page="Clips" />
-      <div>Clips & Videos</div>
+      <Navigation title="Clips & Videos" page={Page.CLIPS} />
+      <Footer />
     </>
   )
 }
-
-export default Clips
