@@ -1,14 +1,17 @@
 @import '../styles/variables';
-$normal-font-size: 24px;
 
-.form {
+$normal-font-size: 24px;
+$grey: #3f3f3f;
+$dark-grey: #373737;
+
+.form,
+.tabs {
   max-width: 700px;
-  padding: 50px;
-  margin: auto;
+  padding: 0 50px;
+  margin: 0 auto;
 }
 
 .tabs {
-  width: 100%;
   font-size: $normal-font-size;
   color: $white;
 
@@ -21,6 +24,9 @@ $normal-font-size: 24px;
     grid-row: 1;
   }
 
+  .button {
+    overflow: hidden;
+  }
   .button.selected {
     background: $orange;
   }
@@ -53,7 +59,7 @@ $normal-font-size: 24px;
   textarea {
     width: calc(100% - 20px);
     padding: 0 10px;
-    background: #3f3f3f;
+    background: $grey;
     border: none;
     border-radius: 10px;
   }
@@ -68,12 +74,11 @@ $normal-font-size: 24px;
 .button,
 .button_submit {
   display: grid;
-  grid-template-columns: auto auto;
   align-items: center;
   justify-content: center;
 
   color: $white;
-  background: #373737;
+  background: $dark-grey;
   height: 2.3em;
   border-radius: 10px;
 
@@ -82,8 +87,18 @@ $normal-font-size: 24px;
   font-weight: bold;
 }
 
+.button:hover {
+  background: $grey;
+}
+
 .button_submit {
   background: $orange;
   width: 8em;
   margin-left: auto;
+  outline: none;
+  border: none;
+}
+
+.button_submit:hover {
+  background: $dark-orange;
 }
