@@ -17,7 +17,7 @@
     "lint": "eslint . --format=pretty --cache --color",
     "test:types": "lerna run test:types",
     "pre-commit": "yarn lint && yarn test:types",
-    "prepare": "husky install"
+    "prepare": "husky install && npx shx rm -rf .git/hooks && npx shx ln -s ../.husky .git/hooks"
   },
   "devDependencies": {
     "@types/react": "^17.0.11",
