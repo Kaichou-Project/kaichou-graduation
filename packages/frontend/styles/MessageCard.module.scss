@@ -1,0 +1,62 @@
+@import "../styles/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap');
+
+
+.container {
+    background: #2c2c2c;
+    padding: 2em 2.5em;
+    margin: 1em 2em;
+    border-radius: 1.5em;
+    font-size: 1.7rem;
+    color: white;
+  
+    h2 {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+  }
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+    grid-gap: 1.5em 1.2em;
+}
+
+.card{
+    background-color: $orange;
+    border-radius: 25px;
+    aspect-ratio: auto;
+    color: $white;
+    overflow: hidden;
+    font-family: "Open Sans";
+    grid-template-columns: 2em auto 2em;
+    grid-template-rows: calc(100% - 8px) 8px;
+
+
+    .title{
+        text-align: left;
+        margin-top: 36px;
+        margin-bottom: 25.5px;
+        font-size: 30;
+        margin-left: 49px;
+        font-family: "Open Sans" ;
+    
+    }
+
+    .message{
+        font-size: 24;
+        text-align: left;
+        margin-top: 25.5px;
+        margin-bottom: 6.5px;
+        margin-left: 49px;
+        font-family: "Open Sans" ;
+    }
+
+    .author{
+        margin-top: 6.5px;
+        text-align: right;
+        font-size: 30;
+        margin-bottom: 33px;
+        margin-right: 38px;
+        font-family: "Open Sans" ;
+    }
+}
