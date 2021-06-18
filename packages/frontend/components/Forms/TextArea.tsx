@@ -12,5 +12,6 @@ export default function TextArea({ name, label }) {
 }
 
 TextArea.propTypes = {
+  name: PropTypes.string,
   label: PropTypes.string,
 }

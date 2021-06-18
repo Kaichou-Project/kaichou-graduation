@@ -1,17 +1,15 @@
 import React from 'react'
 import TextInput from './TextInput'
-import TextArea from './TextArea'
 import CheckConfirm from './CheckConfirm'
 import PropTypes from 'prop-types'
 import styles from '../../styles/Form.module.scss'
 
 interface dataType {
   creator: string
-  avatar_url: string
-  content: string
+  image_url: string
 }
 
-export default function FormMessage({ hidden }) {
+export default function FormFanart({ hidden }) {
   function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
@@ -28,9 +26,7 @@ export default function FormMessage({ hidden }) {
     data.creator = data.creator.trim()
     if (!data.creator) return console.log('Error: No creator')
 
-    data.avatar_url = data.avatar_url.trim()
-
-    if (!data.content) return console.log('Error: No content')
+    if (!data.image_url) return console.log('Error: No image_url')
 
     if (!confirmation) return console.log('Error: Not confirmed')
 
@@ -42,13 +38,8 @@ export default function FormMessage({ hidden }) {
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
       onSubmit={onSubmit}
     >
-      <TextInput name="creator" label="My name is ..." />
-      <TextInput
-        name="avatar_url"
-        label="A link to my profile picture is here (optional) ..."
-      />
-      <TextArea name="content" label="My message to Coco is ...." />
-      <h2>Preview</h2>
+      <TextInput name="creator" label="The artist’s name is ..." />
+      <TextInput name="image_url" label="The link to the image is ..." />
 
       {/*ToDo remove when preview component donk*/}
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
@@ -60,6 +51,6 @@ export default function FormMessage({ hidden }) {
   )
 }
 
-FormMessage.propTypes = {
+FormFanart.propTypes = {
   hidden: PropTypes.bool,
 }
