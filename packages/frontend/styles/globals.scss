@@ -12,6 +12,7 @@
 html {
   background: $background;
   cursor: url('/plug-type-asacoco.cur'), default;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;
