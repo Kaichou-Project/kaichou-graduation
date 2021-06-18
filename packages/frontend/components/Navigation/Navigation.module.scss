@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@1,300&display=swap');
 
 .navigation {
-  background-image: url('../../public/navigation/sakura-trees.png'); /* Got permission for it, https://www.pixiv.net/en/artworks/26394050 */
+  background-image: url('/navigation/sakura-trees.png'); /* Got permission for it, https://www.pixiv.net/en/artworks/26394050 */
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -31,11 +31,17 @@
     z-index: 1;
     grid-area: name;
     justify-self: left;
-    height: 10rem;
 
-    svg text {
+    img {
+      height: 10rem;
+    }
+
+    p {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
       fill: $white;
-      font-size: 4em;
+      font-size: 3em;
       transform: rotate(-11.97deg);
     }
   }

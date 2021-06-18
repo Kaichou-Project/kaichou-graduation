@@ -6,6 +6,7 @@ import Link from 'next/link'
 interface NavProps {
   title: string
   page: Page
+  cornerText?: string
 }
 
 export enum Page {
@@ -22,37 +23,45 @@ interface NavItem {
   iconPath: string
 }
 
-export default function Navigation({ title, page }: NavProps) {
-  const navItems: NavItem[] = [
-    {
-      page: Page.HOME,
-      iconPath: 'navigation/HomeIcon.svg',
-    },
-    {
-      page: Page.MESSAGES,
-      iconPath: 'navigation/MessageIcon.svg',
-    },
-    {
-      page: Page.FANART,
-      iconPath: 'navigation/ImageIcon.svg',
-    },
-    {
-      page: Page.CLIPS,
-      iconPath: 'navigation/VideoIcon.svg',
-    },
-    {
-      page: Page.SOUNDBOARD,
-      iconPath: 'navigation/SoundIcon.svg',
-    },
-    {
-      page: Page.CREDITS,
-      iconPath: 'navigation/InfoIcon.svg',
-    },
-  ]
+const navItems: NavItem[] = [
+  {
+    page: Page.HOME,
+    iconPath: 'navigation/HomeIcon.svg',
+  },
+  {
+    page: Page.MESSAGES,
+    iconPath: 'navigation/MessageIcon.svg',
+  },
+  {
+    page: Page.FANART,
+    iconPath: 'navigation/ImageIcon.svg',
+  },
+  {
+    page: Page.CLIPS,
+    iconPath: 'navigation/VideoIcon.svg',
+  },
+  {
+    page: Page.SOUNDBOARD,
+    iconPath: 'navigation/SoundIcon.svg',
+  },
+  {
+    page: Page.CREDITS,
+    iconPath: 'navigation/InfoIcon.svg',
+  },
+]
 
+export default function Navigation({
+  title,
+  page,
+  cornerText = '桐生ココ',
+}: NavProps) {
   return (
     <div className={styles.navigation}>
-      <img src="navigation/Corner.svg" className={styles.name} />
+      <div className={styles.name}>
+        <img src="navigation/Corner.svg" />
+        <p>{cornerText}</p>
+      </div>
+
       <div className={styles.navigators}>
         <img src="navigation/Navbar.svg" className={styles.navbar} />
 
@@ -60,24 +69,21 @@ export default function Navigation({ title, page }: NavProps) {
           {navItems.map((item) => (
             <Link key={item.iconPath} href={item.page.toString()}>
               <div className={styles.icon}>
-                <img src={item.iconPath} />
+                <img src={item.iconPath} alt={item.page.toString()} />
                 {page === item.page ? (
-                  <img
-                    src="navigation/Dot.svg"
-                    alt={item.page}
-                    className={styles.active}
-                  />
+                  <img src="navigation/Dot.svg" className={styles.active} />
                 ) : null}
               </div>
             </Link>
           ))}
         </div>
       </div>
+
       <div className={styles.title}>
         <img src="navigation/Title.svg" />
         <p>{title}</p>
       </div>
-      <div className={styles.image}></div>
+
       <SakuraParticles />
     </div>
   )
