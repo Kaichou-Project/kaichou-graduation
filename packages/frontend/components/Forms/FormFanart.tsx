@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
 import PropTypes from 'prop-types'
@@ -9,7 +9,15 @@ interface dataType {
   image_url: string
 }
 
+interface errorType {
+  creator?: string
+  image_url?: string
+  confirmation?: string
+}
+
 export default function FormFanart({ hidden }) {
+  const [errors, setErrors] = useState<errorType>({})
+
   function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
@@ -24,12 +32,19 @@ export default function FormFanart({ hidden }) {
     })
 
     data.creator = data.creator.trim()
-    if (!data.creator) return console.log('Error: No creator')
+    if (!data.creator) {
+      return setErrors({ creator: "This field can't be empty" })
+    }
 
-    if (!data.image_url) return console.log('Error: No image_url')
+    if (!data.image_url) {
+      return setErrors({ image_url: "This field can't be empty" })
+    }
 
-    if (!confirmation) return console.log('Error: Not confirmed')
+    if (!confirmation) {
+      return setErrors({ confirmation: 'You must confirm this' })
+    }
 
+    // ToDo call API to send data
     console.log(data)
   }
 
@@ -38,14 +53,27 @@ export default function FormFanart({ hidden }) {
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
       onSubmit={onSubmit}
     >
-      <TextInput name="creator" label="The artist’s name is ..." />
-      <TextInput name="image_url" label="The link to the image is ..." />
+      <TextInput
+        name="creator"
+        label="The artist’s name is ..."
+        error={errors.creator}
+      />
+
+      <TextInput
+        name="image_url"
+        label="The link to the image is ..."
+        error={errors.image_url}
+      />
+
+      <h2>Preview</h2>
 
       {/*ToDo remove when preview component donk*/}
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
       </div>
-      <CheckConfirm name="confirmation" />
+
+      <CheckConfirm name="confirmation" error={errors.confirmation} />
+
       <input type="submit" className={styles.button_submit} value="Submit" />
     </form>
   )

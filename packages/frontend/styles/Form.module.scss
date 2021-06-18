@@ -3,6 +3,7 @@
 $normal-font-size: 24px;
 $grey: #3f3f3f;
 $dark-grey: #373737;
+$error: red;
 
 .form,
 .tabs {
@@ -38,7 +39,7 @@ $dark-grey: #373737;
 }
 
 .textInput {
-  margin: 20px 0;
+  margin: 25px 0;
 
   label,
   input,
@@ -69,11 +70,25 @@ $dark-grey: #373737;
     border-radius: 10px;
   }
 
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: $white;
+    -webkit-box-shadow: none;
+    transition: background-color 99999s ease-in-out 0s;
+  }
+
   textarea:focus,
   input:focus {
     outline: none;
     box-shadow: 0 0 0 6px $orange;
   }
+}
+
+.error_msg {
+  color: $error;
+  margin-top: 5px;
 }
 
 .confirm {
