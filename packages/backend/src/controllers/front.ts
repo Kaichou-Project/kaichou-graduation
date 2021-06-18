@@ -9,5 +9,5 @@ export const indexController = (req: Request, res: Response) => {
     status: 'online',
     time: new Date(),
   }
-  return responseSuccess(res, data, 'Welcome to Kaichou Project API')
+  return responseSuccess(res, data, 'Welcome to the Kaichou Project API')
 }

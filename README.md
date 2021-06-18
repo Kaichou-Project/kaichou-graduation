@@ -37,8 +37,8 @@ The backend uses [Express.js](https://expressjs.com/) as server for hosting a RE
 Backend also uses several other library:
 
 - [Mongoose](https://expressjs.com/) as ODM for Mongo DB
-- [cors](https://www.npmjs.com/package/cors) as enabler for CORS request
-- [morgan](https://www.npmjs.com/package/morgan) and [winston](https://www.npmjs.com/package/winston) for log any activity that happen inside backend service
+- [cors](https://www.npmjs.com/package/cors) as enabler for CORS requests
+- [morgan](https://www.npmjs.com/package/morgan) and [winston](https://www.npmjs.com/package/winston) for logging any activity that happens inside the backend service
 
 #### Backend Folder Structure
 
@@ -64,13 +64,13 @@ backend
 
 Folders and files explanation:
 
-- `src` => store all backend files
+- `src` => stores all backend files
 - `index.ts` => entry point to backend
 - `logger.ts` => file for logger
 - `route.ts` => place all routes here
 - `db.ts` => file for MongoDB connection
 - `config` => store any shared config across backend here
-- `controllers` => place where you write handlers for route
+- `controllers` => place where you write handlers for routes
 - `middleware` => folder for middlewares
 - `models` => folder for MongoDB models
 - `schemas` => folder for MongoDB schemas
@@ -79,16 +79,16 @@ Folders and files explanation:
 
 #### Logs
 
-After you start the backend server, a folder will be created automatically, namely the `logs` folder. There are 5 log files that will be created and updated as the server runs, here is the actual place where any activity logs on the backend will be recorded.
+After you start the backend server, a folder will be created automatically, named the `logs` folder. There are 5 log files that will be created and updated as the server runs, here is the actual place where any activity logs on the backend will be recorded.
 
 #### ENV Variables
 
-Supposedly, env variable's name inside `package/backend/.env.example` is self explanatory. Here is more explanation of them:
+Env variable names inside `package/backend/.env.example` should be self explanatory. Here is more explanation of them:
 
 - `PORT` => Backend service port
-- `DEBUG` => Set to `TRUE` if you want debug messages to show, ideally in dev you set this to `TRUE` and `FALSE` in production
+- `DEBUG` => Set to `TRUE` if you want debug messages to show, ideally in dev you set this to `TRUE` and to `FALSE` in production
 - `CLIENT_URL` => frontend's URL
-- `DB_URI` => mongodb connection string, [you can find the detail of it here](https://docs.mongodb.com/manual/reference/connection-string/)
+- `DB_URI` => mongodb connection string, [you can find the details for it here](https://docs.mongodb.com/manual/reference/connection-string/)
 
 ## Contributing
 
