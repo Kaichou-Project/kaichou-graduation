@@ -69,7 +69,7 @@ export default function FormFanart({ hidden }) {
 
       <h2>Preview</h2>
 
-      {/*ToDo remove when preview component donk*/}
+      {/*ToDo remove when preview component done*/}
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
       </div>
