@@ -94,12 +94,15 @@
           transition: opacity 100ms ease-in;
         }
       }
-      .icon:hover img{
-        opacity: 0;
-      }
+      
+      .icon:hover{
+        img{
+          opacity: 0;
+        }
 
-      .icon:hover .icon_text{
-        opacity: 1;
+        .active, .icon_text{
+          opacity: 1;
+        }
       }
     }
   }
