@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
 import PropTypes from 'prop-types'
+import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
 interface dataType {
@@ -26,10 +27,7 @@ export default function FormVideo({ hidden }) {
     const confirmation = !!formData.get('confirmation')
     formData.delete('confirmation')
 
-    const data = {} as dataType
-    formData.forEach(function (value, key) {
-      data[key] = value
-    })
+    const data = formDataToObject(formData) as dataType
 
     data.creator = data.creator.trim()
     if (!data.creator) {
