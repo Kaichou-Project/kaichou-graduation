@@ -17,8 +17,8 @@ interface VideoProps {
 export default function Video(props: VideoProps) {
   return (
     <div>
-      <h3 className={styles.cardInfo}>{props.video.title}</h3>
-      <h4 className={styles.cardInfo}> - {props.video.creator}</h4>
+      <p className={styles.cardInfo}>{props.video.title}</p>
+      <p className={styles.cardInfo}> - {props.video.creator}</p>
       <div className={styles.playerWrapper}>
         <ReactPlayer className={styles.player} url={props.video.url} />
       </div>
