@@ -16,7 +16,7 @@ interface errorType {
   confirmation?: string
 }
 
-export default function FormVideo({ hidden }) {
+export default function FormClip({ hidden }) {
   const [errors, setErrors] = useState<errorType>({})
 
   function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -79,6 +79,6 @@ export default function FormVideo({ hidden }) {
   )
 }
 
-FormVideo.propTypes = {
+FormClip.propTypes = {
   hidden: PropTypes.bool,
 }
