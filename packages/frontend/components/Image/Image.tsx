@@ -10,11 +10,11 @@ interface ImageProps {
   key: string
   image: ImageInterface
 }
-export default function Image(props: ImageProps) {
+export default function Image({ image }: ImageProps) {
   return (
     <div>
-      <h4>Creator: {props.image.creator}</h4>
-      <img src={props.image.url} width={300} height={250}></img>
+      <p>Creator: {image.creator}</p>
+      <img src={image.url} width={300} height={250}></img>
     </div>
   )
 }
