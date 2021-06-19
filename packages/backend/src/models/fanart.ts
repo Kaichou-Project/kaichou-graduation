@@ -5,6 +5,7 @@ import { FanartSchema } from '@model/schemas/fanart'
 export interface FanartInterface {
   creator: string
   imageUrl: string
+  isVerified: boolean
 }
 
 export interface FanartDoc extends Document, FanartInterface {}

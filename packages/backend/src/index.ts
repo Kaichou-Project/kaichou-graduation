@@ -11,6 +11,7 @@ import { STATUS_DB_CONNECTED } from '@constant/general'
 dotnev.config()
 const PORT = process.env.PORT ?? 5000
 const DB_URI = process.env.DB_URI ?? ''
+const DEBUG = process.env.DEBUG === 'TRUE' ? true : false
 
 async function startServer() {
   try {
@@ -32,14 +33,16 @@ async function startServer() {
     // Init DB
     const dbInitStatus = await initDB(DB_URI)
     if (dbInitStatus === STATUS_DB_CONNECTED) {
-      Logger.debug(`DB successfully connected`)
+      if (DEBUG) {
+        Logger.debug(`DB successfully connected`)
+      }
     }
 
     // Start the server
     // eslint-disable-next-line no-console
-    app.listen(PORT, () =>
-      Logger.debug(`🚀 listening on http://localhost:${PORT}`)
-    )
+    app.listen(PORT, () => {
+      Logger.info(`🚀 listening on http://localhost:${PORT}`)
+    })
   } catch (error) {
     Logger.error(error)
   }

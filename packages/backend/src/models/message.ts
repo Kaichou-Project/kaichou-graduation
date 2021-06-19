@@ -3,9 +3,9 @@ import { MODEL_MESSAGE } from '@constant/general'
 import { MessageSchema } from '@model/schemas/message'
 
 export interface MessageInterface {
-  author: string
-  avatarUrl: string
+  creator: string
   content: string
+  isVerified: boolean
 }
 
 export interface MessageDoc extends Document, MessageInterface {}
