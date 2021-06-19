@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import soundInfo from '../interfaces/soundInfo'
-import styles from '../styles/SoundBoard.module.scss'
+import soundInfo from '../../interfaces/soundInfo'
+import styles from './SoundBoard.module.scss'
 
 let audio: HTMLAudioElement
 if (typeof Audio !== 'undefined') {

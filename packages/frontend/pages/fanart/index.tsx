@@ -2,10 +2,10 @@ import React from 'react'
 import Navigation, { Page } from '../../components/Navigation/Navigation'
 import Footer from '../../components/Footer/Footer'
 
-export default function Credits() {
+export default function Fanart() {
   return (
     <>
-      <Navigation title="Credits" page={Page.CREDITS} />
+      <Navigation title="Fanart" page={Page.FANART} />
       <Footer />
     </>
   )
