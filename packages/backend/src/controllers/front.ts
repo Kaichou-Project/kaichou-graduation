@@ -4,5 +4,10 @@ import { responseSuccess } from '@util/response'
 
 export const indexController = (req: Request, res: Response) => {
   Logger.info('Enter index route')
-  return responseSuccess(res, null, 'Welcome to Kaichou Project API')
+
+  const data = {
+    status: 'online',
+    time: new Date(),
+  }
+  return responseSuccess(res, data, 'Welcome to the Kaichou Project API')
 }
