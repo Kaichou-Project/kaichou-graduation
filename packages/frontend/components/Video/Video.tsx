@@ -20,7 +20,12 @@ export default function Video({ video }: VideoProps) {
       <p className={styles.title}>{video.title}</p>
       <p className={styles.creator}> - {video.creator}</p>
       <div className={styles.playerWrapper}>
-        <ReactPlayer className={styles.player} url={video.url} />
+        <ReactPlayer
+          className={styles.player}
+          url={video.url}
+          width={'100%'}
+          height={'100%'}
+        />
       </div>
     </div>
   )
