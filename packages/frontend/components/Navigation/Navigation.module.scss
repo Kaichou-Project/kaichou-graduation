@@ -76,12 +76,32 @@
 
         img {
           height: 2.5rem;
+          transition: opacity 100ms ease-in;
         }
 
         .active {
           height: 0.5rem;
           color: $white;
           border-radius: 100%;
+        }
+
+        .icon_text{
+          position: absolute;
+          height: max-content;
+          width: max-content;
+          top: 0.5rem;
+          opacity: 0;
+          transition: opacity 100ms ease-in;
+        }
+      }
+      
+      .icon:hover{
+        img{
+          opacity: 0;
+        }
+
+        .active, .icon_text{
+          opacity: 1;
         }
       }
     }
