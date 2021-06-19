@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
-import PropTypes from 'prop-types'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
+
+interface propsInterface {
+  hidden: boolean
+}
 
 interface dataType {
   creator: string
@@ -16,7 +19,7 @@ interface errorType {
   confirmation?: string
 }
 
-export default function FormClip({ hidden }) {
+export default function FormClip({ hidden }: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
 
   function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -77,8 +80,4 @@ export default function FormClip({ hidden }) {
       <input type="submit" className={styles.button_submit} value="Submit" />
     </form>
   )
-}
-
-FormClip.propTypes = {
-  hidden: PropTypes.bool,
 }

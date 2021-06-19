@@ -1,8 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styles from './Form.module.scss'
 
-export default function TextArea({ name, label, error }) {
+interface propsInterface {
+  name: string
+  label: string
+  error: string
+}
+
+export default function TextArea({ name, label, error }: propsInterface) {
   return (
     <div className={styles.textInput}>
       <label htmlFor={name}>{label}</label>
@@ -10,10 +15,4 @@ export default function TextArea({ name, label, error }) {
       {error && <div className={styles.error_msg}>{error}</div>}
     </div>
   )
-}
-
-TextArea.propTypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
-  error: PropTypes.string,
 }

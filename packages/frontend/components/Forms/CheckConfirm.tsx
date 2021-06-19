@@ -1,8 +1,11 @@
 import React from 'react'
 import styles from './Form.module.scss'
-import PropTypes from 'prop-types'
+interface propsInterface {
+  name: string
+  error: string
+}
 
-export default function CheckConfirm({ name, error }) {
+export default function CheckConfirm({ name, error }: propsInterface) {
   return (
     <div className={styles.confirm}>
       <div>
@@ -18,9 +21,4 @@ export default function CheckConfirm({ name, error }) {
       </div>
     </div>
   )
-}
-
-CheckConfirm.propTypes = {
-  name: PropTypes.string,
-  error: PropTypes.string,
 }

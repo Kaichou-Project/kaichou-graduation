@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import tabsEnum from './tabsEnum'
 import styles from './Form.module.scss'
 
-export default function FormTabs({ onChange }) {
+interface propsInterface {
+  onChange: (tab: tabsEnum) => any
+}
+
+export default function FormTabs({ onChange }: propsInterface) {
   const [currentTab, setCurrentTab] = useState(tabsEnum.MESSAGE)
 
   function changeTab(tab: tabsEnum) {
@@ -41,7 +44,4 @@ export default function FormTabs({ onChange }) {
       </div>
     </div>
   )
-}
-FormTabs.propTypes = {
-  onChange: PropTypes.func,
 }
