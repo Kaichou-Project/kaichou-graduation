@@ -32,8 +32,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-#Meckis Test files (Temporary solution)
-components/Video/VideoBoard.tsx
-components/Image/ImageBoard.tsx
-pages/test.tsx
