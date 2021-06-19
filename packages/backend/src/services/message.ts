@@ -19,7 +19,6 @@ export const storeMessage = async (
 ): Promise<MessageDoc> => {
   const data: MessageInterface = {
     creator,
-    avatarUrl: '',
     content,
     isVerified: false,
   }

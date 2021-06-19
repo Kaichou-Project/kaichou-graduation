@@ -4,7 +4,6 @@ import { MessageSchema } from '@model/schemas/message'
 
 export interface MessageInterface {
   creator: string
-  avatarUrl: string //TODO: utilize this if needed, if not just remove it from model
   content: string
   isVerified: boolean
 }

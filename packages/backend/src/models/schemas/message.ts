@@ -6,10 +6,6 @@ export const MessageSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    avatarUrl: {
-      type: String,
-      default: '',
-    },
     content: {
       type: String,
       required: true,
