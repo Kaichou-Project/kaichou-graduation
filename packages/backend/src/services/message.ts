@@ -29,3 +29,48 @@ export const storeMessage = async (
 
   return message
 }
+
+/**
+ * Update existing message
+ * @param id message's id
+ * @param creator message's creator
+ * @param content message's content
+ * @param isVerified message's isVerified
+ * @returns new message document
+ */
+export const updateMessage = async (
+  _id: string,
+  creator: string,
+  content: string,
+  isVerified: boolean
+): Promise<MessageDoc> => {
+  const conditions = { _id }
+
+  const data: MessageInterface = {
+    creator,
+    content,
+  }
+
+  if (typeof isVerified === 'boolean') {
+    data.isVerified = isVerified
+  }
+
+  const options = {
+    new: true,
+  }
+
+  const message = await MessageModel.findOneAndUpdate(conditions, data, options)
+
+  if (!message) {
+    throw new TypeError('creator and content is required')
+  }
+  return message
+}
+
+/**
+ * Update existing message
+ * @param id message's id
+ */
+export const deleteMessage = async (_id: string): Promise<void> => {
+  await MessageModel.deleteOne({ _id })
+}

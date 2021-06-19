@@ -1,11 +1,11 @@
-import { Document, model, Model } from 'mongoose'
+import { Document, model, Model, QueryOptions } from 'mongoose'
 import { MODEL_MESSAGE } from '@constant/general'
 import { MessageSchema } from '@model/schemas/message'
 
 export interface MessageInterface {
   creator: string
   content: string
-  isVerified: boolean
+  isVerified?: boolean
 }
 
 export interface MessageDoc extends Document, MessageInterface {}
