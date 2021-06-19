@@ -21,32 +21,39 @@ export enum Page {
 interface NavItem {
   page: Page
   iconPath: string
+  text: string
 }
 
 const navItems: NavItem[] = [
   {
     page: Page.HOME,
     iconPath: 'navigation/HomeIcon.svg',
+    text: 'Home',
   },
   {
     page: Page.MESSAGES,
     iconPath: 'navigation/MessageIcon.svg',
+    text: 'Messages',
   },
   {
     page: Page.FANART,
     iconPath: 'navigation/ImageIcon.svg',
+    text: 'Fanarts',
   },
   {
     page: Page.CLIPS,
     iconPath: 'navigation/VideoIcon.svg',
+    text: 'Clips',
   },
   {
     page: Page.SOUNDBOARD,
     iconPath: 'navigation/SoundIcon.svg',
+    text: 'Soundboard',
   },
   {
     page: Page.CREDITS,
     iconPath: 'navigation/InfoIcon.svg',
+    text: 'Credits',
   },
 ]
 
@@ -69,6 +76,7 @@ export default function Navigation({
           {navItems.map((item) => (
             <Link key={item.iconPath} href={item.page.toString()}>
               <div className={styles.icon}>
+                <text className={styles.icon_text}>{item.text}</text>
                 <img src={item.iconPath} alt={item.page.toString()} />
                 {page === item.page ? (
                   <img src="navigation/Dot.svg" className={styles.active} />
