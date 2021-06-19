@@ -69,6 +69,9 @@ export default function Navigation({
           {navItems.map((item) => (
             <Link key={item.iconPath} href={item.page.toString()}>
               <div className={styles.icon}>
+                <text className={styles.icon_text}>
+                  {item.page.charAt(0).toUpperCase() + item.page.slice(1)}
+                </text>
                 <img src={item.iconPath} alt={item.page.toString()} />
                 {page === item.page ? (
                   <img src="navigation/Dot.svg" className={styles.active} />
