@@ -1,7 +1,18 @@
 @import '../../styles/variables';
 
-.text{
+.title{
+    display: inline;
     color: $white;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.creator{
+    display: inline;
+    color: $white;
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 600;
 }
 
 .listContainer{
@@ -11,11 +22,6 @@
     grid-row-gap: 30px;
     background-color: $background;
     justify-content: center;
-}
-
-.card{
-    grid-column: 1;
-    width: 50%;
 }
 
 .cardInfo{
