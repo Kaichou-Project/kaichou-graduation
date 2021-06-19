@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import styles from '../styles/videoBoard.module.scss'
+import styles from './videoBoard.module.scss'
 
 export interface VideoInterface {
   id: string
