@@ -1,8 +1,23 @@
 @import '../../styles/variables';
 
-.boardWrapper{
-    padding-left: 10%;
-    padding-right: 10%;
+
+.listContainer{
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-column-gap: 50px;
+    grid-row-gap: 30px;
+    background-color: $background;
+    justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+    .listContainer{
+        display: grid;
+        grid-template-columns: 80% ;
+        grid-row-gap: 30px;
+        background-color: $background;
+        justify-content: center;
+    }
 }
 
 .title{
@@ -18,15 +33,6 @@
     font-style: italic;
     font-size: 36px;
     font-weight: 600;
-}
-
-.listContainer{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
-    background-color: $background;
-    justify-content: center;
 }
 
 .playerWrapper{
