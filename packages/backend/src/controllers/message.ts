@@ -10,9 +10,8 @@ import { Request, Response } from 'express'
 
 export const getAllMessagesController = async (req: Request, res: Response) => {
   try {
-    // "/messages?lastId=[lastId]&limit=[limit]"
     //  Gets [limit] messages after _id [lastId]
-    const { lastId = "NULL", limit = "10"}: MessageQuery = req.query;
+    const { lastId = 'NULL', limit = '10' }: MessageQuery = req.query
     const messages: MessageDoc[] = await getAllMessages(lastId, +limit)
 
     return responseSuccess(res, messages)

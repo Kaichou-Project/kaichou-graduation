@@ -3,8 +3,8 @@ import { MODEL_MESSAGE } from '@constant/general'
 import { MessageSchema } from '@model/schemas/message'
 
 export interface MessageQuery {
-  lastId?:string
-  limit?:string
+  lastId?: string
+  limit?: string
 }
 
 export interface MessageInterface {
