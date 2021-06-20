@@ -1,4 +1,4 @@
-import { MessageDoc } from '@model/message'
+import { MessageDoc, MessageQuery } from '@model/message'
 import { getAllMessages, storeMessage } from '@service/message'
 import {
   responseBadRequest,
@@ -8,9 +8,11 @@ import {
 } from '@util/response'
 import { Request, Response } from 'express'
 
-export const getAllMessagesController = async (_: Request, res: Response) => {
+export const getAllMessagesController = async (req: Request, res: Response) => {
   try {
-    const messages: MessageDoc[] = await getAllMessages()
+    //  Gets [limit] messages after _id [lastId]
+    const { lastId = 'NULL', limit = '10' }: MessageQuery = req.query
+    const messages: MessageDoc[] = await getAllMessages(lastId, +limit)
 
     return responseSuccess(res, messages)
   } catch (error) {
