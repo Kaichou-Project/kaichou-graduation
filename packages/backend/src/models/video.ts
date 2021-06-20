@@ -5,6 +5,7 @@ import { VideoSchema } from '@model/schemas/video'
 export interface VideoInterface {
   creator: string
   videoEmbedUrl: string
+  isVerified: boolean
 }
 
 export interface VideoDoc extends Document, VideoInterface {}

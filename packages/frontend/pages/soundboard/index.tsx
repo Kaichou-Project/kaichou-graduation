@@ -3,6 +3,7 @@ import SoundCardList from '../../components/SoundBoard/SoundCardList'
 import soundCategory from '../../interfaces/soundCategory'
 import Footer from '../../components/Footer/Footer'
 import Navigation, { Page } from '../../components/Navigation/Navigation'
+import ToTheTopButton from '../../components/ToTheTopButton'
 
 const soundCategoryList: soundCategory[] = [
   {
@@ -64,6 +65,7 @@ export default function SoundBoard() {
       {soundCategoryList.map((soundCategory, i) => (
         <SoundCardList key={i} {...soundCategory} />
       ))}
+      <ToTheTopButton />
       <Footer />
     </>
   )

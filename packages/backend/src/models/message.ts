@@ -2,10 +2,15 @@ import { Document, model, Model } from 'mongoose'
 import { MODEL_MESSAGE } from '@constant/general'
 import { MessageSchema } from '@model/schemas/message'
 
+export interface MessageQuery {
+  lastId?: string
+  limit?: string
+}
+
 export interface MessageInterface {
-  author: string
-  avatarUrl: string
+  creator: string
   content: string
+  isVerified: boolean
 }
 
 export interface MessageDoc extends Document, MessageInterface {}
