@@ -1,5 +1,10 @@
 @import '../../styles/variables';
 
+.boardWrapper{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
 .title{
     display: inline;
     color: $white;
@@ -17,7 +22,7 @@
 
 .listContainer{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     grid-column-gap: 30px;
     grid-row-gap: 30px;
     background-color: $background;
