@@ -61,9 +61,8 @@ export const updateMessage = async (
 
   const message = await MessageModel.findOneAndUpdate(conditions, data, options)
 
-  if (!message) {
+  if (!message)
     throw new TypeError('creator and content is required')
-  }
   return message
 }
 
