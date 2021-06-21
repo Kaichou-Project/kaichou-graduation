@@ -57,7 +57,7 @@ export const updateMessageController = async (req: Request, res: Response) => {
       _id,
       creator,
       content,
-      isVerified
+      isVerified || false
     )
 
     return responseSuccess(res, message)
@@ -73,8 +73,7 @@ export const deleteMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
     const { _id } = req.body
-    if (!_id)
-      throw new TypeError('id required')
+    if (!_id) throw new TypeError('id required')
 
     await deleteMessage(_id)
 

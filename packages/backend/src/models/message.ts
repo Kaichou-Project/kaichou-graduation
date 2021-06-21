@@ -10,7 +10,7 @@ export interface MessageQuery {
 export interface MessageInterface {
   creator: string
   content: string
-  isVerified?: boolean
+  isVerified: boolean
 }
 
 export interface MessageDoc extends Document, MessageInterface {}
