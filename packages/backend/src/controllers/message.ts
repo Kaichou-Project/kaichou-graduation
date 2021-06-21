@@ -62,9 +62,8 @@ export const updateMessageController = async (req: Request, res: Response) => {
 
     return responseSuccess(res, message)
   } catch (error) {
-    if (error instanceof TypeError) {
+    if (error instanceof TypeError)
       return responseBadRequest(res, error.message)
-    }
 
     return responseInternalServerError(res, error.message, error)
   }
@@ -74,9 +73,8 @@ export const deleteMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
     const { _id } = req.body
-    if (!_id) {
+    if (!_id)
       throw new TypeError('id required')
-    }
 
     await deleteMessage(_id)
 

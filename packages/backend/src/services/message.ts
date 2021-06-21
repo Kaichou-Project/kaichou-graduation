@@ -39,7 +39,7 @@ export const storeMessage = async (
 
 /**
  * Update existing message
- * @param id message's id
+ * @param _id message's id
  * @param creator message's creator
  * @param content message's content
  * @param isVerified message's isVerified
@@ -58,9 +58,8 @@ export const updateMessage = async (
     content,
   }
 
-  if (typeof isVerified === 'boolean') {
+  if (typeof isVerified === 'boolean')
     data.isVerified = isVerified
-  }
 
   const options = {
     new: true,
@@ -68,9 +67,8 @@ export const updateMessage = async (
 
   const message = await MessageModel.findOneAndUpdate(conditions, data, options)
 
-  if (!message) {
+  if (!message)
     throw new TypeError('creator and content is required')
-  }
   return message
 }
 
