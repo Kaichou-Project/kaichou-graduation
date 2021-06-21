@@ -6,13 +6,13 @@ import { MessageDoc, MessageInterface, MessageModel } from '@model/message'
  */
 export const getAllMessages = async (
   lastId: string,
-  limit: number
-): Promise<MessageDoc[]> => {
-  if (lastId === 'NULL') {
-    return await MessageModel.find().limit(limit)
-  }
-  return await MessageModel.find({ _id: { $gt: lastId } }).limit(limit)
-}
+  limit: number,
+  getVerified: boolean
+): Promise<MessageDoc[]> =>
+  MessageModel.find({
+    ...(lastId !== 'NULL' && { _id: { $gt: lastId } }),
+    ...(getVerified && { isVerified: { $eq: true } }),
+  }).limit(limit)
 
 /**
  * Create new message

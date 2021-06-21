@@ -12,12 +12,23 @@ import {
   responseSuccess,
 } from '@util/response'
 import { Request, Response } from 'express'
+import Logger from '@logger'
 
 export const getAllMessagesController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] messages after _id [lastId]
-    const { lastId = 'NULL', limit = '10' }: MessageQuery = req.query
-    const messages: MessageDoc[] = await getAllMessages(lastId, +limit)
+    const {
+      lastId = 'NULL',
+      limit = '10',
+      getVerified = 'false',
+    }: MessageQuery = req.query
+    Logger.debug(req.query)
+    const messages: MessageDoc[] = await getAllMessages(
+      lastId,
+      +limit,
+      // if getVerified is anything other than 'false', it becomes true
+      getVerified.toLowerCase() !== 'false'
+    )
 
     return responseSuccess(res, messages)
   } catch (error) {

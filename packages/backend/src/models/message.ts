@@ -5,6 +5,7 @@ import { MessageSchema } from '@model/schemas/message'
 export interface MessageQuery {
   lastId?: string
   limit?: string
+  getVerified?: string
 }
 
 export interface MessageInterface {
