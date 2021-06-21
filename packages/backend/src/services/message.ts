@@ -32,7 +32,7 @@ export const storeMessage = async (
 
 /**
  * Update existing message
- * @param id message's id
+ * @param _id message's id
  * @param creator message's creator
  * @param content message's content
  * @param isVerified message's isVerified
