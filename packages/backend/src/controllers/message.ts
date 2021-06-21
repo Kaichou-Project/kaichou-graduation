@@ -60,9 +60,8 @@ export const updateMessageController = async (req: Request, res: Response) => {
 
     return responseSuccess(res, message)
   } catch (error) {
-    if (error instanceof TypeError) {
+    if (error instanceof TypeError)
       return responseBadRequest(res, error.message)
-    }
 
     return responseInternalServerError(res, error.message, error)
   }
