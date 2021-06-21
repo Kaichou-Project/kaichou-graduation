@@ -75,9 +75,10 @@ export const deleteMessageController = async (req: Request, res: Response) => {
     const { _id } = req.body
     if (!_id) throw new TypeError('id required')
 
-    await deleteMessage(_id)
+    const success = await deleteMessage(_id)
 
-    return responseSuccess(res)
+    if (!success) throw new TypeError('Message not found')
+    else return responseSuccess(res)
   } catch (error) {
     if (error instanceof TypeError) {
       return responseBadRequest(res, error.message)

@@ -72,7 +72,9 @@ export const updateMessage = async (
 /**
  * Delete existing message
  * @param id message's id
+ * @returns true if message is deleted successfully
  */
-export const deleteMessage = async (_id: string): Promise<void> => {
-  await MessageModel.deleteOne({ _id })
+export const deleteMessage = async (_id: string): Promise<boolean> => {
+  const res = await MessageModel.deleteOne({ _id })
+  return res.deletedCount !== 0
 }
