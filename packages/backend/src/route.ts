@@ -12,6 +12,12 @@ import {
   getAllVideoController,
   updateVideoController,
 } from '@controller/video'
+import {
+  createFanartController,
+  deleteFanartController,
+  getAllFanartsController,
+  updateFanartController,
+} from '@controller/fanart'
 
 const routes = () => {
   const router: Router = Router()
@@ -30,6 +36,12 @@ const routes = () => {
   router.post('/video', createVideoController)
   router.put('/video', updateVideoController)
   router.delete('/video', deleteVideoController)
+
+  // Fanart route
+  router.get('/fanart', getAllFanartsController)
+  router.post('/fanart', createFanartController)
+  router.put('/fanart', updateFanartController)
+  router.delete('/fanart', deleteFanartController)
 
   return router
 }
