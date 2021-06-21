@@ -14,7 +14,6 @@ interface propsInterface {
 interface errorType {
   submission?: string
   creator?: string
-  avatar_url?: string
   content?: string
   confirmation?: string
 }
@@ -36,9 +35,6 @@ export default function FormMessage({ hidden }: propsInterface) {
     if (!data.creator) {
       return setErrors({ creator: "This field can't be empty" })
     }
-
-    // Currently doesn't exist in backend
-    // data.avatar_url = data.avatar_url.trim()
 
     if (!data.content) {
       return setErrors({ content: "This field can't be empty" })
@@ -71,12 +67,6 @@ export default function FormMessage({ hidden }: propsInterface) {
       )}
 
       <TextInput name="creator" label="My name is ..." error={errors.creator} />
-
-      <TextInput
-        name="avatar_url"
-        label="A link to my profile picture is here (optional) ..."
-        error={errors.avatar_url}
-      />
 
       <TextArea
         name="content"
