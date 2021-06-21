@@ -41,10 +41,5 @@
   },
   "engines": {
     "node": ">=12.x"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn check-push"
-    }
   }
 }
