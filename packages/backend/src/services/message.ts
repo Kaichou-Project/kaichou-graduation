@@ -73,7 +73,7 @@ export const updateMessage = async (
 }
 
 /**
- * Update existing message
+ * Delete existing message
  * @param id message's id
  */
 export const deleteMessage = async (_id: string): Promise<void> => {
