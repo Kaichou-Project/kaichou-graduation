@@ -108,22 +108,24 @@
   }
 
   .title {
-    z-index: 1;
-    position: absolute;
-    top: 18rem;
-    left: 16rem;
+    grid-area: title;
+    display: flex;
+    margin-top: 20vh;
+    margin-left: 10rem;
 
-    img {
-      height: 10rem;
-    }
-
-    p {
-      position: absolute;
-      top: 3.5rem;
-      left: 3rem;
-      fill: $white;
-      font-size: 2.5rem;
-      transform: rotate(-1.69deg);
+    .box {
+      background-image: url('/navigation/Title.svg');
+      background-repeat: no-repeat;
+      width: 80vw;
+      height: 40rem;
+      background-size: 34rem auto;
+  
+      p {
+        position: static;
+        margin-top: 1.2em;
+        margin-left: 1em;
+        font-size: 2.5rem;
+      }
     }
   }
 }
@@ -141,23 +143,16 @@
     }
 
     .title {
-      position: static;
-      grid-area: title;
-      // border: 1px solid green;
+      justify-content: center;
+      margin-left: 0;
 
-      img {
-        width: 90vw;
-        height: 10rem;
-        margin-left: 5vw;
-      }
-
-      p {
-        position: static;
-        margin-top: -19vh;
-        margin-left: 3.5em;
-        font-size: 6vw;
-        // border: 1px solid blue;
-        // font-size: 40px;
+      .box {
+        height: auto;
+        background-size: 80vw auto;
+  
+        p {
+          font-size: 6vw;
+        }
       }
     }
   }
@@ -172,21 +167,14 @@
     }
 
     .navigators {
-      position: static;
-      width: 100vw;
 
       .navbar {
         grid-area: navbar;
         width: 100vw;
         height: auto;
-        // border: 1px solid green;
-        background-size: 100vh 100px;
       }
 
-      
-
       .icons {
-        // border: 1px solid blue;
         width: 70vw;
         top: 1.5vh;
         right: 1rem;
@@ -204,20 +192,9 @@
     }
 
     .title {
-      position: static;
-      grid-area: title;
-
-      img {
-        width: 90vw;
-        margin-left: 5vw;
-      }
-
-      p {
-        position: static;
-        margin-top: -18vh;
-        margin-left: 12vw;
-        font-size: 7vw;
-        // border: 1px solid blue;
+      .box {
+        width:90vw;
+        background-size: 90vw auto;
       }
     }
   }

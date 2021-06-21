@@ -83,8 +83,9 @@ export default function Navigation({
       </div>
 
       <div className={styles.title}>
-        <img src="navigation/Title.svg" />
-        <p>{title}</p>
+        <div className={styles.box}>
+          <p>{title}</p>
+        </div>
       </div>
 
       <SakuraParticles />
