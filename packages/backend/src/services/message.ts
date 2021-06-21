@@ -51,9 +51,8 @@ export const updateMessage = async (
     content,
   }
 
-  if (typeof isVerified === 'boolean') {
+  if (typeof isVerified === 'boolean')
     data.isVerified = isVerified
-  }
 
   const options = {
     new: true,
