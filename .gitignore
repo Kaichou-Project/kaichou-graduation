@@ -123,3 +123,6 @@ dist
 .pnp.*
 
 package-lock.json
+
+# macOS invisible files
+.DS_Store

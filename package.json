@@ -16,7 +16,7 @@
     "start:server": "yarn workspace @kaichou-graduation/server start",
     "lint": "eslint . --format=pretty --cache --color",
     "test:types": "lerna run test:types",
-    "pre-commit": "yarn lint && yarn test:types",
+    "pre-commit": "yarn lint && yarn test:types && cd packages && cd backend && yarn test:jest",
     "prepare": "husky install && npx shx rm -rf .git/hooks && npx shx ln -s ../.husky .git/hooks"
   },
   "devDependencies": {
