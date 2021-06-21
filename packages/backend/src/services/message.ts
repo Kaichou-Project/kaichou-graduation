@@ -36,3 +36,45 @@ export const storeMessage = async (
 
   return message
 }
+
+/**
+ * Update existing message
+ * @param _id message's id
+ * @param creator message's creator
+ * @param content message's content
+ * @param isVerified message's isVerified
+ * @returns new message document
+ */
+export const updateMessage = async (
+  _id: string,
+  creator: string,
+  content: string,
+  isVerified: boolean
+): Promise<MessageDoc> => {
+  const conditions = { _id }
+
+  const data: MessageInterface = {
+    creator,
+    content,
+    isVerified,
+  }
+
+  const options = {
+    new: true,
+  }
+
+  const message = await MessageModel.findOneAndUpdate(conditions, data, options)
+
+  if (!message) throw new TypeError('Message not found')
+  return message
+}
+
+/**
+ * Delete existing message
+ * @param id message's id
+ * @returns true if message is found and deleted successfully
+ */
+export const deleteMessage = async (_id: string): Promise<boolean> => {
+  const res = await MessageModel.deleteOne({ _id })
+  return res.deletedCount !== 0
+}
