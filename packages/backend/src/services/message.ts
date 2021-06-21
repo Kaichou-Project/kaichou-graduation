@@ -65,14 +65,14 @@ export const updateMessage = async (
 
   const message = await MessageModel.findOneAndUpdate(conditions, data, options)
 
-  if (!message) throw new TypeError('creator and content is required')
+  if (!message) throw new TypeError('Message not found')
   return message
 }
 
 /**
  * Delete existing message
  * @param id message's id
- * @returns true if message is deleted successfully
+ * @returns true if message is found and deleted successfully
  */
 export const deleteMessage = async (_id: string): Promise<boolean> => {
   const res = await MessageModel.deleteOne({ _id })
