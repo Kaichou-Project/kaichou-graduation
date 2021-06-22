@@ -6,9 +6,13 @@ export const MessageSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    content: {
+    contentOrigin: {
       type: String,
       required: true,
+    },
+    contentJp: {
+      type: String,
+      default: '',
     },
     isVerified: {
       type: Boolean,

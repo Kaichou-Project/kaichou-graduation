@@ -1,5 +1,8 @@
 import { MessageDoc, MessageInterface, MessageModel } from '@model/message'
-import { StoreMessageParameter } from 'interface/service'
+import {
+  StoreMessageParameter,
+  UpdateMessageParameter,
+} from 'interface/service'
 
 /**
  * Get all messages
@@ -29,7 +32,8 @@ export const storeMessage = async ({
 }: StoreMessageParameter): Promise<MessageDoc> => {
   const data: MessageInterface = {
     creator: params.creator,
-    content: params.content,
+    contentOrigin: params.contentOrigin,
+    contentJp: params.contentJp || '',
     isVerified: false,
   }
 
@@ -49,17 +53,15 @@ export const storeMessage = async ({
  * @returns new message document
  */
 export const updateMessage = async (
-  _id: string,
-  creator: string,
-  content: string,
-  isVerified: boolean
+  params: UpdateMessageParameter
 ): Promise<MessageDoc> => {
-  const conditions = { _id }
+  const conditions = { _id: params._id }
 
   const data: MessageInterface = {
-    creator,
-    content,
-    isVerified,
+    creator: params.creator,
+    contentOrigin: params.contentOrigin,
+    contentJp: params.contentJp,
+    isVerified: params.isVerified || false,
   }
 
   const options = {
