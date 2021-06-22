@@ -1,5 +1,5 @@
 import { FanartDoc, FanartInterface, FanartModel } from '@model/fanart'
-import { StoreFanartParameter } from 'interface/service'
+import { StoreFanartParameter, UpdateFanartParameter } from 'interface/service'
 
 /**
  * Get all fanart
@@ -50,18 +50,15 @@ export const storeFanart = async ({
  * @returns new fanart document
  */
 export const updateFanart = async (
-  _id: string,
-  creator: string,
-  imageUrl: string,
-  isVerified: boolean
+  params: UpdateFanartParameter
 ): Promise<FanartDoc> => {
-  const fanart: FanartDoc | null = await FanartModel.findById(_id).exec()
+  const fanart: FanartDoc | null = await FanartModel.findById(params._id).exec()
   // if not found
   if (!fanart) throw new TypeError('fanart not found')
 
-  fanart.creator = creator
-  fanart.imageUrl = imageUrl
-  fanart.isVerified = isVerified
+  fanart.creator = params.creator
+  fanart.imageUrl = params.imageUrl
+  fanart.isVerified = params.isVerified || false
   const updatedFanart = await fanart.save()
 
   return updatedFanart
