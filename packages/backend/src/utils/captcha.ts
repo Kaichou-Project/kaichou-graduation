@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-const baseURL = 'https://www.google.com/recaptcha/api/siteverify'
-const secretKey = process.env.CAPTCHA_SECRET_KEY
-
 export async function verifyCaptchaToken(token: string): Promise<boolean> {
   if (!token) return false
-  const url = `${baseURL}?secret=${secretKey}&response=${token}`
-  const res = await axios.post(url)
-  console.log(res.data)
 
-  return true
+  const secret = process.env.CAPTCHA_SECRET_KEY
+  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`
+  const res = await axios.post(url)
+
+  if (res.data.success) return true
+  else return false
 }

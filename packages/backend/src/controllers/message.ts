@@ -31,7 +31,7 @@ export const createMessageController = async (req: Request, res: Response) => {
     //   Request body validation
     const { creator, content, captchaToken } = req.body
 
-    if (!verifyCaptchaToken(captchaToken)) {
+    if (!(await verifyCaptchaToken(captchaToken))) {
       throw new TypeError('Invalid captcha token')
     }
 
