@@ -3,6 +3,8 @@ import TextInput from './TextInput'
 import TextArea from './TextArea'
 import CheckConfirm from './CheckConfirm'
 import Captcha from './Captcha'
+import { MessageInterface } from '../../interfaces/message'
+import { createMessage } from '../../api/message'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
@@ -10,7 +12,7 @@ interface propsInterface {
   hidden: boolean
 }
 
-interface dataType {
+interface dataType extends MessageInterface {
   creator: string
   avatar_url: string
   content: string
@@ -18,8 +20,8 @@ interface dataType {
 }
 
 interface errorType {
+  submission?: string
   creator?: string
-  avatar_url?: string
   content?: string
   confirmation?: string
   captcha?: string
@@ -29,7 +31,7 @@ export default function FormMessage({ hidden }: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
   const [captchaToken, setCaptchaToken] = useState('')
 
-  function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -43,8 +45,6 @@ export default function FormMessage({ hidden }: propsInterface) {
     if (!data.creator) {
       return setErrors({ creator: "This field can't be empty" })
     }
-
-    data.avatar_url = data.avatar_url.trim()
 
     if (!data.content) {
       return setErrors({ content: "This field can't be empty" })
@@ -61,8 +61,15 @@ export default function FormMessage({ hidden }: propsInterface) {
 
     setErrors({})
 
-    // ToDo call API to send data
-    console.log(data)
+    try {
+      await createMessage(data)
+
+      // ToDo : Do something if success
+      console.log('success')
+    } catch (err) {
+      const message = err.response.data.message
+      setErrors({ submission: message })
+    }
   }
 
   return (
@@ -70,13 +77,11 @@ export default function FormMessage({ hidden }: propsInterface) {
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
       onSubmit={onSubmit}
     >
-      <TextInput name="creator" label="My name is ..." error={errors.creator} />
+      {errors.submission && (
+        <div className={styles.error_msg}>{errors.submission}</div>
+      )}
 
-      <TextInput
-        name="avatar_url"
-        label="A link to my profile picture is here (optional) ..."
-        error={errors.avatar_url}
-      />
+      <TextInput name="creator" label="My name is ..." error={errors.creator} />
 
       <TextArea
         name="content"
