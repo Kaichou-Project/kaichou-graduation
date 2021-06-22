@@ -15,7 +15,7 @@ import {
 import {
   createFanartController,
   deleteFanartController,
-  getAllFanartsController,
+  getAllFanartController,
   updateFanartController,
 } from '@controller/fanart'
 
@@ -38,7 +38,7 @@ const routes = () => {
   router.delete('/video', deleteVideoController)
 
   // Fanart route
-  router.get('/fanart', getAllFanartsController)
+  router.get('/fanart', getAllFanartController)
   router.post('/fanart', createFanartController)
   router.put('/fanart', updateFanartController)
   router.delete('/fanart', deleteFanartController)

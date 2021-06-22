@@ -1,4 +1,5 @@
 import { MessageDoc, MessageInterface, MessageModel } from '@model/message'
+import { StoreMessageParameter } from 'interface/service'
 
 /**
  * Get all messages
@@ -9,9 +10,11 @@ export const getAllMessages = async (
   limit: number
 ): Promise<MessageDoc[]> => {
   if (lastId === 'NULL') {
-    return await MessageModel.find().limit(limit)
+    return MessageModel.find().limit(limit).exec()
   }
-  return await MessageModel.find({ _id: { $gt: lastId } }).limit(limit)
+  return MessageModel.find({ _id: { $gt: lastId } })
+    .limit(limit)
+    .exec()
 }
 
 /**
@@ -21,12 +24,11 @@ export const getAllMessages = async (
  * @returns new message document
  */
 export const storeMessage = async (
-  creator: string,
-  content: string
+  params: StoreMessageParameter
 ): Promise<MessageDoc> => {
   const data: MessageInterface = {
-    creator,
-    content,
+    creator: params.creator,
+    content: params.content,
     isVerified: false,
   }
 

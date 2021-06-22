@@ -9,9 +9,23 @@ export const isValidEmbedUrl = (videoEmbedUrl: string): boolean => {
 export const isValidId = (id: string) =>
   Types.ObjectId.isValid(id) ? true : false
 
-export const isUndefined = (item: any) =>
-  typeof item === 'undefined' ? true : false
-export const isString = (item: any) => (typeof item === 'string' ? true : false)
+/**
+ * Check the type of given item is undefined or not
+ * @param {any} item - item whose type will be checked
+ * @returns {bool} true if item's type is undefined and vice versa
+ */
+export const isUndefined = (item: any): boolean => typeof item === 'undefined'
 
-export const isBoolean = (item: any) =>
-  typeof item === 'boolean' ? true : false
+/**
+ * Check the type of given item is string or not
+ * @param {any} item - item whose type will be checked
+ * @returns {bool} true if item's type is string and vice versa
+ */
+export const isString = (item: any): boolean => typeof item === 'string'
+
+/**
+ * Check the type of given item is boolean or not
+ * @param {any} item - item whose type will be checked
+ * @returns {bool} true if item's type is boolean and vice versa
+ */
+export const isBoolean = (item: any): boolean => typeof item === 'boolean'

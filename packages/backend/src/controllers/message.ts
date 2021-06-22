@@ -1,4 +1,4 @@
-import { MessageDoc, MessageQuery } from '@model/message'
+import { MessageDoc } from '@model/message'
 import {
   getAllMessages,
   storeMessage,
@@ -12,6 +12,7 @@ import {
   responseSuccess,
 } from '@util/response'
 import { Request, Response } from 'express'
+import { MessageQuery } from 'interface/request'
 
 export const getAllMessagesController = async (req: Request, res: Response) => {
   try {
@@ -33,7 +34,7 @@ export const createMessageController = async (req: Request, res: Response) => {
       throw new TypeError('creator and content is required')
     }
 
-    const message: MessageDoc = await storeMessage(creator, content)
+    const message: MessageDoc = await storeMessage({ creator, content })
 
     return responseCreated(res, message)
   } catch (error) {

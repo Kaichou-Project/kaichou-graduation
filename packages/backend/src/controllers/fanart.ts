@@ -1,7 +1,7 @@
-import { FanartDoc, FanartQuery } from '@model/fanart'
+import { FanartDoc } from '@model/fanart'
 import {
   deleteFanart,
-  getAllFanarts,
+  getAllFanart,
   storeFanart,
   updateFanart,
 } from '@service/fanart'
@@ -13,12 +13,13 @@ import {
 } from '@util/response'
 import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
+import { FanartQuery } from 'interface/request'
 
-export const getAllFanartsController = async (req: Request, res: Response) => {
+export const getAllFanartController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] fanart after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: FanartQuery = req.query
-    const fanarts: FanartDoc[] = await getAllFanarts(lastId, +limit)
+    const fanarts: FanartDoc[] = await getAllFanart(lastId, +limit)
 
     return responseSuccess(res, fanarts)
   } catch (error) {
@@ -35,7 +36,7 @@ export const createFanartController = async (req: Request, res: Response) => {
     if (!isString(creator)) throw new TypeError('creator must be a string')
     if (!isString(imageUrl)) throw new TypeError('imageUrl must be a string')
 
-    const fanart: FanartDoc = await storeFanart(creator, imageUrl)
+    const fanart: FanartDoc = await storeFanart({ creator, imageUrl })
 
     return responseCreated(res, fanart)
   } catch (error) {

@@ -1,18 +1,21 @@
 import { FanartDoc, FanartInterface, FanartModel } from '@model/fanart'
+import { StoreFanartParameter } from 'interface/service'
 
 /**
  * Get all fanart
  * @returns array of fanart document
  */
-export const getAllFanarts = async (
+export const getAllFanart = async (
   lastId: string,
   limit: number
 ): Promise<FanartDoc[]> => {
   // if lastId is not given or given an empty string
   if (lastId === 'NULL' || lastId === '') {
-    return await FanartModel.find().limit(limit)
+    return FanartModel.find().limit(limit).exec()
   }
-  return await FanartModel.find({ _id: { $gt: lastId } }).limit(limit)
+  return FanartModel.find({ _id: { $gt: lastId } })
+    .limit(limit)
+    .exec()
 }
 
 /**
@@ -22,12 +25,11 @@ export const getAllFanarts = async (
  * @returns new fanart document
  */
 export const storeFanart = async (
-  creator: string,
-  imageUrl: string
+  params: StoreFanartParameter
 ): Promise<FanartDoc> => {
   const data: FanartInterface = {
-    creator,
-    imageUrl,
+    creator: params.creator,
+    imageUrl: params.imageUrl,
     isVerified: false,
   }
 
@@ -54,9 +56,7 @@ export const updateFanart = async (
 ): Promise<FanartDoc> => {
   const fanart: FanartDoc | null = await FanartModel.findById(_id).exec()
   // if not found
-  if (!fanart) {
-    if (!fanart) throw new TypeError('fanart not found')
-  }
+  if (!fanart) throw new TypeError('fanart not found')
 
   fanart.creator = creator
   fanart.imageUrl = imageUrl
@@ -68,7 +68,7 @@ export const updateFanart = async (
 
 /**
  * Delete existing fanart
- * @param id fanart's id
+ * @param _id fanart's id
  */
 export const deleteFanart = async (_id: string): Promise<void> => {
   const result = await FanartModel.deleteOne({ _id })
