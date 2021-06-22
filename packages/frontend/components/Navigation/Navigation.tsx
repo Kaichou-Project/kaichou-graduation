@@ -58,12 +58,12 @@ export default function Navigation({
   return (
     <div className={styles.navigation}>
       <div className={styles.name}>
-        <img src="navigation/Corner.svg" />
+        <img src="navigation/Corner-nofilter.svg" />
         <p>{cornerText}</p>
       </div>
 
       <div className={styles.navigators}>
-        <img src="navigation/Navbar.svg" className={styles.navbar} />
+        <img src="navigation/Navbar-nofilter.svg" className={styles.navbar} />
 
         <div className={styles.icons}>
           {navItems.map((item) => (

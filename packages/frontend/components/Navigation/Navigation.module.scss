@@ -96,7 +96,7 @@
       }
       
       .icon:hover{
-        img{
+        img {
           opacity: 0;
         }
 
@@ -181,11 +181,12 @@
 
         .icon {
           img {
-            height: 5vh;
+            height: 10vw;
           }
         }
 
         .icon_text {
+          top: 5vh;
           font-size: 0.7em;
         }
       }
