@@ -29,8 +29,8 @@ export const storeFanart = async ({
   imageUrl,
 }: StoreFanartParameter): Promise<FanartDoc> => {
   const data: FanartInterface = {
-    creator,
-    imageUrl,
+    creator: params.creator,
+    imageUrl: params.imageUrl,
     isVerified: false,
   }
 

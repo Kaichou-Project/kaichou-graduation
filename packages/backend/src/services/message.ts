@@ -28,8 +28,8 @@ export const storeMessage = async ({
   content,
 }: StoreMessageParameter): Promise<MessageDoc> => {
   const data: MessageInterface = {
-    creator,
-    content,
+    creator: params.creator,
+    content: params.content,
     isVerified: false,
   }
 
