@@ -192,3 +192,12 @@ $error: red;
 .button_submit:hover {
   background: $dark-orange;
 }
+
+.captcha {
+  margin: 2em 0;
+  text-align: right;
+
+  & > div > div > div {
+    width: 100% !important;
+  }
+}

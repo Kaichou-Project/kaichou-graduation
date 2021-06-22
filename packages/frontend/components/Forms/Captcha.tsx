@@ -9,10 +9,11 @@ interface propsInterface {
 
 export default function Captcha({ error, onChange }: propsInterface) {
   return (
-    <div className={'styles.confirm'}>
+    <div className={styles.captcha}>
       <ReCAPTCHA
         sitekey="6Lco20sbAAAAAPYbbT3TIKK1_DMS9OigbzTBtSdR"
         onChange={onChange}
+        badge="bottomleft"
       />
       {error && <div className={styles.error_msg}>{error}</div>}
     </div>
