@@ -2,6 +2,11 @@ import { Document, model, Model } from 'mongoose'
 import { MODEL_VIDEO } from '@constant/general'
 import { VideoSchema } from '@model/schemas/video'
 
+export interface VideoQuery {
+  lastId?: string
+  limit?: string
+}
+
 export interface VideoInterface {
   creator: string
   videoEmbedUrl: string
