@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TextInput from './TextInput'
 import TextArea from './TextArea'
 import CheckConfirm from './CheckConfirm'
+import Captcha from './Captcha'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
@@ -13,6 +14,7 @@ interface dataType {
   creator: string
   avatar_url: string
   content: string
+  captchaToken: string
 }
 
 interface errorType {
@@ -20,10 +22,12 @@ interface errorType {
   avatar_url?: string
   content?: string
   confirmation?: string
+  captcha?: string
 }
 
 export default function FormMessage({ hidden }: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
+  const [captchaToken, setCaptchaToken] = useState('')
 
   function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
@@ -49,6 +53,11 @@ export default function FormMessage({ hidden }: propsInterface) {
     if (!confirmation) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
+
+    if (!captchaToken) {
+      return setErrors({ captcha: 'You must do the Captcha' })
+    }
+    data.captchaToken = captchaToken
 
     setErrors({})
 
@@ -83,6 +92,11 @@ export default function FormMessage({ hidden }: propsInterface) {
       </div>
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
+
+      <Captcha
+        onChange={(token) => setCaptchaToken(token)}
+        error={errors.captcha}
+      />
 
       <input type="submit" className={styles.button_submit} value="Submit" />
     </form>

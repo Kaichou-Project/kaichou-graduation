@@ -11,6 +11,7 @@ import {
   responseInternalServerError,
   responseSuccess,
 } from '@util/response'
+import { verifyCaptchaToken } from '@util/captcha'
 import { Request, Response } from 'express'
 
 export const getAllMessagesController = async (req: Request, res: Response) => {
@@ -28,7 +29,12 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 export const createMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { creator, content } = req.body
+    const { creator, content, captchaToken } = req.body
+
+    if (!verifyCaptchaToken(captchaToken)) {
+      throw new TypeError('Invalid captcha token')
+    }
+
     if (!(creator && content)) {
       throw new TypeError('creator and content is required')
     }
