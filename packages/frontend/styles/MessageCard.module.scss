@@ -2,27 +2,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap');
 
 .container{
-    
-    background: $black;
-    padding: 2em 2.5em;
-    border-radius: 1.5em;
+    background: $background;
     overflow:hidden;
+    justify-content: center;
+}
+.gird{
+    display: grid;
+    grid-template-columns: auto auto; 
+    grid-gap: 1.5em,1.2em;
 }
 
 .card{
     background-color: $orange;
     aspect-ratio: auto;
-    border-radius: 25px;
+    border-radius: 10px;
     color: $white;
     font-family: "Open Sans";
-    width: 788px;
-    padding: 10px;
+    padding: 5px;
     position: relative;
     overflow: visible;        
     
     .title{
+        display: grid;
         text-align: left;
-        margin-top: 36px;
+        margin-top: 12px;
         font-size: 30;
         margin-left: 49px;
         font-family: "Open Sans" ;
@@ -30,35 +33,30 @@
     }
     
     img{
+        display: grid;
         float: right;
         position: relative;
-        top: -100px;
+        top: -120px;
         left: 30px;    
 
     }
 
     .message{
+        display: grid;
         font-size: 24;
         text-align: left;
         margin-top: 20px;
         margin-left: 49px;
         margin-right: 132px;
         font-family: "Open Sans" ;
+        font-weight: 700;
     }
 
     .author{
-        position: relative;
-<<<<<<< Updated upstream
-        left: 640px;
-=======
-        left: 520px;
->>>>>>> Stashed changes
+        display: grid;
+        text-align: right;
         font-size: 30;
         font-family: "Open Sans" ;
         font-weight: 800;
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
