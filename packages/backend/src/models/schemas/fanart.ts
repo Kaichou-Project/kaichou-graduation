@@ -21,5 +21,3 @@ export const FanartSchema: Schema = new Schema(
     timestamps: true,
   }
 )
-
-FanartSchema.index({ isVerified: 1 })
