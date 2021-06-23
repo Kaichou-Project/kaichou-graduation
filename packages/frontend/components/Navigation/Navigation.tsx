@@ -7,6 +7,7 @@ interface NavProps {
   title: string
   page: Page
   cornerText?: string
+  mode?: Mode
 }
 
 export enum Page {
@@ -16,6 +17,11 @@ export enum Page {
   CLIPS = 'clips',
   SOUNDBOARD = 'soundboard',
   CREDITS = 'credits',
+}
+
+export enum Mode {
+  DEFAULT = '',
+  FORM = 'form',
 }
 
 interface NavItem {
@@ -54,9 +60,10 @@ export default function Navigation({
   title,
   page,
   cornerText = '桐生ココ',
+  mode = Mode.DEFAULT,
 }: NavProps) {
   return (
-    <div className={styles.navigation}>
+    <div className={`${styles.navigation} ${mode && styles[mode]}`}>
       <div className={styles.name}>
         <img src="navigation/Corner-nofilter.svg" />
         <p>{cornerText}</p>
@@ -88,7 +95,7 @@ export default function Navigation({
         </div>
       </div>
 
-      <SakuraParticles />
+      {mode != Mode.FORM && <SakuraParticles />}
     </div>
   )
 }
