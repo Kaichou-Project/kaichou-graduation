@@ -4,8 +4,12 @@ import { MessageSchema } from '@model/schemas/message'
 
 export interface MessageInterface {
   creator: string
-  contentOrigin: string
-  contentJp: string
+  messages: [
+    {
+      content: string
+      lang: string
+    }
+  ]
   isVerified: boolean
 }
 

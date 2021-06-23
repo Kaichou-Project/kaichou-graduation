@@ -28,13 +28,11 @@ export const getAllMessages = async (
  */
 export const storeMessage = async ({
   creator,
-  contentOrigin,
-  contentJp = '',
+  messages,
 }: StoreMessageParameter): Promise<MessageDoc> => {
   const data: MessageInterface = {
     creator,
-    contentOrigin,
-    contentJp,
+    messages,
     isVerified: false,
   }
 
@@ -56,16 +54,14 @@ export const storeMessage = async ({
 export const updateMessage = async ({
   _id,
   creator,
-  contentOrigin,
-  contentJp,
+  messages,
   isVerified = false,
 }: UpdateMessageParameter): Promise<MessageDoc> => {
   const conditions = { _id }
 
   const data: MessageInterface = {
     creator,
-    contentOrigin,
-    contentJp,
+    messages,
     isVerified,
   }
 

@@ -10,8 +10,12 @@ interface BaseDocument extends StoreDocument {
 }
 
 export interface StoreMessageParameter extends StoreDocument {
-  contentOrigin: string
-  contentJp: string
+  messages: [
+    {
+      content: string
+      lang: string
+    }
+  ]
 }
 
 export interface StoreFanartParameter extends StoreDocument {
@@ -23,8 +27,12 @@ export interface StoreVideoParameter extends StoreDocument {
 }
 
 export interface UpdateMessageParameter extends BaseDocument {
-  contentOrigin: string
-  contentJp: string
+  messages: [
+    {
+      content: string
+      lang: string
+    }
+  ]
 }
 
 export interface UpdateFanartParameter extends BaseDocument {

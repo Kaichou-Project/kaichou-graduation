@@ -1,18 +1,27 @@
 import { Schema } from 'mongoose'
 
+const MessageItemSchema = new Schema({
+  content: {
+    type: String,
+    required: true,
+  },
+  lang: {
+    type: String,
+    required: true,
+    default: 'en',
+  },
+})
+
 export const MessageSchema: Schema = new Schema(
   {
     creator: {
       type: String,
       required: true,
     },
-    contentOrigin: {
-      type: String,
+    messages: {
+      type: [MessageItemSchema],
       required: true,
-    },
-    contentJp: {
-      type: String,
-      default: '',
+      default: [],
     },
     isVerified: {
       type: Boolean,

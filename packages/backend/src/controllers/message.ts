@@ -30,18 +30,14 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 export const createMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { creator, contentOrigin, contentJp } = req.body
-    if (!(creator && contentOrigin))
-      throw new TypeError('creator and content is required')
+    const { creator, messages } = req.body
+    if (!(creator && messages))
+      throw new TypeError('creator and messages is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')
-    if (!isString(contentOrigin))
-      throw new TypeError('content must be a string')
-    if (!isString(contentJp)) throw new TypeError('content must be a string')
 
     const message: MessageDoc = await storeMessage({
       creator,
-      contentOrigin,
-      contentJp,
+      messages,
     })
 
     return responseCreated(res, message)
@@ -57,33 +53,19 @@ export const createMessageController = async (req: Request, res: Response) => {
 export const updateMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { _id, creator, contentOrigin, contentJp, isVerified } = req.body
-    if (
-      !(
-        _id &&
-        creator &&
-        contentOrigin &&
-        contentJp &&
-        !isUndefined(isVerified)
-      )
-    ) {
-      throw new TypeError(
-        '_id, creator, contentOrigin, contentJp and isVerified is required'
-      )
+    const { _id, creator, messages, isVerified } = req.body
+    if (!(_id && creator && messages && !isUndefined(isVerified))) {
+      throw new TypeError('_id, creator, messages and isVerified is required')
     }
     if (!isString(_id)) throw new TypeError('_id must be a string')
     if (!isString(creator)) throw new TypeError('creator must be a string')
-    if (!isString(contentOrigin))
-      throw new TypeError('content must be a string')
-    if (!isString(contentJp)) throw new TypeError('content must be a string')
     if (!isBoolean(isVerified))
       throw new TypeError('isVerified must be a boolean')
 
     const message: MessageDoc = await updateMessage({
       _id,
       creator,
-      contentOrigin,
-      contentJp,
+      messages,
       isVerified,
     })
 
