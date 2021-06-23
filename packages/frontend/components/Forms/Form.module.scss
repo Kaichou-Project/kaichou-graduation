@@ -1,7 +1,7 @@
 @import 'styles/variables';
 
 $normal-font-size: 24px;
-$tablet-font-size: 18px;
+$tablet-font-size: 20px;
 $phone-font-size: 12px;
 
 $grey: #3f3f3f;
@@ -36,7 +36,6 @@ $error: red;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px 0.5em;
-  padding-top: 100px;
 
   label {
     grid-column: 1 / 4;
