@@ -1,4 +1,5 @@
 import { MessageDoc, MessageInterface, MessageModel } from '@model/message'
+import { StoreMessageParameter } from 'interface/service'
 
 /**
  * Get all messages
@@ -9,9 +10,11 @@ export const getAllMessages = async (
   limit: number
 ): Promise<MessageDoc[]> => {
   if (lastId === 'NULL') {
-    return await MessageModel.find().limit(limit)
+    return MessageModel.find().limit(limit).exec()
   }
-  return await MessageModel.find({ _id: { $gt: lastId } }).limit(limit)
+  return MessageModel.find({ _id: { $gt: lastId } })
+    .limit(limit)
+    .exec()
 }
 
 /**
@@ -20,10 +23,10 @@ export const getAllMessages = async (
  * @param content message's content
  * @returns new message document
  */
-export const storeMessage = async (
-  creator: string,
-  content: string
-): Promise<MessageDoc> => {
+export const storeMessage = async ({
+  creator,
+  content,
+}: StoreMessageParameter): Promise<MessageDoc> => {
   const data: MessageInterface = {
     creator,
     content,
@@ -74,7 +77,7 @@ export const updateMessage = async (
  * @param id message's id
  * @returns true if message is found and deleted successfully
  */
-export const deleteMessage = async (_id: string): Promise<boolean> => {
-  const res = await MessageModel.deleteOne({ _id })
-  return res.deletedCount !== 0
+export const deleteMessage = async (_id: string): Promise<void> => {
+  const result = await MessageModel.deleteOne({ _id })
+  if (result.deletedCount === 0) throw new TypeError('message not found')
 }

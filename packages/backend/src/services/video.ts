@@ -30,7 +30,7 @@ export const storeVideo = async (
   const data: VideoInterface = {
     creator,
     videoEmbedUrl,
-    isVerified: true
+    isVerified: true,
   }
 
   // Create new video
@@ -59,21 +59,15 @@ export const updateVideo = async (
   const data: VideoInterface = {
     creator,
     videoEmbedUrl,
-    isVerified
+    isVerified,
   }
 
   const options = {
-    new: true
+    new: true,
   }
 
-  const video = await VideoModel.findOneAndUpdate(
-    conditions,
-    data,
-    options,
-    (err, res) => {
-      Logger.error(err)
-    }
-  )
+  const video = await VideoModel.findOneAndUpdate(conditions, data, options)
+
   if (!video) throw TypeError(`Video with id ${_id} not found`)
   return video
 }
@@ -83,7 +77,7 @@ export const updateVideo = async (
  * @param id video's id
  * @returns true if video is found and deleted successfully
  */
-export const deleteVideo = async (_id: string): Promise<boolean> => {
-  const res = await VideoModel.deleteOne({ _id })
-  return res.deletedCount !== 0
+export const deleteVideo = async (_id: string): Promise<void> => {
+  const result = await VideoModel.deleteOne({ _id })
+  if (result.deletedCount === 0) throw new TypeError('video not found')
 }
