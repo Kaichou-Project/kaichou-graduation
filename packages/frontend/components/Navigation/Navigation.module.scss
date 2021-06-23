@@ -1,5 +1,4 @@
 @import 'styles/variables';
-@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@1,300&display=swap');
 
 .navigation {
   background-image: url('/navigation/sakura-trees.png'); /* Got permission for it, https://www.pixiv.net/en/artworks/26394050 */
@@ -68,6 +67,7 @@
       right: 2rem;
 
       .icon {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-items: center;
@@ -89,8 +89,9 @@
           position: absolute;
           height: max-content;
           width: max-content;
-          top: 0.5rem;
           opacity: 0;
+          top: 50%;
+          transform: translateY(-50%);
           transition: opacity 100ms ease-in;
         }
       }
@@ -113,6 +114,7 @@
     display: flex;
     margin-top: 20vh;
     margin-left: 10rem;
+    z-index: 1;
 
     .box {
       background-image: url('/navigation/Title.svg');
@@ -161,12 +163,6 @@
 
 @media only screen and (max-width: $breakpoint-phone) {
   .navigation {
-    height: 90vh;
-
-    .name {
-      display: none;
-    }
-
     .navigators {
       .navbar {
         grid-area: navbar;
@@ -180,14 +176,15 @@
         right: 1rem;
 
         .icon {
+          height: 10vw;
+          
           img {
             height: 10vw;
           }
-        }
-
-        .icon_text {
-          top: 5vh;
-          font-size: 0.7em;
+          
+          .icon_text {
+            font-size: 0.7em;
+          }
         }
       }
     }
