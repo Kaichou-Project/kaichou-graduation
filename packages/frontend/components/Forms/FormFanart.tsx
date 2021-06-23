@@ -8,6 +8,7 @@ import styles from './Form.module.scss'
 interface propsInterface {
   hidden: boolean
   captchaToken: string
+  onSubmit?: () => void
 }
 
 interface dataType {
@@ -22,10 +23,11 @@ interface errorType {
   confirmation?: string
 }
 
-export default function FormFanart({ hidden, captchaToken }: propsInterface) {
+export default function FormFanart(props: propsInterface) {
+  const { hidden, captchaToken, onSubmit } = props
   const [errors, setErrors] = useState<errorType>({})
 
-  function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -50,6 +52,8 @@ export default function FormFanart({ hidden, captchaToken }: propsInterface) {
 
     setErrors({})
 
+    onSubmit()
+
     // ToDo call API to send data
     console.log(data)
   }
@@ -57,7 +61,7 @@ export default function FormFanart({ hidden, captchaToken }: propsInterface) {
   return (
     <form
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <TextInput
         name="creator"

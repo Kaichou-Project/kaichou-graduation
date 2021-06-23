@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import {
   GoogleReCaptchaProvider,
   GoogleReCaptcha,
@@ -7,20 +7,16 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   onVerify: (token: string) => void
+  getToken: number
 }
 
-export default function Captcha({ onVerify }: propsInterface) {
-  const [token, setToken] = useState('')
-  const [noOfVerifications, setNoOfVerifications] = useState(0)
-
+export default function Captcha({ onVerify, getToken }: propsInterface) {
   const handleReCaptchaVerify = useCallback(
     (token) => {
-      setToken(token)
-      setNoOfVerifications((noOfVerifications) => noOfVerifications + 1)
       onVerify(token)
       console.log('Captcha verified')
     },
-    [setNoOfVerifications, setToken]
+    [getToken]
   )
 
   return (

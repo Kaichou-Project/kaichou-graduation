@@ -11,6 +11,7 @@ import styles from './Form.module.scss'
 interface propsInterface {
   hidden: boolean
   captchaToken: string
+  onSubmit?: () => void
 }
 
 interface dataType extends MessageInterface {
@@ -25,13 +26,13 @@ interface errorType {
   creator?: string
   content?: string
   confirmation?: string
-  captcha?: string
 }
 
-export default function FormMessage({ hidden, captchaToken }: propsInterface) {
+export default function FormMessage(props: propsInterface) {
+  const { hidden, captchaToken, onSubmit } = props
   const [errors, setErrors] = useState<errorType>({})
 
-  async function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -55,11 +56,13 @@ export default function FormMessage({ hidden, captchaToken }: propsInterface) {
     }
 
     if (!captchaToken) {
-      return setErrors({ captcha: 'You must do the Captcha' })
+      return setErrors({ submission: 'Something wrong with Captcha' })
     }
     data.captchaToken = captchaToken
 
     setErrors({})
+
+    onSubmit()
 
     try {
       await createMessage(data)
@@ -75,7 +78,7 @@ export default function FormMessage({ hidden, captchaToken }: propsInterface) {
   return (
     <form
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <TextInput name="creator" label="My name is ..." error={errors.creator} />
 

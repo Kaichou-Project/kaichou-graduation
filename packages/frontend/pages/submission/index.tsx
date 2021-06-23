@@ -12,9 +12,12 @@ export default function Submission() {
   const [currentTab, setCurrentTab] = useState(tabsEnum.MESSAGE)
   const [captchaToken, setCaptchaToken] = useState('')
 
+  // Used to get Token Captcha, increment tokenCounter to get new token
+  const [tokenCounter, setTokenCounter] = useState(0)
+
   return (
     <>
-      <Captcha onVerify={setCaptchaToken} />
+      <Captcha onVerify={setCaptchaToken} getToken={tokenCounter} />
       <Navigation
         title="Submit a message"
         page={Page.MESSAGES}
@@ -24,14 +27,17 @@ export default function Submission() {
       <FormMessage
         hidden={currentTab !== tabsEnum.MESSAGE}
         captchaToken={captchaToken}
+        onSubmit={() => setTokenCounter(tokenCounter + 1)}
       />
       <FormFanart
         hidden={currentTab !== tabsEnum.FANART}
         captchaToken={captchaToken}
+        onSubmit={() => setTokenCounter(tokenCounter + 1)}
       />
       <FormClip
         hidden={currentTab !== tabsEnum.CLIP}
         captchaToken={captchaToken}
+        onSubmit={() => setTokenCounter(tokenCounter + 1)}
       />
       <Footer />
     </>
