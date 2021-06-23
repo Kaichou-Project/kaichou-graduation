@@ -21,7 +21,6 @@ export default function VideoBoard() {
 
   return (
     <>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <div className={styles.listContainer}>
         <VideoList videos={videos} />
       </div>

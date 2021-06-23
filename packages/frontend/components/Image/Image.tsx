@@ -14,7 +14,7 @@ export default function Image({ image }: ImageProps) {
   return (
     <div>
       <p>Creator: {image.creator}</p>
-      <img src={image.url} width={300} height={250}></img>
+      <img src={image.url} width={300} height={250} />
     </div>
   )
 }

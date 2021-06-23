@@ -10,7 +10,7 @@
     justify-content: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $breakpoint-tablet) {
     .listContainer{
         display: grid;
         grid-template-columns: 80% ;
@@ -18,6 +18,11 @@
         background-color: $background;
         justify-content: center;
     }
+}
+
+.descriptor{
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .title{
@@ -45,4 +50,6 @@
     top: 0;
     left: 0;
     border: 10px solid $orange;
+    width: 100%;
+    height: 100%;
 }
