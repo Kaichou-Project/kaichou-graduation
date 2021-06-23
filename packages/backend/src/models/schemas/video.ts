@@ -21,3 +21,5 @@ export const VideoSchema: Schema = new Schema(
     timestamps: true,
   }
 )
+
+VideoSchema.index({ isVerified: 1 })
