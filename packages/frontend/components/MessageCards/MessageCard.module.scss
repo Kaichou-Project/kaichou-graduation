@@ -1,0 +1,65 @@
+@import 'styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap');
+
+.container{
+    background: $background;
+    overflow:hidden;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+.gird{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+    grid-gap: 1.5em,1.2em;
+}
+
+.card{
+    background-color: $orange;
+    aspect-ratio: auto;
+    border-radius: 10px;
+    color: $white;
+    font-family: "Open Sans";
+    padding: 5px;
+    position: relative;
+    overflow: visible;        
+    
+    .title{
+        display: grid;
+        text-align: left;
+        margin-top: 12px;
+        font-size: 30;
+        margin-left: 49px;
+        font-family: "Open Sans" ;
+    
+    }
+    
+    img{
+        display: grid;
+        float: right;
+        position: relative;
+        top: -120px;
+        left: 30px;    
+
+    }
+
+    .message{
+        display: grid;
+        font-size: 24;
+        text-align: left;
+        margin-top: 20px;
+        margin-left: 49px;
+        margin-right: 132px;
+        font-family: "Open Sans" ;
+        font-weight: 700;
+    }
+
+    .author{
+        display: grid;
+        text-align: right;
+        font-size: 30;
+        font-family: "Open Sans" ;
+        font-weight: 800;
+    }
+}
