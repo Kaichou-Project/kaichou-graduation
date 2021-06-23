@@ -9,6 +9,7 @@
     "test:types": "yarn tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "next": "10.2.3",
     "normalize-scss": "^7.0.1",
