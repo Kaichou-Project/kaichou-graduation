@@ -1,21 +1,35 @@
-import React from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+import React, { useCallback, useState } from 'react'
+import {
+  GoogleReCaptchaProvider,
+  GoogleReCaptcha,
+} from 'react-google-recaptcha-v3'
 import styles from './Form.module.scss'
 
 interface propsInterface {
-  error: string
-  onChange: (token: string) => void
+  onVerify: (token: string) => void
 }
 
-export default function Captcha({ error, onChange }: propsInterface) {
+export default function Captcha({ onVerify }: propsInterface) {
+  const [token, setToken] = useState('')
+  const [noOfVerifications, setNoOfVerifications] = useState(0)
+
+  const handleReCaptchaVerify = useCallback(
+    (token) => {
+      setToken(token)
+      setNoOfVerifications((noOfVerifications) => noOfVerifications + 1)
+      onVerify(token)
+      console.log('Captcha verified')
+    },
+    [setNoOfVerifications, setToken]
+  )
+
   return (
     <div className={styles.captcha}>
-      <ReCAPTCHA
-        sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-        onChange={onChange}
-        badge="bottomleft"
-      />
-      {error && <div className={styles.error_msg}>{error}</div>}
+      <GoogleReCaptchaProvider
+        reCaptchaKey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+      >
+        <GoogleReCaptcha onVerify={handleReCaptchaVerify} />
+      </GoogleReCaptchaProvider>
     </div>
   )
 }

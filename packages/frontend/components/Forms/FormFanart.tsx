@@ -6,6 +6,7 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
+  captchaToken: string
 }
 
 interface dataType {
@@ -19,7 +20,7 @@ interface errorType {
   confirmation?: string
 }
 
-export default function FormFanart({ hidden }: propsInterface) {
+export default function FormFanart({ hidden, captchaToken }: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
 
   function onSubmit(evt: React.FormEvent<HTMLFormElement>) {

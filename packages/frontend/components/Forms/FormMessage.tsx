@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import TextInput from './TextInput'
 import TextArea from './TextArea'
 import CheckConfirm from './CheckConfirm'
-import Captcha from './Captcha'
 import { MessageInterface } from '../../interfaces/message'
 import { createMessage } from '../../api/message'
 import { formDataToObject } from '../../utils/formData'
@@ -10,6 +9,7 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
+  captchaToken: string
 }
 
 interface dataType extends MessageInterface {
@@ -27,9 +27,8 @@ interface errorType {
   captcha?: string
 }
 
-export default function FormMessage({ hidden }: propsInterface) {
+export default function FormMessage({ hidden, captchaToken }: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
-  const [captchaToken, setCaptchaToken] = useState('')
 
   async function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
@@ -97,11 +96,6 @@ export default function FormMessage({ hidden }: propsInterface) {
       </div>
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
-
-      <Captcha
-        onChange={(token) => setCaptchaToken(token)}
-        error={errors.captcha}
-      />
 
       <input type="submit" className={styles.button_submit} value="Submit" />
     </form>
