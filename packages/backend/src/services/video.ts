@@ -1,3 +1,4 @@
+import Logger from '@logger'
 import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
 
 /**
@@ -6,7 +7,7 @@ import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
  */
 export const getAllVideos = async (
   lastId: string,
-  limit: number,
+  limit: number
 ): Promise<VideoDoc[]> => {
   if (lastId === 'NULL') {
     return VideoModel.find({ isVerified: true }).limit(limit).exec()
@@ -24,12 +25,12 @@ export const getAllVideos = async (
  */
 export const storeVideo = async (
   creator: string,
-  videoEmbedUrl: string,
+  videoEmbedUrl: string
 ): Promise<VideoDoc> => {
   const data: VideoInterface = {
     creator,
     videoEmbedUrl,
-    isVerified: true,
+    isVerified: true
   }
 
   // Create new video
@@ -51,18 +52,18 @@ export const updateVideo = async (
   _id: string,
   creator: string,
   videoEmbedUrl: string,
-  isVerified: boolean,
+  isVerified: boolean
 ): Promise<VideoDoc> => {
   const conditions = { _id }
 
   const data: VideoInterface = {
     creator,
     videoEmbedUrl,
-    isVerified,
+    isVerified
   }
 
   const options = {
-    new: true,
+    new: true
   }
 
   const video = await VideoModel.findOneAndUpdate(
@@ -70,9 +71,8 @@ export const updateVideo = async (
     data,
     options,
     (err, res) => {
-      console.log(err)
-      // throw responseError(res, err, err.message)
-    },
+      Logger.error(err)
+    }
   )
   if (!video) throw TypeError(`Video with id ${_id} not found`)
   return video
