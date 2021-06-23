@@ -77,7 +77,7 @@ export const updateMessage = async (
  * @param id message's id
  * @returns true if message is found and deleted successfully
  */
-export const deleteMessage = async (_id: string): Promise<boolean> => {
-  const res = await MessageModel.deleteOne({ _id })
-  return res.deletedCount !== 0
+export const deleteMessage = async (_id: string): Promise<void> => {
+  const result = await MessageModel.deleteOne({ _id })
+  if (result.deletedCount === 0) throw new TypeError('message not found')
 }

@@ -1,13 +1,21 @@
 import { Types } from 'mongoose'
 
-// TODO for validate embed url format
+/**
+ * Check validity of a given url
+ * @param {string} videoEmbedUrl - video embed url
+ * @returns {bool} true if valid and vice versa
+ */
 export const isValidEmbedUrl = (videoEmbedUrl: string): boolean => {
-  const REG = ''
+  const REG = '' // TODO need to decide the regex
   return !!videoEmbedUrl.match(REG)
 }
 
-export const isValidId = (id: string) =>
-  Types.ObjectId.isValid(id) ? true : false
+/**
+ * Check validity of a given id
+ * @param {string} id - document's _id
+ * @returns {bool} true if valid and vice versa
+ */
+export const isValidId = (id: string): boolean => Types.ObjectId.isValid(id)
 
 /**
  * Check the type of given item is undefined or not
