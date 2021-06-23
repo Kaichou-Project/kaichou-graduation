@@ -12,8 +12,8 @@ const messageList: messageProps[] = [
       {
         title: 'Dear Coco',
         message:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac magna velit tellus vulputate. Libero scelerisque mattis ac gravida ut id mattis odio. In quis vel, mattis urna vel volutpat morbi ante vel. Quis condimentum at at ipsum, consequat magna lorem fames morbi.',
-        author: '- A placeholder generator ',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac magna velit tellus vulputate. Libero scelerisque mattis ac gravida ut id mattis odio. In quis vel, mattis urna vel volutpat morbi ante vel. Quis condimentum at at ipsum, consequat magna lorem fames morbi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac magna velit tellus vulputate. Libero scelerisque mattis ac gravida ut id mattis odio. In quis vel, mattis urna vel volutpat morbi ante vel. Quis condimentum at at ipsum, consequat magna lorem fames morbi.',
+        author: '- Latin Guy ',
       },
       {
         title: 'Dear Coco',
