@@ -67,6 +67,7 @@
       right: 2rem;
 
       .icon {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-items: center;
@@ -112,7 +113,7 @@
     display: flex;
     margin-top: 20vh;
     margin-left: 10rem;
-    font-family: 'K2D';
+    z-index: 1;
 
     .box {
       background-image: url('/navigation/Title.svg');
@@ -161,14 +162,7 @@
 
 @media only screen and (max-width: $breakpoint-phone) {
   .navigation {
-    height: 90vh;
-
-    .name {
-      display: none;
-    }
-
     .navigators {
-
       .navbar {
         grid-area: navbar;
         width: 100vw;
@@ -187,9 +181,9 @@
             height: 10vw;
           }
           
-		      .icon_text {
+          .icon_text {
             font-size: 0.7em;
-		      }
+          }
         }
       }
     }
