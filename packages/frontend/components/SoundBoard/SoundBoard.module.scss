@@ -1,0 +1,69 @@
+@import 'styles/variables';
+
+$progress-bar-height: 10px;
+
+.container {
+  background: #2c2c2c;
+  padding: 2em 2.5em;
+  margin: 2em;
+  border-radius: 0.75rem;
+  font-size: 1.7rem;
+  color: $white;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+  grid-gap: 1.5em 1.2em;
+}
+
+.card {
+  background: $orange;
+  height: 6rem;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  cursor: pointer;
+
+  & > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2em auto;
+    align-content: center;
+
+    .title {
+      display: grid;
+      align-content: center;
+      padding-left: 0.5em;
+    }
+
+    .play_button {
+      display: grid;
+      align-items: center;
+      align-content: center;
+      padding-left: 1em;
+
+      img {
+        width: 1em;
+      }
+    }
+
+    .progress_bar {
+      position: absolute;
+      background: $white;
+      height: $progress-bar-height;
+      width: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.card:hover {
+  background: $dark-orange;
+}

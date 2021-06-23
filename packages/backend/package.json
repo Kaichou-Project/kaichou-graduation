@@ -1,18 +1,23 @@
 {
   "name": "@kaichou-graduation/backend",
   "version": "0.0.1",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "private": "true",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only src/index.ts",
-    "test:types": "yarn tsc --noEmit --skipLibCheck"
+    "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "test:types": "yarn tsc --noEmit --skipLibCheck",
+    "test:jest": "jest --coverage --collectCoverageFrom=src/**/*.{ts,tsx} --no-cache"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.8",
     "@types/debug": "^4.1.5",
     "source-map-support": "^0.5.19",
     "ts-node-dev": "^1.1.6",
-    "tslint": "^6.1.3"
+    "tsconfig-paths": "^3.9.0",
+    "tslint": "^6.1.3",
+    "jest": "26.0.0",
+    "@types/jest": "^22.1.1",
+    "ts-jest": "26.4.1"
   },
   "dependencies": {
     "@types/cors": "^2.8.10",
@@ -25,5 +30,13 @@
     "morgan": "^1.10.0",
     "ts-node": "^10.0.0",
     "winston": "^3.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "moduleFileExtensions": ["ts", "tsx", "js"]
   }
+  
 }

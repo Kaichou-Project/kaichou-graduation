@@ -1,85 +1,79 @@
 {
-    "root": true,
-    "env": {
-        "node": true,
-        "browser": true,
-        "es2021": true,
-        "commonjs": true
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2021": true,
+    "commonjs": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react"],
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["packages/frontend/**/*.*"],
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "project": "packages/frontend/tsconfig.json"
+          }
+        }
+      }
     },
-    "extends": [
+    {
+      "files": ["packages/backend/**/*.*"],
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "project": "packages/backend/tsconfig.json"
+          }
+        }
+      }
+    },
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:import/errors",
         "plugin:import/warnings",
-        "plugin:import/typescript",
-        "plugin:prettier/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "react"
-        ],
-    "rules": {
-    },
-    "overrides": [
-        {
-            "files": ["packages/frontend/**/*.*"],
-            "settings": {
-                "import/resolver": {
-                "typescript": {
-                    "project": "packages/frontend/tsconfig.json"
-                }
-                }
-            }
-        },
-        {
-        "files": ["packages/server/**/*.*"],
-        "settings": {
-            "import/resolver": {
-            "typescript": {
-                "project": "packages/server/tsconfig.json"
-            }
-            }
+        "plugin:import/typescript"
+      ],
+      "plugins": ["@typescript-eslint", "react"],
+      "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "jsx": true
         }
-        },
-        {
-            "files": ["**/*.ts", "**/*.tsx"],
-            "parser": "@typescript-eslint/parser",
-            "extends": [
-                "eslint:recommended",
-                "plugin:react/recommended",
-                "plugin:react-hooks/recommended",
-                "plugin:@typescript-eslint/recommended",
-                "plugin:import/errors",
-                "plugin:import/warnings",
-                "plugin:import/typescript"
-            ],
-            "plugins": [
-                "@typescript-eslint",
-                "react"
-            ],
-            "parserOptions": {
-                "sourceType": "module",
-                "ecmaFeatures": {
-                    "jsx": true
-                }
-            },
-            "rules": {
-                "react/prop-types": "off",
-                "arrow-body-style": ["error", "as-needed"],
-                "@typescript-eslint/promise-function-async": "off",
-                "@typescript-eslint/explicit-module-boundary-types": "off",
-                "@typescript-eslint/no-empty-function": "off",
-                "@typescript-eslint/restrict-template-expressions": "off",
-                "complexity": ["error", { "max": 30 }]
-            }
-        }
-    ],
-    "settings": {
-        "react": {
-            "createClass": "createReactClass",
-            "pragma": "React",
-            "version": "detect"
-        }
+      },
+      "rules": {
+        "react/prop-types": "off",
+        "arrow-body-style": ["error", "as-needed"],
+        "@typescript-eslint/promise-function-async": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "complexity": ["error", { "max": 30 }]
+      }
     }
+  ],
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
 }
