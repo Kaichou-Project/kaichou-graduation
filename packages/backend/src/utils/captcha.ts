@@ -1,4 +1,5 @@
 import axios from 'axios'
+import logger from '@logger'
 
 let CAPTCHA_SECRET_KEY: string
 function getSecretKey(): string {
@@ -8,15 +9,15 @@ function getSecretKey(): string {
   // Check if secret key empty or still the default value
   if (!secret || secret == 'your-google-recaptcha-secretkey') {
     // Error message for backend log only, not for client
-    console.error(
-      'Error : Google Recaptcha secret key has not been set in environment'
-    )
+    logger.error('Google Recaptcha secret key has not been set in environment')
 
     // Error message for client
     throw new TypeError(
       'Something wrong with Captcha Token, please contact admin'
     )
   }
+
+  CAPTCHA_SECRET_KEY = secret
   return secret
 }
 
