@@ -1,13 +1,14 @@
 import axios from 'axios'
 import logger from '@logger'
 
-let CAPTCHA_SECRET_KEY: string
-function getSecretKey(): string {
-  if (CAPTCHA_SECRET_KEY) return CAPTCHA_SECRET_KEY
+// Check if secret key is empty or still the default value
+const secretKeyIsValid =
+  process.env.CAPTCHA_SECRET_KEY &&
+  process.env.CAPTCHA_SECRET_KEY !== 'your-google-recaptcha-secretkey'
 
-  const secret = process.env.CAPTCHA_SECRET_KEY as string
-  // Check if secret key empty or still the default value
-  if (!secret || secret == 'your-google-recaptcha-secretkey') {
+function getSecretKey(): string {
+  if (secretKeyIsValid) return process.env.CAPTCHA_SECRET_KEY as string
+  else {
     // Error message for backend log only, not for client
     logger.error('Google Recaptcha secret key has not been set in environment')
 
@@ -16,9 +17,6 @@ function getSecretKey(): string {
       'Something wrong with Captcha Token, please contact admin'
     )
   }
-
-  CAPTCHA_SECRET_KEY = secret
-  return secret
 }
 
 export async function verifyCaptchaToken(token: string): Promise<boolean> {
