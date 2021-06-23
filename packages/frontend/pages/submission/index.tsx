@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Navigation, { Page, Mode } from '../../components/Navigation/Navigation'
 import FormMessage from '../../components/Forms/FormMessage'
 import FormFanart from '../../components/Forms/FormFanart'
 import FormClip from '../../components/Forms/FormClip'
@@ -11,6 +12,11 @@ export default function Submission() {
 
   return (
     <>
+      <Navigation
+        title="Submit a message"
+        page={Page.MESSAGES}
+        mode={Mode.FORM}
+      />
       <FormTabs onChange={(tab) => setCurrentTab(tab)} />
       <FormMessage hidden={currentTab !== tabsEnum.MESSAGE} />
       <FormFanart hidden={currentTab !== tabsEnum.FANART} />
