@@ -13,12 +13,12 @@ import {
 } from '@util/response'
 import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
-import { FanartQuery } from 'interface/request'
+import { PaginateQuery } from 'interface/request'
 
 export const getAllFanartController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] fanart after _id [lastId]
-    const { lastId = 'NULL', limit = '10' }: FanartQuery = req.query
+    const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
     const fanarts: FanartDoc[] = await getAllFanart(lastId, +limit)
 
     return responseSuccess(res, fanarts)

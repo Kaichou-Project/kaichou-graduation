@@ -23,12 +23,13 @@ export const getAllMessages = async (
  * @param content message's content
  * @returns new message document
  */
-export const storeMessage = async (
-  params: StoreMessageParameter
-): Promise<MessageDoc> => {
+export const storeMessage = async ({
+  creator,
+  content,
+}: StoreMessageParameter): Promise<MessageDoc> => {
   const data: MessageInterface = {
-    creator: params.creator,
-    content: params.content,
+    creator,
+    content,
     isVerified: false,
   }
 

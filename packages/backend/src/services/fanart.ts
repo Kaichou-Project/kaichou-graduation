@@ -24,12 +24,13 @@ export const getAllFanart = async (
  * @param imageUrl fanart's content
  * @returns new fanart document
  */
-export const storeFanart = async (
-  params: StoreFanartParameter
-): Promise<FanartDoc> => {
+export const storeFanart = async ({
+  creator,
+  imageUrl,
+}: StoreFanartParameter): Promise<FanartDoc> => {
   const data: FanartInterface = {
-    creator: params.creator,
-    imageUrl: params.imageUrl,
+    creator,
+    imageUrl,
     isVerified: false,
   }
 

@@ -1,9 +1,4 @@
-export interface MessageQuery {
-  lastId?: string
-  limit?: string
-}
-
-export interface FanartQuery {
+export interface PaginateQuery {
   lastId?: string
   limit?: string
 }
