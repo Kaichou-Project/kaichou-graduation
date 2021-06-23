@@ -45,7 +45,7 @@ export const createVideoController = async (req: Request, res: Response) => {
     if (!isValidEmbedUrl(videoEmbedUrl))
       throw new TypeError('videoEmbedUrl invalid')
 
-    const video: VideoDoc = await storeVideo(creator, videoEmbedUrl)
+    const video: VideoDoc = await storeVideo({ creator, videoEmbedUrl })
 
     return responseCreated(res, video)
   } catch (error) {
@@ -75,12 +75,12 @@ export const updateVideoController = async (req: Request, res: Response) => {
     if (!isValidEmbedUrl(videoEmbedUrl))
       throw new TypeError('videoEmbedUrl invalid')
 
-    const video: VideoDoc = await updateVideo(
+    const video: VideoDoc = await updateVideo({
       _id,
       creator,
       videoEmbedUrl,
-      isVerified || false
-    )
+      isVerified,
+    })
 
     return responseSuccess(res, video)
   } catch (error) {

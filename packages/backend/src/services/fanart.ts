@@ -29,8 +29,8 @@ export const storeFanart = async ({
   imageUrl,
 }: StoreFanartParameter): Promise<FanartDoc> => {
   const data: FanartInterface = {
-    creator: params.creator,
-    imageUrl: params.imageUrl,
+    creator,
+    imageUrl,
     isVerified: false,
   }
 
@@ -49,16 +49,19 @@ export const storeFanart = async ({
  * @param isVerified fanart's isVerified
  * @returns new fanart document
  */
-export const updateFanart = async (
-  params: UpdateFanartParameter
-): Promise<FanartDoc> => {
-  const fanart: FanartDoc | null = await FanartModel.findById(params._id).exec()
+export const updateFanart = async ({
+  _id,
+  creator,
+  imageUrl,
+  isVerified = false,
+}: UpdateFanartParameter): Promise<FanartDoc> => {
+  const fanart: FanartDoc | null = await FanartModel.findById(_id).exec()
   // if not found
   if (!fanart) throw new TypeError('fanart not found')
 
-  fanart.creator = params.creator
-  fanart.imageUrl = params.imageUrl
-  fanart.isVerified = params.isVerified || false
+  fanart.creator = creator
+  fanart.imageUrl = imageUrl
+  fanart.isVerified = isVerified
   const updatedFanart = await fanart.save()
 
   return updatedFanart

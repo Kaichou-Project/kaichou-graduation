@@ -1,5 +1,5 @@
-import Logger from '@logger'
 import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
+import { StoreVideoParameter, UpdateVideoParameter } from 'interface/service'
 
 /**
  * Get all videos
@@ -23,10 +23,10 @@ export const getAllVideos = async (
  * @param videoEmbedUrl video's videoEmbedUrl
  * @returns new video document
  */
-export const storeVideo = async (
-  creator: string,
-  videoEmbedUrl: string
-): Promise<VideoDoc> => {
+export const storeVideo = async ({
+  creator,
+  videoEmbedUrl,
+}: StoreVideoParameter): Promise<VideoDoc> => {
   const data: VideoInterface = {
     creator,
     videoEmbedUrl,
@@ -48,12 +48,12 @@ export const storeVideo = async (
  * @param isVerified video's isVerified
  * @returns new video document
  */
-export const updateVideo = async (
-  _id: string,
-  creator: string,
-  videoEmbedUrl: string,
-  isVerified: boolean
-): Promise<VideoDoc> => {
+export const updateVideo = async ({
+  _id,
+  creator,
+  videoEmbedUrl,
+  isVerified = false,
+}: UpdateVideoParameter): Promise<VideoDoc> => {
   const conditions = { _id }
 
   const data: VideoInterface = {

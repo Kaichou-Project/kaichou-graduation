@@ -31,10 +31,12 @@ export const createMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
     const { creator, contentOrigin, contentJp } = req.body
-    if (!(creator && contentOrigin)) {
+    if (!(creator && contentOrigin))
       throw new TypeError('creator and content is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')
-    if (!isString(content)) throw new TypeError('content must be a string')
+    if (!isString(contentOrigin))
+      throw new TypeError('content must be a string')
+    if (!isString(contentJp)) throw new TypeError('content must be a string')
 
     const message: MessageDoc = await storeMessage({
       creator,
@@ -56,12 +58,24 @@ export const updateMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
     const { _id, creator, contentOrigin, contentJp, isVerified } = req.body
-    if (!(_id && creator && contentOrigin)) {
-      throw new TypeError('id, creator and content is required')
+    if (
+      !(
+        _id &&
+        creator &&
+        contentOrigin &&
+        contentJp &&
+        !isUndefined(isVerified)
+      )
+    ) {
+      throw new TypeError(
+        '_id, creator, contentOrigin, contentJp and isVerified is required'
+      )
     }
     if (!isString(_id)) throw new TypeError('_id must be a string')
     if (!isString(creator)) throw new TypeError('creator must be a string')
-    if (!isString(content)) throw new TypeError('content must be a string')
+    if (!isString(contentOrigin))
+      throw new TypeError('content must be a string')
+    if (!isString(contentJp)) throw new TypeError('content must be a string')
     if (!isBoolean(isVerified))
       throw new TypeError('isVerified must be a boolean')
 

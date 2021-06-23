@@ -68,8 +68,8 @@ export const updateFanartController = async (req: Request, res: Response) => {
       _id,
       creator,
       imageUrl,
-      isVerified || false
-    )
+      isVerified,
+    })
 
     return responseSuccess(res, fanart)
   } catch (error) {
