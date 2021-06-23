@@ -1,5 +1,4 @@
 import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
-import { Request, Response } from 'express'
 
 /**
  * Get all videos
@@ -7,12 +6,14 @@ import { Request, Response } from 'express'
  */
 export const getAllVideos = async (
   lastId: string,
-  limit: number
+  limit: number,
 ): Promise<VideoDoc[]> => {
   if (lastId === 'NULL') {
-    return await VideoModel.find().limit(limit)
+    return VideoModel.find({ isVerified: true }).limit(limit).exec()
   }
-  return await VideoModel.find({ _id: { $gt: lastId } }).limit(limit)
+  return VideoModel.find({ _id: { $gt: lastId } })
+    .limit(limit)
+    .exec()
 }
 
 /**
@@ -23,12 +24,12 @@ export const getAllVideos = async (
  */
 export const storeVideo = async (
   creator: string,
-  videoEmbedUrl: string
+  videoEmbedUrl: string,
 ): Promise<VideoDoc> => {
   const data: VideoInterface = {
     creator,
     videoEmbedUrl,
-    isVerified: false,
+    isVerified: true,
   }
 
   // Create new video
@@ -50,7 +51,7 @@ export const updateVideo = async (
   _id: string,
   creator: string,
   videoEmbedUrl: string,
-  isVerified: boolean
+  isVerified: boolean,
 ): Promise<VideoDoc> => {
   const conditions = { _id }
 
@@ -64,9 +65,16 @@ export const updateVideo = async (
     new: true,
   }
 
-  const video = await VideoModel.findOneAndUpdate(conditions, data, options)
-
-  if (!video) throw new TypeError('Video not found')
+  const video = await VideoModel.findOneAndUpdate(
+    conditions,
+    data,
+    options,
+    (err, res) => {
+      console.log(err)
+      // throw responseError(res, err, err.message)
+    },
+  )
+  if (!video) throw TypeError(`Video with id ${_id} not found`)
   return video
 }
 
