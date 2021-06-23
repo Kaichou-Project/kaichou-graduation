@@ -11,7 +11,7 @@ export default function Captcha({ error, onChange }: propsInterface) {
   return (
     <div className={styles.captcha}>
       <ReCAPTCHA
-        sitekey="6Lco20sbAAAAAPYbbT3TIKK1_DMS9OigbzTBtSdR"
+        sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
         onChange={onChange}
         badge="bottomleft"
       />
