@@ -37,6 +37,9 @@
             "project": "packages/backend/tsconfig.json"
           }
         }
+      },
+      "rules": {
+        "no-return-await": "error"
       }
     },
     {
