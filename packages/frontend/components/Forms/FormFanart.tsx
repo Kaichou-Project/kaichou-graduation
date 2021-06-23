@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
+import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
@@ -15,6 +16,7 @@ interface dataType {
 }
 
 interface errorType {
+  submission?: string
   creator?: string
   image_url?: string
   confirmation?: string
@@ -78,7 +80,7 @@ export default function FormFanart({ hidden, captchaToken }: propsInterface) {
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 
-      <input type="submit" className={styles.button_submit} value="Submit" />
+      <SubmitButton error={errors.submission} />
     </form>
   )
 }

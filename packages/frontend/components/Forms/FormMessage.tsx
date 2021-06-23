@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TextInput from './TextInput'
 import TextArea from './TextArea'
 import CheckConfirm from './CheckConfirm'
+import SubmitButton from './SubmitButton'
 import { MessageInterface } from '../../interfaces/message'
 import { createMessage } from '../../api/message'
 import { formDataToObject } from '../../utils/formData'
@@ -76,10 +77,6 @@ export default function FormMessage({ hidden, captchaToken }: propsInterface) {
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
       onSubmit={onSubmit}
     >
-      {errors.submission && (
-        <div className={styles.error_msg}>{errors.submission}</div>
-      )}
-
       <TextInput name="creator" label="My name is ..." error={errors.creator} />
 
       <TextArea
@@ -97,7 +94,7 @@ export default function FormMessage({ hidden, captchaToken }: propsInterface) {
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 
-      <input type="submit" className={styles.button_submit} value="Submit" />
+      <SubmitButton error={errors.submission} />
     </form>
   )
 }
