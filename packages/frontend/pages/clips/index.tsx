@@ -1,7 +1,7 @@
 import React from 'react'
 import Navigation, { Page } from '../../components/Navigation/Navigation'
 import Footer from '../../components/Footer/Footer'
-import VideoBoard from '../../components/Video/VideoBoard'
+import VideoBoard from '../../components/Video/VideoList'
 
 export default function Clips() {
   return (
