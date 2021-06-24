@@ -1,10 +1,6 @@
 import React from 'react'
 import styles from './ToTheTopButton.module.scss'
 
-// function goToTop() {
-//   window.scrollTo(0, 0)
-// }
-
 export default function ToTheTopButton() {
   const goToTop = () => window.scrollTo(0, 0)
 
