@@ -62,7 +62,7 @@ $progress-bar-height: 10px;
       bottom: 0;
     }
   }
-  
+
   &:hover {
     background: $dark-orange;
   }
@@ -76,6 +76,10 @@ $progress-bar-height: 10px;
     h2 {
       margin-top: 0.5em;
     }
+  }
+
+  .grid {
+    row-gap: 1em;
   }
 
   .card {
