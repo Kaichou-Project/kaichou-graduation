@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
+import { FanartInterface } from '../../interfaces/fanart'
+import { createFanart } from '../../api/fanart'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
@@ -8,21 +10,17 @@ interface propsInterface {
   hidden: boolean
 }
 
-interface dataType {
-  creator: string
-  image_url: string
-}
-
 interface errorType {
+  submission?: string
   creator?: string
-  image_url?: string
+  imageUrl?: string
   confirmation?: string
 }
 
 export default function FormFanart({ hidden }: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
 
-  function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -30,15 +28,15 @@ export default function FormFanart({ hidden }: propsInterface) {
     const confirmation = !!formData.get('confirmation')
     formData.delete('confirmation')
 
-    const data = formDataToObject(formData) as dataType
+    const data = formDataToObject(formData) as FanartInterface
 
     data.creator = data.creator.trim()
     if (!data.creator) {
       return setErrors({ creator: "This field can't be empty" })
     }
 
-    if (!data.image_url) {
-      return setErrors({ image_url: "This field can't be empty" })
+    if (!data.imageUrl) {
+      return setErrors({ imageUrl: "This field can't be empty" })
     }
 
     if (!confirmation) {
@@ -47,8 +45,15 @@ export default function FormFanart({ hidden }: propsInterface) {
 
     setErrors({})
 
-    // ToDo call API to send data
-    console.log(data)
+    try {
+      await createFanart(data)
+
+      // ToDo : Do something if success
+      console.log('success')
+    } catch (err) {
+      const message = err.response.data.message
+      setErrors({ submission: message })
+    }
   }
 
   return (
@@ -63,9 +68,9 @@ export default function FormFanart({ hidden }: propsInterface) {
       />
 
       <TextInput
-        name="image_url"
+        name="imageUrl"
         label="The link to the image is ..."
-        error={errors.image_url}
+        error={errors.imageUrl}
       />
 
       <h2>Preview</h2>

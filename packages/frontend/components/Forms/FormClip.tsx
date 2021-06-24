@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
+import { ClipInterface } from '../../interfaces/clip'
+import { createClip } from '../../api/clip'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
@@ -8,21 +10,17 @@ interface propsInterface {
   hidden: boolean
 }
 
-interface dataType {
-  creator: string
-  video_embed_url: string
-}
-
 interface errorType {
+  submission?: string
   creator?: string
-  video_embed_url?: string
+  videoEmbedUrl?: string
   confirmation?: string
 }
 
 export default function FormClip({ hidden }: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
 
-  function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -30,15 +28,15 @@ export default function FormClip({ hidden }: propsInterface) {
     const confirmation = !!formData.get('confirmation')
     formData.delete('confirmation')
 
-    const data = formDataToObject(formData) as dataType
+    const data = formDataToObject(formData) as ClipInterface
 
     data.creator = data.creator.trim()
     if (!data.creator) {
       return setErrors({ creator: "This field can't be empty" })
     }
 
-    if (!data.video_embed_url) {
-      return setErrors({ video_embed_url: "This field can't be empty" })
+    if (!data.videoEmbedUrl) {
+      return setErrors({ videoEmbedUrl: "This field can't be empty" })
     }
 
     if (!confirmation) {
@@ -47,8 +45,15 @@ export default function FormClip({ hidden }: propsInterface) {
 
     setErrors({})
 
-    // ToDo call API to send data
-    console.log(data)
+    try {
+      await createClip(data)
+
+      // ToDo : Do something if success
+      console.log('success')
+    } catch (err) {
+      const message = err.response.data.message
+      setErrors({ submission: message })
+    }
   }
 
   return (
@@ -63,9 +68,9 @@ export default function FormClip({ hidden }: propsInterface) {
       />
 
       <TextInput
-        name="video_embed_url"
+        name="videoEmbedUrl"
         label="The link to the video is ..."
-        error={errors.video_embed_url}
+        error={errors.videoEmbedUrl}
       />
 
       <h2>Preview</h2>
