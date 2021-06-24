@@ -2,10 +2,6 @@ import React, { useState } from 'react'
 import Video, { VideoInterface } from './Video'
 import styles from './videoBoard.module.scss'
 
-interface VideoListProps {
-  videos: VideoInterface[]
-}
-
 export default function VideoBoard() {
   const [videos] = useState<VideoInterface[]>([
     {
@@ -25,18 +21,10 @@ export default function VideoBoard() {
   return (
     <>
       <div className={styles.listContainer}>
-        <VideoList videos={videos} />
+        {videos.map((video) => (
+          <Video key={video.id} video={video} />
+        ))}
       </div>
-    </>
-  )
-}
-
-function VideoList({ videos }: VideoListProps) {
-  return (
-    <>
-      {videos.map((video) => (
-        <Video key={video.id} video={video} />
-      ))}
     </>
   )
 }
