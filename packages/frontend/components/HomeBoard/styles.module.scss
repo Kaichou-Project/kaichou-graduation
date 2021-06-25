@@ -1,2 +1,62 @@
-.containter {
+@import 'styles/variables';
+
+$normal-font-size: 24px;
+$tablet-font-size: 20px;
+$phone-font-size: 12px;
+
+.container {
+  display: grid;
+  grid-template-areas:
+    'title  button'
+    'masonry_grid masonry_grid';
+  grid-row-gap: 1em;
+  justify-content: space-between;
+  align-items: center;
+  color: $white;
+  font-size: $normal-font-size;
+  padding: 3em;
+
+  h2 {
+    grid-area: title;
+  }
+
+  .button {
+    grid-area: button;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background: $orange;
+    width: 12em;
+    height: 2.3em;
+    margin-left: auto;
+    border-radius: 0.4em;
+  }
+
+  .masonry_grid {
+    grid-area: masonry_grid;
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+  }
+
+  .my-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+  }
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    font-size: $tablet-font-size;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'title' 'button' 'masonry_grid';
+
+    .button {
+      margin-left: 0;
+    }
+  }
+
+  @media only screen and (max-width: $breakpoint-phone) {
+    font-size: $phone-font-size;
+  }
 }

@@ -1,23 +1,41 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import StackGrid from 'react-stack-grid'
+import Masonry from 'react-masonry-css'
 
-function Card({ children }) {
-  return <div style={{ background: 'red' }}>{children}</div>
+const breakpointColumnsObj = {
+  default: 3,
+  860: 2,
+  425: 1,
+}
+
+function Card({ url }) {
+  return <img style={{ width: '100%' }} src={url} />
 }
 
 export default function HomeBoard() {
-  const items = []
-  for (let i = 0; i < 20; i++) {
-    items.push(<Card key={i}>Item {i}</Card>)
-  }
+  const items = [
+    '/temp-message-img.png',
+    '/temp-fanart-img.png',
+    '/temp-message-img.png',
+    '/temp-message-img.png',
+    '/temp-message-img.png',
+    '/temp-message-img.png',
+  ]
   return (
     <div className={styles.container}>
-      <div>
-        <h2>Messages from the Community</h2>
-        <div>Submit your own</div>
-        <StackGrid columnWidth={400}>{items}</StackGrid>
-      </div>
+      <h2>Messages from the Community</h2>
+      <div className={styles.button}>Submit your own</div>
+      {items && (
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className={styles.masonry_grid}
+          columnClassName={styles.masonry_grid_col}
+        >
+          {items.map((url, i) => (
+            <Card key={i} url={url} />
+          ))}
+        </Masonry>
+      )}
     </div>
   )
 }
