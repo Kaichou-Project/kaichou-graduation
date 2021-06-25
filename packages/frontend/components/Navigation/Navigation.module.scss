@@ -1,5 +1,4 @@
 @import 'styles/variables';
-@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@1,300&display=swap');
 
 .navigation {
   background-image: url('/navigation/sakura-trees.png'); /* Got permission for it, https://www.pixiv.net/en/artworks/26394050 */
@@ -68,6 +67,7 @@
       right: 2rem;
 
       .icon {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-items: center;
@@ -85,22 +85,24 @@
           border-radius: 100%;
         }
 
-        .icon_text{
+        .icon_text {
           position: absolute;
           height: max-content;
           width: max-content;
-          top: 0.5rem;
           opacity: 0;
+          top: 50%;
+          transform: translateY(-50%);
           transition: opacity 100ms ease-in;
         }
       }
-      
-      .icon:hover{
-        img{
+
+      .icon:hover {
+        img {
           opacity: 0;
         }
 
-        .active, .icon_text{
+        .active,
+        .icon_text {
           opacity: 1;
         }
       }
@@ -108,22 +110,133 @@
   }
 
   .title {
+    grid-area: title;
+    display: flex;
+    margin-top: 20vh;
+    margin-left: 10rem;
     z-index: 1;
-    position: absolute;
-    top: 18rem;
-    left: 16rem;
 
-    img {
-      height: 10rem;
+    .box {
+      background-image: url('/navigation/Title.svg');
+      background-repeat: no-repeat;
+      width: 80vw;
+      height: 40rem;
+      background-size: 34rem auto;
+
+      p {
+        position: static;
+        margin-top: 1.2em;
+        margin-left: 1em;
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $breakpoint-tablet) {
+  .navigation {
+    height: 90vh;
+
+    .name {
+      display: none;
     }
 
-    p {
-      position: absolute;
-      top: 3.5rem;
-      left: 3rem;
-      fill: $white;
-      font-size: 2.5rem;
-      transform: rotate(-1.69deg);
+    .navigators {
+      width: 100vw;
+    }
+
+    .title {
+      justify-content: center;
+      margin-left: 0;
+
+      .box {
+        height: auto;
+        background-size: 80vw auto;
+
+        p {
+          font-size: 6vw;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $breakpoint-phone) {
+  .navigation {
+    .navigators {
+      .navbar {
+        grid-area: navbar;
+        width: 100vw;
+        height: auto;
+      }
+
+      .icons {
+        width: 70vw;
+        top: 1.5vh;
+        right: 1rem;
+
+        .icon {
+          height: 10vw;
+          
+          img {
+            height: 10vw;
+          }
+          
+          .icon_text {
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
+
+    .title {
+      .box {
+        width: 90vw;
+        background-size: 90vw auto;
+
+        p {
+          margin-top: 1.5em;
+        }
+      }
+    }
+  }
+}
+
+.navigation.form {
+  background: none;
+  box-shadow: none;
+  height: auto;
+  margin-bottom: 0;
+
+  .title {
+    margin-top: 0;
+    margin-left: calc(50vw - 20rem);
+
+    .box {
+      width: 34rem;
+      height: 15rem;
+    }
+  }
+
+  grid-template-rows: auto auto;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    .title {
+      margin-top: 14vh;
+      margin-left: 0;
+      .box {
+        width: 80vw;
+        height: 30vw;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $breakpoint-phone) {
+    .title {
+      .box {
+        width: 90vw;
+        height: 7rem;
+      }
     }
   }
 }

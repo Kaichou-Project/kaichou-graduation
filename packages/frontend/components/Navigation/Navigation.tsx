@@ -7,6 +7,7 @@ interface NavProps {
   title: string
   page: Page
   cornerText?: string
+  mode?: Mode
 }
 
 export enum Page {
@@ -16,6 +17,11 @@ export enum Page {
   CLIPS = 'clips',
   SOUNDBOARD = 'soundboard',
   CREDITS = 'credits',
+}
+
+export enum Mode {
+  DEFAULT = '',
+  FORM = 'form',
 }
 
 interface NavItem {
@@ -54,24 +60,25 @@ export default function Navigation({
   title,
   page,
   cornerText = '桐生ココ',
+  mode = Mode.DEFAULT,
 }: NavProps) {
   return (
-    <div className={styles.navigation}>
+    <div className={`${styles.navigation} ${mode && styles[mode]}`}>
       <div className={styles.name}>
-        <img src="navigation/Corner.svg" />
+        <img src="navigation/Corner-nofilter.svg" />
         <p>{cornerText}</p>
       </div>
 
       <div className={styles.navigators}>
-        <img src="navigation/Navbar.svg" className={styles.navbar} />
+        <img src="navigation/Navbar-nofilter.svg" className={styles.navbar} />
 
         <div className={styles.icons}>
           {navItems.map((item) => (
             <Link key={item.iconPath} href={item.page.toString()}>
               <div className={styles.icon}>
-                <text className={styles.icon_text}>
+                <p className={styles.icon_text}>
                   {item.page.charAt(0).toUpperCase() + item.page.slice(1)}
-                </text>
+                </p>
                 <img src={item.iconPath} alt={item.page.toString()} />
                 {page === item.page ? (
                   <img src="navigation/Dot.svg" className={styles.active} />
@@ -83,11 +90,12 @@ export default function Navigation({
       </div>
 
       <div className={styles.title}>
-        <img src="navigation/Title.svg" />
-        <p>{title}</p>
+        <div className={styles.box}>
+          <p>{title}</p>
+        </div>
       </div>
 
-      <SakuraParticles />
+      {mode != Mode.FORM && <SakuraParticles />}
     </div>
   )
 }

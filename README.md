@@ -89,6 +89,13 @@ Env variable names inside `package/backend/.env.example` should be self explanat
 - `DEBUG` => Set to `TRUE` if you want debug messages to show, ideally in dev you set this to `TRUE` and to `FALSE` in production
 - `CLIENT_URL` => frontend's URL
 - `DB_URI` => mongodb connection string, [you can find the details for it here](https://docs.mongodb.com/manual/reference/connection-string/)
+- `CAPTCHA_SECRET_KEY` => secret key for Google ReCaptcha, [you can create one in here](https://www.google.com/recaptcha/admin/create). Choose reCAPTCHA type v3 when creating it
+
+For frontend, Env variable can be found in `package/frontend/.env.example`, which includes:
+
+- `PORT` => Frontend service port
+- `NEXT_PUBLIC_API_URL` => URL for backend
+- `NEXT_PUBLIC_CAPTCHA_SITE_KEY` => site key for Google ReCaptcha, [you can create one in here](https://www.google.com/recaptcha/admin/create). Choose reCAPTCHA type v3 when creating it
 
 ## Contributing
 

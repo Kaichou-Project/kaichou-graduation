@@ -1,6 +1,9 @@
 @import 'styles/variables';
 
 $normal-font-size: 24px;
+$tablet-font-size: 20px;
+$phone-font-size: 12px;
+
 $grey: #3f3f3f;
 $dark-grey: #373737;
 $error: red;
@@ -8,11 +11,19 @@ $error: red;
 .form,
 .tabs {
   max-width: 700px;
-  padding: 0 50px;
+  padding: 0 2em;
   margin: 0 auto;
 
   color: $white;
   font-size: $normal-font-size;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    font-size: $tablet-font-size;
+  }
+
+  @media only screen and (max-width: $breakpoint-phone) {
+    font-size: $phone-font-size;
+  }
 }
 
 .form.hide {
@@ -25,7 +36,6 @@ $error: red;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px 0.5em;
-  padding-top: 100px;
 
   label {
     grid-column: 1 / 4;
@@ -46,8 +56,16 @@ $error: red;
   label,
   input,
   textarea {
-    font-size: $normal-font-size;
     color: $white;
+    font-size: $normal-font-size;
+
+    @media only screen and (max-width: $breakpoint-tablet) {
+      font-size: $tablet-font-size;
+    }
+
+    @media only screen and (max-width: $breakpoint-phone) {
+      font-size: $phone-font-size;
+    }
   }
   label {
     display: block;
@@ -60,11 +78,11 @@ $error: red;
 
   input,
   textarea {
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
     padding: 2px 20px;
     background: $grey;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.4em;
   }
 
   textarea {
@@ -103,7 +121,7 @@ $error: red;
     display: block;
     position: relative;
     padding-left: 1em;
-    font-size: 22px;
+    font-size: 1.2em;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -170,11 +188,19 @@ $error: red;
   color: $white;
   background: $dark-grey;
   height: 2.3em;
-  border-radius: 10px;
+  border-radius: 0.4em;
 
   font-size: $normal-font-size;
   font-style: normal;
   font-weight: bold;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    font-size: $tablet-font-size;
+  }
+
+  @media only screen and (max-width: $breakpoint-phone) {
+    font-size: $phone-font-size;
+  }
 }
 
 .button:hover {
@@ -191,4 +217,11 @@ $error: red;
 
 .button_submit:hover {
   background: $dark-orange;
+}
+
+.submit {
+  margin-top: 1em;
+  .error_msg {
+    text-align: right;
+  }
 }
