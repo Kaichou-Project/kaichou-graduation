@@ -5,14 +5,14 @@
   background: $background;
   overflow: hidden;
   justify-content: center;
-  padding: 100px;
-  margin: 20px;
-  align-content: center;
+  margin: 80px;
+  padding: 20px;
+  align-content: flex-start;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 500px);
+  grid-template-columns: repeat(2, minmax(220px, 650px));
   grid-row-gap: 20px;
   grid-column-gap: 30px;
   width: 100%;
