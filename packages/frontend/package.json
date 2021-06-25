@@ -15,8 +15,10 @@
     "normalize-scss": "^7.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-google-recaptcha-v3": "^1.9.4",
     "react-particles-js": "^3.4.1",
-    "sass": "^1.35.0",
+    "react-player": "^2.9.0",
+    "sass": "^1.35.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
