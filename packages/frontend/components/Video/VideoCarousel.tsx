@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { VideoInterface } from './Video'
+import VideoPlayer from './VideoPlayer'
+import styles from './videoBoard.module.scss'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 
@@ -24,19 +27,29 @@ const responsive = {
   },
 }
 
-function VideoCard() {
-  return (
-    <img style={{ width: 'calc(100% - 10px)' }} src="/temp-video-img.png" />
-  )
-}
-
 export default function VideoCarousel() {
+  const [videos] = useState<VideoInterface[]>([
+    {
+      id: '0',
+      creator: 'CocoBestDragon',
+      title: 'Kiara lol',
+      url: 'https://www.youtube.com/watch?v=RR4m1HVbkBU',
+    },
+    {
+      id: '1',
+      creator: 'CocoBestDragon',
+      title: 'Blessed Doggo',
+      url: 'https://www.youtube.com/watch?v=RoSs9-NDP3E',
+    },
+  ])
+
   return (
-    <Carousel responsive={responsive} centerMode infinite>
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-    </Carousel>
+    <span className={styles.carousel}>
+      <Carousel responsive={responsive} centerMode infinite>
+        {videos.map((video) => (
+          <VideoPlayer key={video.id} video={video} />
+        ))}
+      </Carousel>
+    </span>
   )
 }
