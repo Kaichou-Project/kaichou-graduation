@@ -11,6 +11,12 @@ interface propsInterface {
   hidden: boolean
   captchaToken: string
   onSubmit?: () => void
+  onSuccess?: () => void
+  onFail?: () => void
+}
+
+interface dataType extends FanartInterface {
+  captchaToken: string
 }
 
 interface errorType {
@@ -21,7 +27,7 @@ interface errorType {
 }
 
 export default function FormFanart(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit } = props
+  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
   const [errors, setErrors] = useState<errorType>({})
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -32,7 +38,7 @@ export default function FormFanart(props: propsInterface) {
     const confirmation = !!formData.get('confirmation')
     formData.delete('confirmation')
 
-    const data = formDataToObject(formData) as FanartInterface
+    const data = formDataToObject(formData) as dataType
 
     data.creator = data.creator.trim()
     if (!data.creator) {
@@ -47,18 +53,22 @@ export default function FormFanart(props: propsInterface) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
 
+    if (!captchaToken) {
+      return setErrors({ submission: 'Something wrong with Captcha' })
+    }
+    data.captchaToken = captchaToken
+
     setErrors({})
 
-    onSubmit()
+    if (onSubmit) onSubmit()
 
     try {
       await createFanart(data)
-
-      // ToDo : Do something if success
-      console.log('success')
+      if (onSuccess) onSuccess()
     } catch (err) {
       const message = err.response.data.message
       setErrors({ submission: message })
+      if (onFail) onFail()
     }
   }
 

@@ -30,7 +30,7 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 
 export const createMessageController = async (req: Request, res: Response) => {
   try {
-    //   Request body validation
+    // Request body validation
     const { creator, content, captchaToken } = req.body
 
     if (!(await verifyCaptchaToken(captchaToken))) {
