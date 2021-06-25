@@ -18,6 +18,7 @@ import {
   getAllFanartController,
   updateFanartController,
 } from '@controller/fanart'
+import { authMiddleware } from '@middleware/auth'
 
 const routes = () => {
   const router: Router = Router()
@@ -28,20 +29,20 @@ const routes = () => {
   // Message route
   router.get('/message', getAllMessagesController)
   router.post('/message', createMessageController)
-  router.put('/message', updateMessageController)
-  router.delete('/message', deleteMessageController)
+  router.put('/message', authMiddleware, updateMessageController)
+  router.delete('/message', authMiddleware, deleteMessageController)
 
   // Video routes here
   router.get('/video', getAllVideoController)
   router.post('/video', createVideoController)
-  router.put('/video', updateVideoController)
-  router.delete('/video', deleteVideoController)
+  router.put('/video', authMiddleware, updateVideoController)
+  router.delete('/video', authMiddleware, deleteVideoController)
 
   // Fanart route
   router.get('/fanart', getAllFanartController)
   router.post('/fanart', createFanartController)
-  router.put('/fanart', updateFanartController)
-  router.delete('/fanart', deleteFanartController)
+  router.put('/fanart', authMiddleware, updateFanartController)
+  router.delete('/fanart', authMiddleware, deleteFanartController)
 
   return router
 }
