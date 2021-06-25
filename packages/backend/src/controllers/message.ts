@@ -11,6 +11,7 @@ import {
   responseInternalServerError,
   responseSuccess,
 } from '@util/response'
+import { verifyCaptchaToken } from '@util/captcha'
 import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
@@ -30,7 +31,12 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 export const createMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { creator, content } = req.body
+    const { creator, content, captchaToken } = req.body
+
+    if (!(await verifyCaptchaToken(captchaToken))) {
+      throw new TypeError('Invalid captcha token')
+    }
+
     if (!(creator && content))
       throw new TypeError('creator and content is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')

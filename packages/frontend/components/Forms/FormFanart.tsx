@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
+import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
+  captchaToken: string
+  onSubmit?: () => void
 }
 
 interface dataType {
@@ -14,15 +17,17 @@ interface dataType {
 }
 
 interface errorType {
+  submission?: string
   creator?: string
   image_url?: string
   confirmation?: string
 }
 
-export default function FormFanart({ hidden }: propsInterface) {
+export default function FormFanart(props: propsInterface) {
+  const { hidden, captchaToken, onSubmit } = props
   const [errors, setErrors] = useState<errorType>({})
 
-  function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -47,6 +52,8 @@ export default function FormFanart({ hidden }: propsInterface) {
 
     setErrors({})
 
+    onSubmit()
+
     // ToDo call API to send data
     console.log(data)
   }
@@ -54,7 +61,7 @@ export default function FormFanart({ hidden }: propsInterface) {
   return (
     <form
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <TextInput
         name="creator"
@@ -77,7 +84,7 @@ export default function FormFanart({ hidden }: propsInterface) {
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 
-      <input type="submit" className={styles.button_submit} value="Submit" />
+      <SubmitButton error={errors.submission} />
     </form>
   )
 }
