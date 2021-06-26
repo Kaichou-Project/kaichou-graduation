@@ -11,6 +11,7 @@ import {
   responseInternalServerError,
   responseSuccess,
 } from '@util/response'
+import { verifyCaptchaToken } from '@util/captcha'
 import {
   isBoolean,
   isString,
@@ -36,7 +37,12 @@ export const getAllVideoController = async (req: Request, res: Response) => {
 export const createVideoController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { creator, videoEmbedUrl } = req.body
+    const { creator, videoEmbedUrl, captchaToken } = req.body
+
+    if (!(await verifyCaptchaToken(captchaToken))) {
+      throw new TypeError('Invalid captcha token')
+    }
+
     if (!(creator && videoEmbedUrl))
       throw new TypeError('creator and videoEmbedUrl is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')
