@@ -12,12 +12,11 @@ interface propsInterface {
   hidden: boolean
   captchaToken: string
   onSubmit?: () => void
+  onSuccess?: () => void
+  onFail?: () => void
 }
 
 interface dataType extends MessageInterface {
-  creator: string
-  avatar_url: string
-  content: string
   captchaToken: string
 }
 
@@ -29,7 +28,7 @@ interface errorType {
 }
 
 export default function FormMessage(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit } = props
+  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
   const [errors, setErrors] = useState<errorType>({})
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -62,16 +61,15 @@ export default function FormMessage(props: propsInterface) {
 
     setErrors({})
 
-    onSubmit()
+    if (onSubmit) onSubmit()
 
     try {
       await createMessage(data)
-
-      // ToDo : Do something if success
-      console.log('success')
+      if (onSuccess) onSuccess()
     } catch (err) {
       const message = err.response.data.message
       setErrors({ submission: message })
+      if (onFail) onFail()
     }
   }
 
