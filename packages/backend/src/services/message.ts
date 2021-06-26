@@ -13,7 +13,7 @@ export const getAllMessages = async (
   limit: number,
   isVerified: boolean
 ): Promise<MessageDoc[]> => {
-  if (lastId === 'NULL') {
+  if (lastId === 'NULL' || lastId === '') {
     return MessageModel.find({ isVerified }).limit(limit).exec()
   }
   return MessageModel.find({ _id: { $gt: lastId }, isVerified })

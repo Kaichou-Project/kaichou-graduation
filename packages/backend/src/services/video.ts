@@ -3,16 +3,20 @@ import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
 
 /**
  * Get all videos
+ * @param lastId ID of last video document (pagination)
+ * @param limit num of video in one page (pagination)
+ * @param isVerified set to true to fetch verified video and vice versa
  * @returns array of video document
  */
 export const getAllVideos = async (
   lastId: string,
-  limit: number
+  limit: number,
+  isVerified: boolean
 ): Promise<VideoDoc[]> => {
-  if (lastId === 'NULL') {
-    return VideoModel.find({ isVerified: true }).limit(limit).exec()
+  if (lastId === 'NULL' || lastId === '') {
+    return VideoModel.find({ isVerified }).limit(limit).exec()
   }
-  return VideoModel.find({ _id: { $gt: lastId } })
+  return VideoModel.find({ _id: { $gt: lastId }, isVerified })
     .limit(limit)
     .exec()
 }
@@ -30,7 +34,7 @@ export const storeVideo = async (
   const data: VideoInterface = {
     creator,
     videoEmbedUrl,
-    isVerified: true,
+    isVerified: false,
   }
 
   // Create new video
