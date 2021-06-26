@@ -19,7 +19,7 @@ export default function Submission() {
 
   return (
     <>
-      {submitted && <SuccessPopup />}
+      {submitted && <SuccessPopup form={currentTab.toString()} />}
       <Captcha onVerify={setCaptchaToken} getToken={tokenCounter} />
       <Navigation
         title="Submit a message"

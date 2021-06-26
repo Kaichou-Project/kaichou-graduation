@@ -2,7 +2,11 @@ import React, { useEffect } from 'react'
 import styles from './Form.module.scss'
 import Link from 'next/link'
 
-export default function SuccessPopup() {
+interface propInterface {
+  form: string
+}
+
+export default function SuccessPopup({ form }: propInterface) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -22,7 +26,7 @@ export default function SuccessPopup() {
           <div className={styles.button}>Go to Home Page</div>
         </Link>
         <a href="/submission">
-          <div className={styles.button}>Submit another message</div>
+          <div className={styles.button}>Submit another {form}</div>
         </a>
       </div>
     </div>
