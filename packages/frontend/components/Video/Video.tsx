@@ -1,16 +1,9 @@
 import React from 'react'
 import VideoPlayer from './VideoPlayer'
+import { VideoInterface } from '../../interfaces/video'
 import styles from './videoBoard.module.scss'
 
-export interface VideoInterface {
-  id: string
-  title: string
-  creator: string
-  url: string
-}
-
 interface VideoProps {
-  key: string
   video: VideoInterface
 }
 

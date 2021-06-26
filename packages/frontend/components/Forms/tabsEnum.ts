@@ -1,7 +1,7 @@
 enum TabsEnum {
   MESSAGE = 'message',
   FANART = 'fanart',
-  CLIP = 'clip',
+  VIDEO = 'video',
 }
 
 export default TabsEnum

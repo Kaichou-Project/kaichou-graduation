@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import { VideoInterface } from './Video'
+import { VideoInterface } from '../../interfaces/video'
 import styles from './videoBoard.module.scss'
 
 interface VideoProps {
@@ -12,7 +12,7 @@ export default function VideoPlayer({ video }: VideoProps) {
     <div className={styles.playerWrapper}>
       <ReactPlayer
         id={styles.player}
-        url={video.url}
+        url={video.videoEmbedUrl}
         width={null}
         height={null}
       />

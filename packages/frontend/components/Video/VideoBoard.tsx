@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Video, { VideoInterface } from './Video'
-import { getVideo } from '../../api/temp-video'
+import { VideoInterface } from '../../interfaces/video'
+import Video from './Video'
+import { getVideo } from '../../api/video'
 import styles from './videoBoard.module.scss'
 
 export default function VideoBoard() {
@@ -12,13 +13,12 @@ export default function VideoBoard() {
       setVideos(videos)
     }
     onStart()
-  })
+  }, [])
 
   return (
     <>
       <div className={styles.listContainer}>
-        {videos &&
-          videos.map((video) => <Video key={video.id} video={video} />)}
+        {videos && videos.map((video, i) => <Video key={i} video={video} />)}
       </div>
     </>
   )

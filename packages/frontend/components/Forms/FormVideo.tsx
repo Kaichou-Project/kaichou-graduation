@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
-import { ClipInterface } from '../../interfaces/clip'
-import { createClip } from '../../api/clip'
+import { VideoInterface } from '../../interfaces/video'
+import { createVideo } from '../../api/video'
 import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
@@ -15,7 +15,7 @@ interface propsInterface {
   onFail?: () => void
 }
 
-interface dataType extends ClipInterface {
+interface dataType extends VideoInterface {
   captchaToken: string
 }
 
@@ -26,7 +26,7 @@ interface errorType {
   confirmation?: string
 }
 
-export default function FormClip(props: propsInterface) {
+export default function FormVideo(props: propsInterface) {
   const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
   const [errors, setErrors] = useState<errorType>({})
 
@@ -63,7 +63,7 @@ export default function FormClip(props: propsInterface) {
     if (onSubmit) onSubmit()
 
     try {
-      await createClip(data)
+      await createVideo(data)
       if (onSuccess) onSuccess()
     } catch (err) {
       const message = err.response.data.message

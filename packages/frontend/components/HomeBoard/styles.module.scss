@@ -25,11 +25,16 @@ $phone-font-size: 12px;
     display: grid;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     background: $orange;
     width: 12em;
     height: 2.3em;
     margin-left: auto;
     border-radius: 0.4em;
+  }
+
+  .button:hover {
+    background: $dark-orange;
   }
 
   .masonry_grid {

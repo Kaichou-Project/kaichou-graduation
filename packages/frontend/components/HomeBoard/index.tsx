@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss'
 import Masonry from 'react-masonry-css'
+import Link from 'next/link'
 
 const breakpointColumnsObj = {
   default: 3,
@@ -24,7 +25,9 @@ export default function HomeBoard() {
   return (
     <div className={styles.container}>
       <h2>Messages from the Community</h2>
-      <div className={styles.button}>Submit your own</div>
+      <Link href="/submission">
+        <div className={styles.button}>Submit your own</div>
+      </Link>
       {items && (
         <Masonry
           breakpointCols={breakpointColumnsObj}
