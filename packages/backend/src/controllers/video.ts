@@ -25,7 +25,7 @@ export const getAllVideoController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] videos after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const messages: VideoDoc[] = await getAllVideos(lastId, +limit)
+    const messages: VideoDoc[] = await getAllVideos(lastId, +limit, true)
 
     return responseSuccess(res, messages)
   } catch (error) {
