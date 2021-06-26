@@ -1,5 +1,5 @@
 import React from 'react'
-import Image, { ImageInterface } from './Image'
+import Image, { ImageInterface } from './Fanart'
 
 export interface ImageListProps {
   images: ImageInterface[]
