@@ -31,18 +31,19 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 export const createMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { creator, content, captchaToken } = req.body
+    const { creator, messages, captchaToken } = req.body
+    if (!(creator && messages))
+      throw new TypeError('creator and messages is required')
 
     if (!(await verifyCaptchaToken(captchaToken))) {
       throw new TypeError('Invalid captcha token')
     }
-
-    if (!(creator && content))
-      throw new TypeError('creator and content is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')
-    if (!isString(content)) throw new TypeError('content must be a string')
 
-    const message: MessageDoc = await storeMessage({ creator, content })
+    const message: MessageDoc = await storeMessage({
+      creator,
+      messages,
+    })
 
     return responseCreated(res, message)
   } catch (error) {
@@ -57,22 +58,21 @@ export const createMessageController = async (req: Request, res: Response) => {
 export const updateMessageController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { _id, creator, content, isVerified } = req.body
-    if (!(_id && creator && content && !isUndefined(isVerified))) {
-      throw new TypeError('_id, creator, content and isVerified is required')
+    const { _id, creator, messages, isVerified } = req.body
+    if (!(_id && creator && messages && !isUndefined(isVerified))) {
+      throw new TypeError('_id, creator, messages and isVerified is required')
     }
     if (!isString(_id)) throw new TypeError('_id must be a string')
     if (!isString(creator)) throw new TypeError('creator must be a string')
-    if (!isString(content)) throw new TypeError('content must be a string')
     if (!isBoolean(isVerified))
       throw new TypeError('isVerified must be a boolean')
 
-    const message: MessageDoc = await updateMessage(
+    const message: MessageDoc = await updateMessage({
       _id,
       creator,
-      content,
-      isVerified || false
-    )
+      messages,
+      isVerified,
+    })
 
     return responseSuccess(res, message)
   } catch (error) {

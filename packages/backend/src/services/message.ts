@@ -1,5 +1,8 @@
 import { MessageDoc, MessageInterface, MessageModel } from '@model/message'
-import { StoreMessageParameter } from 'interface/service'
+import {
+  StoreMessageParameter,
+  UpdateMessageParameter,
+} from 'interface/service'
 
 /**
  * Get all messages
@@ -29,11 +32,11 @@ export const getAllMessages = async (
  */
 export const storeMessage = async ({
   creator,
-  content,
+  messages,
 }: StoreMessageParameter): Promise<MessageDoc> => {
   const data: MessageInterface = {
     creator,
-    content,
+    messages,
     isVerified: false,
   }
 
@@ -52,17 +55,17 @@ export const storeMessage = async ({
  * @param isVerified message's isVerified
  * @returns new message document
  */
-export const updateMessage = async (
-  _id: string,
-  creator: string,
-  content: string,
-  isVerified: boolean
-): Promise<MessageDoc> => {
+export const updateMessage = async ({
+  _id,
+  creator,
+  messages,
+  isVerified = false,
+}: UpdateMessageParameter): Promise<MessageDoc> => {
   const conditions = { _id }
 
   const data: MessageInterface = {
     creator,
-    content,
+    messages,
     isVerified,
   }
 

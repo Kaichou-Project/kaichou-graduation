@@ -64,12 +64,12 @@ export const updateFanartController = async (req: Request, res: Response) => {
     // Check _id validity
     if (!isValidId(_id)) throw new TypeError('_id invalid')
 
-    const fanart: FanartDoc = await updateFanart(
+    const fanart: FanartDoc = await updateFanart({
       _id,
       creator,
       imageUrl,
-      isVerified || false
-    )
+      isVerified,
+    })
 
     return responseSuccess(res, fanart)
   } catch (error) {
