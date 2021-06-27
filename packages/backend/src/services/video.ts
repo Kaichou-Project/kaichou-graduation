@@ -1,18 +1,21 @@
-import Logger from '@logger'
 import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
 
 /**
  * Get all videos
+ * @param lastId ID of last video document (pagination)
+ * @param limit num of video in one page (pagination)
+ * @param isVerified set to true to fetch verified video and vice versa
  * @returns array of video document
  */
 export const getAllVideos = async (
   lastId: string,
-  limit: number
+  limit: number,
+  isVerified: boolean
 ): Promise<VideoDoc[]> => {
-  if (lastId === 'NULL') {
-    return VideoModel.find({ isVerified: true }).limit(limit).exec()
+  if (lastId === 'NULL' || lastId === '') {
+    return VideoModel.find({ isVerified }).limit(limit).exec()
   }
-  return VideoModel.find({ _id: { $gt: lastId } })
+  return VideoModel.find({ _id: { $gt: lastId }, isVerified })
     .limit(limit)
     .exec()
 }
@@ -20,17 +23,20 @@ export const getAllVideos = async (
 /**
  * Create new video
  * @param creator video's creator
+ * @param title video's title
  * @param videoEmbedUrl video's videoEmbedUrl
  * @returns new video document
  */
 export const storeVideo = async (
   creator: string,
+  title: string,
   videoEmbedUrl: string
 ): Promise<VideoDoc> => {
   const data: VideoInterface = {
     creator,
+    title,
     videoEmbedUrl,
-    isVerified: true,
+    isVerified: false,
   }
 
   // Create new video
@@ -44,6 +50,7 @@ export const storeVideo = async (
  * Update existing video
  * @param _id video's id
  * @param creator video's creator
+ * @param title video's title
  * @param videoEmbedUrl video's videoEmbedUrl
  * @param isVerified video's isVerified
  * @returns new video document
@@ -51,6 +58,7 @@ export const storeVideo = async (
 export const updateVideo = async (
   _id: string,
   creator: string,
+  title: string,
   videoEmbedUrl: string,
   isVerified: boolean
 ): Promise<VideoDoc> => {
@@ -58,6 +66,7 @@ export const updateVideo = async (
 
   const data: VideoInterface = {
     creator,
+    title,
     videoEmbedUrl,
     isVerified,
   }

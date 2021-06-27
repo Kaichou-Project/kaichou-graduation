@@ -218,3 +218,10 @@ $error: red;
 .button_submit:hover {
   background: $dark-orange;
 }
+
+.submit {
+  margin-top: 1em;
+  .error_msg {
+    text-align: right;
+  }
+}

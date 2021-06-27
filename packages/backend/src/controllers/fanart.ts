@@ -19,7 +19,7 @@ export const getAllFanartController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] fanart after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const fanarts: FanartDoc[] = await getAllFanart(lastId, +limit)
+    const fanarts: FanartDoc[] = await getAllFanart(lastId, +limit, true)
 
     return responseSuccess(res, fanarts)
   } catch (error) {

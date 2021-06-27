@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TextInput from './TextInput'
 import TextArea from './TextArea'
 import CheckConfirm from './CheckConfirm'
+import SubmitButton from './SubmitButton'
 import { MessageInterface } from '../../interfaces/message'
 import { createMessage } from '../../api/message'
 import { formDataToObject } from '../../utils/formData'
@@ -9,6 +10,15 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
+  captchaToken: string
+  onSubmit?: () => void
+}
+
+interface dataType extends MessageInterface {
+  creator: string
+  avatar_url: string
+  content: string
+  captchaToken: string
 }
 
 interface errorType {
@@ -18,10 +28,11 @@ interface errorType {
   confirmation?: string
 }
 
-export default function FormMessage({ hidden }: propsInterface) {
+export default function FormMessage(props: propsInterface) {
+  const { hidden, captchaToken, onSubmit } = props
   const [errors, setErrors] = useState<errorType>({})
 
-  async function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -29,7 +40,7 @@ export default function FormMessage({ hidden }: propsInterface) {
     const confirmation = !!formData.get('confirmation')
     formData.delete('confirmation')
 
-    const data = formDataToObject(formData) as MessageInterface
+    const data = formDataToObject(formData) as dataType
 
     data.creator = data.creator.trim()
     if (!data.creator) {
@@ -44,7 +55,14 @@ export default function FormMessage({ hidden }: propsInterface) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
 
+    if (!captchaToken) {
+      return setErrors({ submission: 'Something wrong with Captcha' })
+    }
+    data.captchaToken = captchaToken
+
     setErrors({})
+
+    onSubmit()
 
     try {
       await createMessage(data)
@@ -60,12 +78,8 @@ export default function FormMessage({ hidden }: propsInterface) {
   return (
     <form
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
-      {errors.submission && (
-        <div className={styles.error_msg}>{errors.submission}</div>
-      )}
-
       <TextInput name="creator" label="My name is ..." error={errors.creator} />
 
       <TextArea
@@ -83,7 +97,7 @@ export default function FormMessage({ hidden }: propsInterface) {
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 
-      <input type="submit" className={styles.button_submit} value="Submit" />
+      <SubmitButton error={errors.submission} />
     </form>
   )
 }

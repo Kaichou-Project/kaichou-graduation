@@ -25,7 +25,7 @@ export const getAllVideoController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] videos after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const messages: VideoDoc[] = await getAllVideos(lastId, +limit)
+    const messages: VideoDoc[] = await getAllVideos(lastId, +limit, true)
 
     return responseSuccess(res, messages)
   } catch (error) {
@@ -36,16 +36,17 @@ export const getAllVideoController = async (req: Request, res: Response) => {
 export const createVideoController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { creator, videoEmbedUrl } = req.body
-    if (!(creator && videoEmbedUrl))
-      throw new TypeError('creator and videoEmbedUrl is required')
+    const { creator, title, videoEmbedUrl } = req.body
+    if (!(creator && title && videoEmbedUrl))
+      throw new TypeError('creator, title and videoEmbedUrl is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')
+    if (!isString(title)) throw new TypeError('title must be a string')
     if (!isString(videoEmbedUrl))
       throw new TypeError('videoEmbedUrl must be a string')
     if (!isValidEmbedUrl(videoEmbedUrl))
       throw new TypeError('videoEmbedUrl invalid')
 
-    const video: VideoDoc = await storeVideo(creator, videoEmbedUrl)
+    const video: VideoDoc = await storeVideo(creator, title, videoEmbedUrl)
 
     return responseCreated(res, video)
   } catch (error) {
@@ -60,14 +61,17 @@ export const createVideoController = async (req: Request, res: Response) => {
 export const updateVideoController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { _id, creator, videoEmbedUrl, isVerified } = req.body
-    if (!(_id && creator && videoEmbedUrl && !isUndefined(isVerified))) {
+    const { _id, creator, title, videoEmbedUrl, isVerified } = req.body
+    if (
+      !(_id && creator && title && videoEmbedUrl && !isUndefined(isVerified))
+    ) {
       throw new TypeError(
-        '_id, creator, videoEmbedUrl and isVerified is required'
+        '_id, creator, title, videoEmbedUrl and isVerified is required'
       )
     }
     if (!isString(_id)) throw new TypeError('_id must be a string')
     if (!isString(creator)) throw new TypeError('creator must be a string')
+    if (!isString(title)) throw new TypeError('title must be a string')
     if (!isString(videoEmbedUrl))
       throw new TypeError('videoEmbedUrl must be a string')
     if (!isBoolean(isVerified))
@@ -79,6 +83,7 @@ export const updateVideoController = async (req: Request, res: Response) => {
       _id,
       creator,
       videoEmbedUrl,
+      title,
       isVerified || false
     )
 
