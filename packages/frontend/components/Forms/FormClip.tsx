@@ -22,6 +22,7 @@ interface dataType extends ClipInterface {
 interface errorType {
   submission?: string
   creator?: string
+  title?: string
   videoEmbedUrl?: string
   confirmation?: string
 }
@@ -43,6 +44,10 @@ export default function FormClip(props: propsInterface) {
     data.creator = data.creator.trim()
     if (!data.creator) {
       return setErrors({ creator: "This field can't be empty" })
+    }
+
+    if (!data.title) {
+      return setErrors({ title: "This field can't be empty" })
     }
 
     if (!data.videoEmbedUrl) {
@@ -81,6 +86,12 @@ export default function FormClip(props: propsInterface) {
         name="creator"
         label="The creator’s name is ..."
         error={errors.creator}
+      />
+
+      <TextInput
+        name="title"
+        label="The title of the video is ..."
+        error={errors.title}
       />
 
       <TextInput

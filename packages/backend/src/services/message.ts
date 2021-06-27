@@ -3,16 +3,20 @@ import { StoreMessageParameter } from 'interface/service'
 
 /**
  * Get all messages
+ * @param lastId ID of last message document (pagination)
+ * @param limit num of message in one page (pagination)
+ * @param isVerified set to true to fetch verified message and vice versa
  * @returns array of message document
  */
 export const getAllMessages = async (
   lastId: string,
-  limit: number
+  limit: number,
+  isVerified: boolean
 ): Promise<MessageDoc[]> => {
-  if (lastId === 'NULL') {
-    return MessageModel.find().limit(limit).exec()
+  if (lastId === 'NULL' || lastId === '') {
+    return MessageModel.find({ isVerified }).limit(limit).exec()
   }
-  return MessageModel.find({ _id: { $gt: lastId } })
+  return MessageModel.find({ _id: { $gt: lastId }, isVerified })
     .limit(limit)
     .exec()
 }
