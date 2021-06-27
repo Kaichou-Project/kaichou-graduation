@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import TextArea from './TextArea'
-import CheckConfirm from './CheckConfirm'
 import SubmitButton from './SubmitButton'
 import { MessageInterface } from '../../interfaces/message'
 import { createMessage } from '../../api/message'
@@ -10,14 +9,12 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
-  captchaToken: string
-  onSubmit?: () => void
-  onSuccess?: () => void
-  onFail?: () => void
+  onSuccess: () => void
 }
 
 interface dataType extends MessageInterface {
-  captchaToken: string
+  creator: string
+  content: string
 }
 
 interface errorType {
@@ -28,16 +25,13 @@ interface errorType {
 }
 
 export default function FormMessage(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
+  const { hidden, onSuccess } = props
   const [errors, setErrors] = useState<errorType>({})
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
-
-    const confirmation = !!formData.get('confirmation')
-    formData.delete('confirmation')
 
     const data = formDataToObject(formData) as dataType
 
@@ -46,30 +40,20 @@ export default function FormMessage(props: propsInterface) {
       return setErrors({ creator: "This field can't be empty" })
     }
 
+    data.content = data.content.trim()
     if (!data.content) {
       return setErrors({ content: "This field can't be empty" })
     }
 
-    if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
-    }
-
-    if (!captchaToken) {
-      return setErrors({ submission: 'Something wrong with Captcha' })
-    }
-    data.captchaToken = captchaToken
-
     setErrors({})
-
-    if (onSubmit) onSubmit()
 
     try {
       await createMessage(data)
-      if (onSuccess) onSuccess()
+
+      onSuccess()
     } catch (err) {
-      const message = err.response.data.message
+      const message = err.message
       setErrors({ submission: message })
-      if (onFail) onFail()
     }
   }
 
@@ -86,14 +70,12 @@ export default function FormMessage(props: propsInterface) {
         error={errors.content}
       />
 
-      <h2>Preview</h2>
+      {/*TODO: Uncomment when preview component is done*/}
+      {/*<h2>Preview</h2>
 
-      {/*ToDo remove when preview component done*/}
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
-      </div>
-
-      <CheckConfirm name="confirmation" error={errors.confirmation} />
+      </div>*/}
 
       <SubmitButton error={errors.submission} />
     </form>

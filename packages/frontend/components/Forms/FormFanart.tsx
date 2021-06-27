@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
-import { FanartInterface } from '../../interfaces/fanart'
-import { createFanart } from '../../api/fanart'
 import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
+import { FanartInterface } from '../../interfaces/fanart'
+import { createFanart } from '../../api/fanart'
 import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
-  captchaToken: string
-  onSubmit?: () => void
-  onSuccess?: () => void
-  onFail?: () => void
+  onSuccess: () => void
 }
 
 interface dataType extends FanartInterface {
-  captchaToken: string
+  creator: string
+  imageUrl: string
 }
 
 interface errorType {
@@ -27,7 +25,7 @@ interface errorType {
 }
 
 export default function FormFanart(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
+  const { hidden, onSuccess } = props
   const [errors, setErrors] = useState<errorType>({})
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -45,30 +43,24 @@ export default function FormFanart(props: propsInterface) {
       return setErrors({ creator: "This field can't be empty" })
     }
 
+    data.imageUrl = data.imageUrl.trim()
     if (!data.imageUrl) {
       return setErrors({ imageUrl: "This field can't be empty" })
     }
 
     if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
+      return setErrors({ confirmation: 'You must confirm this to submit' })
     }
-
-    if (!captchaToken) {
-      return setErrors({ submission: 'Something wrong with Captcha' })
-    }
-    data.captchaToken = captchaToken
 
     setErrors({})
 
-    if (onSubmit) onSubmit()
-
     try {
       await createFanart(data)
-      if (onSuccess) onSuccess()
+
+      onSuccess()
     } catch (err) {
-      const message = err.response.data.message
+      const message = err.message
       setErrors({ submission: message })
-      if (onFail) onFail()
     }
   }
 
@@ -89,12 +81,13 @@ export default function FormFanart(props: propsInterface) {
         error={errors.imageUrl}
       />
 
-      <h2>Preview</h2>
+      {/*TODO: uncomment when preview component done*/}
+      {/*<h2>Preview</h2>
 
-      {/*ToDo remove when preview component done*/}
+      
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
-      </div>
+      </div>*/}
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 

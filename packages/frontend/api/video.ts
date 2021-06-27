@@ -1,12 +1,12 @@
-import { MessageInterface } from '../interfaces/message'
+import { VideoInterface } from '../interfaces/video'
 import https from 'https'
 
-export async function createMessage(data: MessageInterface) {
+export async function createVideo(data: VideoInterface) {
   const options = {
     method: 'POST',
     hostname: process.env.API_HOSTNAME ?? 'localhost',
     port: process.env.API_PORT ?? 5000,
-    path: '/public/v1/create/message',
+    path: '/public/v1/create/video',
     headers: {
       'Content-Type': 'application/json',
     },

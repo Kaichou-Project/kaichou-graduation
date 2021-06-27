@@ -1,34 +1,31 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
-import CheckConfirm from './CheckConfirm'
-import { ClipInterface } from '../../interfaces/clip'
-import { createClip } from '../../api/clip'
 import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
+import { VideoInterface } from '../../interfaces/video'
+import { createVideo } from '../../api/video'
 import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
-  captchaToken: string
-  onSubmit?: () => void
-  onSuccess?: () => void
-  onFail?: () => void
+  onSuccess: () => void
 }
 
-interface dataType extends ClipInterface {
-  captchaToken: string
+interface dataType extends VideoInterface {
+  creator: string
+  title: string
+  videoEmbedUrl: string
 }
 
 interface errorType {
   submission?: string
   creator?: string
-  title?: string
   videoEmbedUrl?: string
   confirmation?: string
 }
 
 export default function FormClip(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
+  const { hidden, onSuccess } = props
   const [errors, setErrors] = useState<errorType>({})
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -36,44 +33,26 @@ export default function FormClip(props: propsInterface) {
 
     const formData = new FormData(evt.currentTarget)
 
-    const confirmation = !!formData.get('confirmation')
-    formData.delete('confirmation')
-
     const data = formDataToObject(formData) as dataType
 
-    data.creator = data.creator.trim()
-    if (!data.creator) {
-      return setErrors({ creator: "This field can't be empty" })
-    }
-
-    if (!data.title) {
-      return setErrors({ title: "This field can't be empty" })
-    }
-
+    data.videoEmbedUrl = data.videoEmbedUrl.trim()
     if (!data.videoEmbedUrl) {
       return setErrors({ videoEmbedUrl: "This field can't be empty" })
     }
 
-    if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
-    }
-
-    if (!captchaToken) {
-      return setErrors({ submission: 'Something wrong with Captcha' })
-    }
-    data.captchaToken = captchaToken
+    // Title and creator can't be empty or else it won't be sent in the request
+    data.creator = 'none'
+    data.title = 'none'
 
     setErrors({})
 
-    if (onSubmit) onSubmit()
-
     try {
-      await createClip(data)
-      if (onSuccess) onSuccess()
+      await createVideo(data)
+
+      onSuccess()
     } catch (err) {
-      const message = err.response.data.message
+      const message = err.message
       setErrors({ submission: message })
-      if (onFail) onFail()
     }
   }
 
@@ -83,31 +62,17 @@ export default function FormClip(props: propsInterface) {
       onSubmit={handleSubmit}
     >
       <TextInput
-        name="creator"
-        label="The creator’s name is ..."
-        error={errors.creator}
-      />
-
-      <TextInput
-        name="title"
-        label="The title of the video is ..."
-        error={errors.title}
-      />
-
-      <TextInput
         name="videoEmbedUrl"
         label="The link to the video is ..."
         error={errors.videoEmbedUrl}
       />
 
-      <h2>Preview</h2>
-
-      {/*ToDo remove when preview component done*/}
+      {/*TODO: uncomment when preview component done*/}
+      {/*<h2>Preview</h2>
+      
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
-      </div>
-
-      <CheckConfirm name="confirmation" error={errors.confirmation} />
+      </div>*/}
 
       <SubmitButton error={errors.submission} />
     </form>

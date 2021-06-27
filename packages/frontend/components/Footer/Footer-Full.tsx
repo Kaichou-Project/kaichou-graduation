@@ -18,8 +18,23 @@ export default function Footer() {
         <div className={styles.links}>
           <div className={styles.column}>
             <p>Contents</p>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+            <Link href="/clips">
+              <a>Clips</a>
+            </Link>
+            <Link href="/messages">
+              <a>Messages</a>
+            </Link>
+            <Link href="/soundboard">
+              <a>Soundboard</a>
+            </Link>
             <Link href="/submission">
               <a>Submission</a>
+            </Link>
+            <Link href="/credits">
+              <a>Credits</a>
             </Link>
           </div>
           <div className={styles.column}>
@@ -38,6 +53,12 @@ export default function Footer() {
             </Link>
             <Link href="https://discord.gg/QWRuvqjRXM">
               <a>Kiryukai Project</a>
+            </Link>
+          </div>
+          <div className={styles.column}>
+            <p>Legal</p>
+            <Link href="/">
+              <a>Contact</a>
             </Link>
           </div>
         </div>

@@ -30,7 +30,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  /*{
+  {
     page: Page.HOME,
     iconPath: 'navigation/HomeIcon.svg',
   },
@@ -53,7 +53,7 @@ const navItems: NavItem[] = [
   {
     page: Page.CREDITS,
     iconPath: 'navigation/InfoIcon.svg',
-  },*/
+  },
 ]
 
 export default function Navigation({
