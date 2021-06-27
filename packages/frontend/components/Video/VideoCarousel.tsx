@@ -8,18 +8,20 @@ import 'react-multi-carousel/lib/styles.css'
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1,
-    partialVisibilityGutter: 40,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 10000, min: 0 },
     items: 1,
   },
 }
 
+const CENTER_MODE_BREAKPOINT = 860
+function getCenterMode(): boolean {
+  if (!process.browser) return true
+  return window.innerWidth > CENTER_MODE_BREAKPOINT
+}
+
 export default function VideoCarousel() {
   const [videos, setVideos] = useState<VideoInterface[]>(null)
+  const [isCenterMode, setIsCenterMode] = useState(getCenterMode())
 
   useEffect(() => {
     async function onStart() {
@@ -27,12 +29,16 @@ export default function VideoCarousel() {
       setVideos(videos)
     }
     onStart()
+
+    const onResize = () => setIsCenterMode(getCenterMode())
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
   }, [])
 
   return (
     <span className={styles.carousel}>
       {videos && (
-        <Carousel responsive={responsive} centerMode infinite>
+        <Carousel responsive={responsive} infinite centerMode={isCenterMode}>
           {videos.map((video, i) => (
             <VideoPlayer key={i} video={video} />
           ))}
