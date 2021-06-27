@@ -20,7 +20,7 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] messages after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const messages: MessageDoc[] = await getAllMessages(lastId, +limit)
+    const messages: MessageDoc[] = await getAllMessages(lastId, +limit, true)
 
     return responseSuccess(res, messages)
   } catch (error) {
