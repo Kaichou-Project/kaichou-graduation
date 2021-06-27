@@ -3,17 +3,21 @@ import { StoreFanartParameter } from 'interface/service'
 
 /**
  * Get all fanart
+ * @param lastId ID of last fanart document (pagination)
+ * @param limit num of fanart in one page (pagination)
+ * @param isVerified set to true to fetch verified fanart and vice versa
  * @returns array of fanart document
  */
 export const getAllFanart = async (
   lastId: string,
-  limit: number
+  limit: number,
+  isVerified: boolean
 ): Promise<FanartDoc[]> => {
   // if lastId is not given or given an empty string
   if (lastId === 'NULL' || lastId === '') {
-    return FanartModel.find().limit(limit).exec()
+    return FanartModel.find({ isVerified }).limit(limit).exec()
   }
-  return FanartModel.find({ _id: { $gt: lastId } })
+  return FanartModel.find({ _id: { $gt: lastId }, isVerified })
     .limit(limit)
     .exec()
 }

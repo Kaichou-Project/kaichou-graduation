@@ -6,6 +6,10 @@ export const VideoSchema: Schema = new Schema(
       type: String,
       required: true,
     },
+    title: {
+      type: String,
+      required: true,
+    },
     videoEmbedUrl: {
       type: String,
       required: true,
