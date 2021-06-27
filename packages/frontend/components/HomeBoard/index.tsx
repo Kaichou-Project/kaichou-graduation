@@ -4,15 +4,9 @@ import { getMessage } from '../../api/message'
 import { FanartInterface } from '../../interfaces/fanart'
 import { MessageInterface } from '../../interfaces/message'
 import FanartCard from '../Fanart/FanartCard'
+import MasonryBoard from '../MasonryBoard'
 import styles from './styles.module.scss'
-import Masonry from 'react-masonry-css'
 import Link from 'next/link'
-
-const breakpointColumnsObj = {
-  default: 3,
-  860: 2,
-  425: 1,
-}
 
 function MessageCard(props: MessageInterface) {
   return <img style={{ width: '100%' }} src={props.content} />
@@ -46,21 +40,19 @@ export default function HomeBoard() {
       <Link href="/submission">
         <div className={styles.button}>Submit your own</div>
       </Link>
-      {items && (
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className={styles.masonry_grid}
-          columnClassName={styles.masonry_grid_col}
-        >
-          {items.map(({ type, content }, i) =>
-            type === 'message' ? (
-              <MessageCard key={i} {...(content as MessageInterface)} />
-            ) : (
-              <FanartCard key={i} {...(content as FanartInterface)} />
-            )
-          )}
-        </Masonry>
-      )}
+      <div className={styles.masonry}>
+        {items && (
+          <MasonryBoard>
+            {items.map(({ type, content }, i) =>
+              type === 'message' ? (
+                <MessageCard key={i} {...(content as MessageInterface)} />
+              ) : (
+                <FanartCard key={i} {...(content as FanartInterface)} />
+              )
+            )}
+          </MasonryBoard>
+        )}
+      </div>
     </div>
   )
 }
