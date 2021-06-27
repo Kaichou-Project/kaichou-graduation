@@ -48,6 +48,7 @@
       max-width: 876px;
   
       .column {
+        margin-top: 1em;
         display: flex;
         flex-direction: column;
         font-size: 18px;
@@ -153,9 +154,7 @@
       .links {
         margin-left: 1em;
         flex-wrap: wrap;
-        margin-top: 0;
         .column {
-          margin-top: 1em;
           flex-basis: 100%;
           max-width: 700px;
         }
