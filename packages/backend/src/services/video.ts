@@ -1,4 +1,3 @@
-import Logger from '@logger'
 import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
 
 /**
@@ -24,15 +23,18 @@ export const getAllVideos = async (
 /**
  * Create new video
  * @param creator video's creator
+ * @param title video's title
  * @param videoEmbedUrl video's videoEmbedUrl
  * @returns new video document
  */
 export const storeVideo = async (
   creator: string,
+  title: string,
   videoEmbedUrl: string
 ): Promise<VideoDoc> => {
   const data: VideoInterface = {
     creator,
+    title,
     videoEmbedUrl,
     isVerified: false,
   }
@@ -48,6 +50,7 @@ export const storeVideo = async (
  * Update existing video
  * @param _id video's id
  * @param creator video's creator
+ * @param title video's title
  * @param videoEmbedUrl video's videoEmbedUrl
  * @param isVerified video's isVerified
  * @returns new video document
@@ -55,6 +58,7 @@ export const storeVideo = async (
 export const updateVideo = async (
   _id: string,
   creator: string,
+  title: string,
   videoEmbedUrl: string,
   isVerified: boolean
 ): Promise<VideoDoc> => {
@@ -62,6 +66,7 @@ export const updateVideo = async (
 
   const data: VideoInterface = {
     creator,
+    title,
     videoEmbedUrl,
     isVerified,
   }
