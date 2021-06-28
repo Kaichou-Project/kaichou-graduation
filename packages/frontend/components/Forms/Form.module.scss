@@ -8,6 +8,8 @@ $grey: #3f3f3f;
 $dark-grey: #373737;
 $error: red;
 
+$popup-background: rgba($background, 0.9);
+
 .form,
 .tabs {
   max-width: 700px;
@@ -223,5 +225,59 @@ $error: red;
   margin-top: 1em;
   .error_msg {
     text-align: right;
+  }
+}
+
+.success_popup {
+  z-index: 1000;
+  position: fixed;
+  background: $popup-background;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-column: 1fr;
+  align-content: center;
+  font-size: $normal-font-size;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    font-size: $tablet-font-size;
+  }
+
+  @media only screen and (max-width: $breakpoint-phone) {
+    font-size: $phone-font-size;
+  }
+
+  .box {
+    $padding-x: 3em;
+    background: $background;
+    color: $white;
+    text-align: center;
+    display: grid;
+    grid-gap: 1em;
+    justify-content: center;
+    align-content: center;
+    width: calc(80% - #{$padding-x}* 2);
+    max-width: 20em;
+    padding: 2em $padding-x;
+    margin: auto;
+    border-radius: 1em;
+
+    a {
+      text-decoration: inherit;
+    }
+
+    .button {
+      background: $orange;
+      width: auto;
+      min-height: 2.3em;
+      height: auto;
+      padding: 0 1em;
+    }
+
+    .button:hover {
+      background: $dark-orange;
+    }
   }
 }

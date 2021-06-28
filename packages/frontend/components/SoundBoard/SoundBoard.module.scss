@@ -3,7 +3,7 @@
 $progress-bar-height: 10px;
 
 .container {
-  background: #2c2c2c;
+  background: $dark-gray;
   padding: 2em 2.5em;
   margin: 2em;
   border-radius: 0.75rem;
@@ -19,7 +19,7 @@ $progress-bar-height: 10px;
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
-  grid-gap: 1.5em 1.2em;
+  grid-gap: 1.5em 1.4em;
 }
 
 .card {
@@ -62,8 +62,28 @@ $progress-bar-height: 10px;
       bottom: 0;
     }
   }
+
+  &:hover {
+    background: $dark-orange;
+  }
 }
 
-.card:hover {
-  background: $dark-orange;
+@media only screen and (max-width: $breakpoint-tablet) {
+  .container {
+    margin: 5vw;
+    padding: 5vw;
+
+    h2 {
+      margin-top: 0.5em;
+      text-align: center;
+    }
+  }
+
+  .grid {
+    row-gap: 1em;
+  }
+
+  .card {
+    width: 80vw;
+  }
 }
