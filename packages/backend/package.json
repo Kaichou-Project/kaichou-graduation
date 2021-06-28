@@ -5,6 +5,7 @@
   "private": "true",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "test:types": "yarn tsc --noEmit --skipLibCheck",
     "test:jest": "jest --coverage --collectCoverageFrom=src/**/*.{ts,tsx} --no-cache"
   },
