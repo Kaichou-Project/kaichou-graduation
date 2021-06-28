@@ -4,8 +4,8 @@ import https from 'https'
 export async function createFanart(data: FanartInterface) {
   const options = {
     method: 'POST',
-    hostname: process.env.API_HOSTNAME ?? 'localhost',
-    port: process.env.API_PORT ?? 5000,
+    hostname: process.env.NEXT_PUBLIC_API_HOSTNAME ?? 'localhost',
+    port: process.env.NEXT_PUBLIC_API_PORT ?? 5000,
     path: '/public/v1/create/fanart',
     headers: {
       'Content-Type': 'application/json',
