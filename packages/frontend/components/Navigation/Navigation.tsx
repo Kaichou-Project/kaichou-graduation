@@ -11,7 +11,7 @@ interface NavProps {
 }
 
 export enum Page {
-  HOME = 'home',
+  HOME = '/',
   MESSAGES = 'messages',
   FANART = 'fanart',
   CLIPS = 'clips',
@@ -26,32 +26,39 @@ export enum Mode {
 
 interface NavItem {
   page: Page
+  name: string
   iconPath: string
 }
 
 const navItems: NavItem[] = [
   {
     page: Page.HOME,
+    name: 'Home',
     iconPath: 'navigation/HomeIcon.svg',
   },
   {
     page: Page.MESSAGES,
+    name: 'Messages',
     iconPath: 'navigation/MessageIcon.svg',
   },
   {
     page: Page.FANART,
+    name: 'Fanart',
     iconPath: 'navigation/ImageIcon.svg',
   },
   {
     page: Page.CLIPS,
+    name: 'Clips',
     iconPath: 'navigation/VideoIcon.svg',
   },
   {
     page: Page.SOUNDBOARD,
+    name: 'Soundboard',
     iconPath: 'navigation/SoundIcon.svg',
   },
   {
     page: Page.CREDITS,
+    name: 'Credits',
     iconPath: 'navigation/InfoIcon.svg',
   },
 ]
@@ -76,13 +83,11 @@ export default function Navigation({
           {navItems.map((item) => (
             <Link key={item.iconPath} href={item.page.toString()}>
               <div className={styles.icon}>
-                <p className={styles.icon_text}>
-                  {item.page.charAt(0).toUpperCase() + item.page.slice(1)}
-                </p>
+                <p className={styles.icon_text}>{item.name}</p>
                 <img src={item.iconPath} alt={item.page.toString()} />
-                {page === item.page ? (
+                {page === item.page && (
                   <img src="navigation/Dot.svg" className={styles.active} />
-                ) : null}
+                )}
               </div>
             </Link>
           ))}
