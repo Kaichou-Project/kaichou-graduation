@@ -10,10 +10,6 @@ export async function createFanart(data: FanartInterface) {
     headers: {
       'Content-Type': 'application/json',
     },
-    agent: new https.Agent({
-      requestCert: true,
-      rejectUnauthorized: false,
-    }),
   }
 
   return new Promise((resolve, reject) => {
