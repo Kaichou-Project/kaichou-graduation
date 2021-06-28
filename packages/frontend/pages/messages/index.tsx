@@ -48,7 +48,7 @@ export default function MessageBoard() {
   return (
     <>
       <Navigation title="Messages" page={Page.MESSAGES} />
-      <MessageList key={'1'} cardData={Messages} />
+      <MessageList cardData={Messages} />
       <ToTheTopButton />
       <Footer />
     </>
