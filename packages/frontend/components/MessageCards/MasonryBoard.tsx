@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './styles.module.scss'
+import styles from './MasonryBoard.module.scss'
 import Masonry from 'react-masonry-css'
 
 const breakpointColumnsObj = {
