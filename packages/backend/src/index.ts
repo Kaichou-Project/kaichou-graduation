@@ -1,14 +1,15 @@
+import dotnev from 'dotenv'
+// Load env variables
+dotnev.config()
+
 import express from 'express'
 import cors from 'cors'
 import routes from '@router'
 import Logger from '@logger'
 import morganMiddleware from '@middleware/morgan'
-import dotnev from 'dotenv'
 import initDB from 'db'
 import { STATUS_DB_CONNECTED } from '@constant/general'
 
-// Load env variables
-dotnev.config()
 const PORT = process.env.PORT ?? 5000
 const DB_URI = process.env.DB_URI ?? ''
 const DEBUG = process.env.DEBUG === 'TRUE' ? true : false

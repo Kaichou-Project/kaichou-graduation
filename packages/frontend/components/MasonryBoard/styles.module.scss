@@ -1,0 +1,16 @@
+$gap-size: 0.5em;
+.masonry_grid {
+  display: flex;
+  width: auto;
+
+  & > div {
+    margin: 0 $gap-size;
+    & > div {
+      margin: $gap-size 0;
+    }
+  }
+}
+
+.my-masonry-grid_column {
+  background-clip: padding-box;
+}

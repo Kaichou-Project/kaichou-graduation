@@ -1,28 +1,37 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
+import { ClipInterface } from '../../interfaces/clip'
+import { createClip } from '../../api/clip'
+import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
+  captchaToken: string
+  onSubmit?: () => void
+  onSuccess?: () => void
+  onFail?: () => void
 }
 
-interface dataType {
-  creator: string
-  video_embed_url: string
+interface dataType extends ClipInterface {
+  captchaToken: string
 }
 
 interface errorType {
+  submission?: string
   creator?: string
-  video_embed_url?: string
+  title?: string
+  videoEmbedUrl?: string
   confirmation?: string
 }
 
-export default function FormClip({ hidden }: propsInterface) {
+export default function FormClip(props: propsInterface) {
+  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
   const [errors, setErrors] = useState<errorType>({})
 
-  function onSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -37,24 +46,41 @@ export default function FormClip({ hidden }: propsInterface) {
       return setErrors({ creator: "This field can't be empty" })
     }
 
-    if (!data.video_embed_url) {
-      return setErrors({ video_embed_url: "This field can't be empty" })
+    if (!data.title) {
+      return setErrors({ title: "This field can't be empty" })
+    }
+
+    if (!data.videoEmbedUrl) {
+      return setErrors({ videoEmbedUrl: "This field can't be empty" })
     }
 
     if (!confirmation) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
 
+    if (!captchaToken) {
+      return setErrors({ submission: 'Something wrong with Captcha' })
+    }
+    data.captchaToken = captchaToken
+
     setErrors({})
 
-    // ToDo call API to send data
-    console.log(data)
+    if (onSubmit) onSubmit()
+
+    try {
+      await createClip(data)
+      if (onSuccess) onSuccess()
+    } catch (err) {
+      const message = err.response.data.message
+      setErrors({ submission: message })
+      if (onFail) onFail()
+    }
   }
 
   return (
     <form
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <TextInput
         name="creator"
@@ -63,9 +89,15 @@ export default function FormClip({ hidden }: propsInterface) {
       />
 
       <TextInput
-        name="video_embed_url"
+        name="title"
+        label="The title of the video is ..."
+        error={errors.title}
+      />
+
+      <TextInput
+        name="videoEmbedUrl"
         label="The link to the video is ..."
-        error={errors.video_embed_url}
+        error={errors.videoEmbedUrl}
       />
 
       <h2>Preview</h2>
@@ -77,7 +109,7 @@ export default function FormClip({ hidden }: propsInterface) {
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 
-      <input type="submit" className={styles.button_submit} value="Submit" />
+      <SubmitButton error={errors.submission} />
     </form>
   )
 }

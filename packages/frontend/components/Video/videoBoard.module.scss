@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+
+
+.listContainer{
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-column-gap: 50px;
+    grid-row-gap: 30px;
+    background-color: $background;
+    justify-content: center;
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+    .listContainer{
+        display: grid;
+        grid-template-columns: 80% ;
+        grid-row-gap: 30px;
+        background-color: $background;
+        justify-content: center;
+    }
+}
+
+.descriptor{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.title{
+    display: inline;
+    color: $white;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.creator{
+    display: inline;
+    color: $white;
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.playerWrapper{
+    position: relative;
+    padding-top: 56.25%;
+}
+
+#player{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 10px solid $orange;
+}

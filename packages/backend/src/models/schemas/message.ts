@@ -21,3 +21,5 @@ export const MessageSchema: Schema = new Schema(
     timestamps: true,
   }
 )
+
+MessageSchema.index({ isVerified: 1 })

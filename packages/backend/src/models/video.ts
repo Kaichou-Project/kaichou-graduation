@@ -4,6 +4,7 @@ import { VideoSchema } from '@model/schemas/video'
 
 export interface VideoInterface {
   creator: string
+  title: string
   videoEmbedUrl: string
   isVerified: boolean
 }
