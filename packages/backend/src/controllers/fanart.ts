@@ -11,6 +11,7 @@ import {
   responseInternalServerError,
   responseSuccess,
 } from '@util/response'
+import { verifyCaptchaToken } from '@util/captcha'
 import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
@@ -19,7 +20,7 @@ export const getAllFanartController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] fanart after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const fanarts: FanartDoc[] = await getAllFanart(lastId, +limit)
+    const fanarts: FanartDoc[] = await getAllFanart(lastId, +limit, true)
 
     return responseSuccess(res, fanarts)
   } catch (error) {
@@ -30,7 +31,12 @@ export const getAllFanartController = async (req: Request, res: Response) => {
 export const createFanartController = async (req: Request, res: Response) => {
   try {
     // Request body validation
-    const { creator, imageUrl } = req.body
+    const { creator, imageUrl, captchaToken } = req.body
+
+    if (!(await verifyCaptchaToken(captchaToken))) {
+      throw new TypeError('Invalid captcha token')
+    }
+
     if (!(creator && imageUrl))
       throw new TypeError('creator and imageUrl is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')

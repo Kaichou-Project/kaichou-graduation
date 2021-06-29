@@ -20,7 +20,7 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] messages after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const messages: MessageDoc[] = await getAllMessages(lastId, +limit)
+    const messages: MessageDoc[] = await getAllMessages(lastId, +limit, true)
 
     return responseSuccess(res, messages)
   } catch (error) {
@@ -30,7 +30,7 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 
 export const createMessageController = async (req: Request, res: Response) => {
   try {
-    //   Request body validation
+    // Request body validation
     const { creator, content, captchaToken } = req.body
 
     if (!(await verifyCaptchaToken(captchaToken))) {
