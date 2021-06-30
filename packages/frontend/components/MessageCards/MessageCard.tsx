@@ -7,10 +7,9 @@ export default function MessageCard(props: MessageInterface) {
   const image = '/message-card-elements/cardimage.svg'
   return (
     <div className={styles.card}>
-      <div className={styles.title}>Dear Coco,</div>
       <img className={styles.img} src={image} />
       <div className={styles.message}>{props.content} </div>
-      <div className={styles.author}>- {props.creator} </div>
+      <div className={styles.author}>{props.creator} </div>
     </div>
   )
 }

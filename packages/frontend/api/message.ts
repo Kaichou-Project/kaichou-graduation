@@ -8,7 +8,7 @@ const messageInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 })
 
-export async function getMessage(
+export async function getMessages(
   limit?: number,
   lastId?: string
 ): Promise<MessageResponseInterface[]> {
