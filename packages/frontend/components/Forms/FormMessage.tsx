@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import TextArea from './TextArea'
-import CheckConfirm from './CheckConfirm'
 import SubmitButton from './SubmitButton'
 import { MessageInterface } from '../../interfaces/message'
 import { createMessage } from '../../api/message'
@@ -19,7 +18,6 @@ interface errorType {
   submission?: string
   creator?: string
   content?: string
-  confirmation?: string
 }
 
 export default function FormMessage(props: propsInterface) {
@@ -31,9 +29,6 @@ export default function FormMessage(props: propsInterface) {
 
     const formData = new FormData(evt.currentTarget)
 
-    const confirmation = !!formData.get('confirmation')
-    formData.delete('confirmation')
-
     const data = formDataToObject(formData) as MessageInterface
 
     data.creator = data.creator.trim()
@@ -43,10 +38,6 @@ export default function FormMessage(props: propsInterface) {
 
     if (!data.content) {
       return setErrors({ content: "This field can't be empty" })
-    }
-
-    if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
     }
 
     setErrors({})
@@ -82,8 +73,6 @@ export default function FormMessage(props: propsInterface) {
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
       </div>
-
-      <CheckConfirm name="confirmation" error={errors.confirmation} />
 
       <SubmitButton error={errors.submission} />
     </form>

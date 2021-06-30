@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
-import CheckConfirm from './CheckConfirm'
 import { ClipInterface } from '../../interfaces/clip'
 import { createClip } from '../../api/clip'
 import SubmitButton from './SubmitButton'
@@ -19,7 +18,6 @@ interface errorType {
   creator?: string
   title?: string
   videoEmbedUrl?: string
-  confirmation?: string
 }
 
 export default function FormClip(props: propsInterface) {
@@ -30,9 +28,6 @@ export default function FormClip(props: propsInterface) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
-
-    const confirmation = !!formData.get('confirmation')
-    formData.delete('confirmation')
 
     const data = formDataToObject(formData) as ClipInterface
 
@@ -47,10 +42,6 @@ export default function FormClip(props: propsInterface) {
 
     if (!data.videoEmbedUrl) {
       return setErrors({ videoEmbedUrl: "This field can't be empty" })
-    }
-
-    if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
     }
 
     setErrors({})
@@ -96,8 +87,6 @@ export default function FormClip(props: propsInterface) {
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
       </div>
-
-      <CheckConfirm name="confirmation" error={errors.confirmation} />
 
       <SubmitButton error={errors.submission} />
     </form>
