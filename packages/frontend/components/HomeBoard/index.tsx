@@ -3,14 +3,11 @@ import { getFanart } from '../../api/fanart'
 import { getMessage } from '../../api/message'
 import { FanartResponseInterface } from '../../interfaces/fanart'
 import { MessageResponseInterface } from '../../interfaces/message'
+import MessageCard from '../MessageCards/MessageCard'
 import FanartCard from '../Fanart/FanartCard'
 import MasonryBoard from '../MasonryBoard'
 import styles from './styles.module.scss'
 import Link from 'next/link'
-
-function MessageCard(props: MessageResponseInterface) {
-  return <img style={{ width: '100%' }} src={props.content} />
-}
 
 interface itemInterface {
   type: string
