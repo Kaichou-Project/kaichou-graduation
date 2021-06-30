@@ -28,7 +28,7 @@ interface errorType {
 
 export default function FormFanart(props: propsInterface) {
   const { hidden, onSubmit, onSuccess, onFail } = props
-  const [preview, setPreview] = useState<FanartInterface>(null)
+  const [preview, setPreview] = useState<dataType>(null)
   const [errors, setErrors] = useState<errorType>({})
   const formEl = useRef(null)
 
