@@ -3,9 +3,8 @@ import styles from './styles.module.scss'
 import Masonry from 'react-masonry-css'
 
 const breakpointColumnsObj = {
-  default: 3,
-  860: 2,
-  425: 1,
+  default: 2,
+  860: 1,
 }
 
 export default function MasonryBoard({ children }) {

@@ -1,4 +1,4 @@
-export interface ClipInterface {
+export interface VideoInterface {
   creator: string
   title: string
   videoEmbedUrl: string
