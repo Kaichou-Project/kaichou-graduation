@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-// import { MessageResponseInterface } from '../../interfaces/message'
+import { MessageResponseInterface } from '../../interfaces/message'
 import { FanartResponseInterface } from '../../interfaces/fanart'
 import { VideoResponseInterface } from '../../interfaces/video'
 import styles from './styles.module.scss'
@@ -8,8 +8,9 @@ import styles from './styles.module.scss'
 const DEFAULT_NUM_DATA_LOAD = 10
 
 type ResponseInterface =
-  // | MessageResponseInterface
-  FanartResponseInterface | VideoResponseInterface
+  | MessageResponseInterface
+  | FanartResponseInterface
+  | VideoResponseInterface
 
 interface propInterface {
   next: (limit: number, lastId: string) => Promise<ResponseInterface[]>

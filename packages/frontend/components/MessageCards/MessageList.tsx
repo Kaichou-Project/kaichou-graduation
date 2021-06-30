@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import MessageCard from './MessageCard'
-import { MessageInterface } from '../../interfaces/message'
+import { MessageResponseInterface } from '../../interfaces/message'
 import { getMessage } from '../../api/message'
+import InfiniteScrolling from '../InfiniteScrolling'
 import styles from '../Fanart/styles.module.scss'
 import MasonryBoard from '../MasonryBoard'
 
@@ -12,23 +13,19 @@ const breakpointColumnsObj = {
 }
 
 export default function MessageList() {
-  const [messages, setMessages] = useState<MessageInterface[]>()
-
-  useEffect(() => {
-    async function onStart() {
-      const fanarts = await getMessage()
-      setMessages(fanarts)
-    }
-
-    onStart()
-  }, [])
+  const [messages, setMessages] = useState<MessageResponseInterface[]>()
 
   return (
     <div className={styles.fanart_board}>
-      <MasonryBoard breakpointCols={breakpointColumnsObj}>
-        {messages &&
-          messages.map((message, i) => <MessageCard key={i} {...message} />)}
-      </MasonryBoard>
+      <InfiniteScrolling
+        next={getMessage}
+        onData={(data) => setMessages(data as MessageResponseInterface[])}
+      >
+        <MasonryBoard breakpointCols={breakpointColumnsObj}>
+          {messages &&
+            messages.map((message, i) => <MessageCard key={i} {...message} />)}
+        </MasonryBoard>
+      </InfiniteScrolling>
     </div>
   )
 }
