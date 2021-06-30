@@ -30,7 +30,7 @@ export default function Submission() {
         onSuccess={() => setSubmitted(true)}
       />
       <FormVideo
-        hidden={currentTab !== tabsEnum.CLIP}
+        hidden={currentTab !== tabsEnum.VIDEO}
         onSuccess={() => setSubmitted(true)}
       />
       <Footer />

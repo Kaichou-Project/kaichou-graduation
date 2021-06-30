@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
 import { FanartInterface } from '../../interfaces/fanart'
 import { createFanart } from '../../api/fanart'
 import SubmitButton from './SubmitButton'
-import { formDataToObject } from '../../utils/formData'
+import FanartCard from '../Fanart/FanartCard'
+import { getFormData } from '../../utils/formData'
 import styles from './Form.module.scss'
 
 interface propsInterface {
@@ -23,30 +24,31 @@ interface errorType {
 
 export default function FormFanart(props: propsInterface) {
   const { hidden, onSubmit, onSuccess, onFail } = props
+  const [preview, setPreview] = useState<FanartInterface>(null)
   const [errors, setErrors] = useState<errorType>({})
+  const formEl = useRef(null)
+
+  function validate(data: FanartInterface, showError: boolean): boolean {
+    data.creator = data.creator.trim()
+    if (!data.creator) {
+      if (showError) setErrors({ creator: "This field can't be empty" })
+      return false
+    }
+
+    if (!data.imageUrl) {
+      if (showError) setErrors({ imageUrl: "This field can't be empty" })
+      return false
+    }
+
+    return true
+  }
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
-    const formData = new FormData(evt.currentTarget)
+    const data = getFormData(formEl.current) as FanartInterface
 
-    const confirmation = !!formData.get('confirmation')
-    formData.delete('confirmation')
-
-    const data = formDataToObject(formData) as FanartInterface
-
-    data.creator = data.creator.trim()
-    if (!data.creator) {
-      return setErrors({ creator: "This field can't be empty" })
-    }
-
-    if (!data.imageUrl) {
-      return setErrors({ imageUrl: "This field can't be empty" })
-    }
-
-    if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
-    }
+    if (!validate(data, true)) return
 
     setErrors({})
 
@@ -62,29 +64,34 @@ export default function FormFanart(props: propsInterface) {
     }
   }
 
+  function handleChange() {
+    const data = getFormData(formEl.current) as FanartInterface
+    if (validate(data, false)) setPreview(data)
+    else setPreview(null)
+  }
+
   return (
     <form
+      ref={formEl}
       className={`${styles.form} ${hidden ? styles.hide : ''}`}
       onSubmit={handleSubmit}
     >
       <TextInput
         name="creator"
         label="The artist’s name is ..."
+        onChange={handleChange}
         error={errors.creator}
       />
 
       <TextInput
         name="imageUrl"
         label="The link to the image is ..."
+        onChange={handleChange}
         error={errors.imageUrl}
       />
 
       <h2>Preview</h2>
-
-      {/*ToDo remove when preview component done*/}
-      <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
-        ---- Preview goes here ----
-      </div>
+      {preview && <FanartCard {...preview} />}
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 
