@@ -16,7 +16,7 @@ export default function CheckConfirm({ name, error }: propsInterface) {
       </div>
       <div>
         I hereby confirm that all the content contained in my submission is my
-        own or i have explicit permission by the author to use it.
+        own or I have explicit permission by the author to use it.
         {error && <div className={styles.error_msg}>{error}</div>}
       </div>
     </div>

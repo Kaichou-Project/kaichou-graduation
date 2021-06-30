@@ -1,29 +1,24 @@
-import React, { useState } from 'react'
-import Video, { VideoInterface } from './Video'
+import React, { useState, useEffect } from 'react'
+import { VideoInterface } from '../../interfaces/video'
+import Video from './Video'
+import { getVideo } from '../../api/video'
 import styles from './videoBoard.module.scss'
 
 export default function VideoBoard() {
-  const [videos] = useState<VideoInterface[]>([
-    {
-      id: '0',
-      creator: 'CocoBestDragon',
-      title: 'Kiara lol',
-      url: 'https://www.youtube.com/watch?v=RR4m1HVbkBU',
-    },
-    {
-      id: '1',
-      creator: 'CocoBestDragon',
-      title: 'Blessed Doggo',
-      url: 'https://www.youtube.com/watch?v=RoSs9-NDP3E',
-    },
-  ])
+  const [videos, setVideos] = useState<VideoInterface[]>(null)
+
+  useEffect(() => {
+    async function onStart() {
+      const videos = await getVideo()
+      setVideos(videos)
+    }
+    onStart()
+  }, [])
 
   return (
     <>
       <div className={styles.listContainer}>
-        {videos.map((video) => (
-          <Video key={video.id} video={video} />
-        ))}
+        {videos && videos.map((video, i) => <Video key={i} video={video} />)}
       </div>
     </>
   )

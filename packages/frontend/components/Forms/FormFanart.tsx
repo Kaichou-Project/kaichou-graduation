@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
 import CheckConfirm from './CheckConfirm'
+import { FanartInterface } from '../../interfaces/fanart'
+import { createFanart } from '../../api/fanart'
 import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
@@ -9,25 +11,26 @@ interface propsInterface {
   hidden: boolean
   captchaToken: string
   onSubmit?: () => void
+  onSuccess?: () => void
+  onFail?: () => void
 }
 
-interface dataType {
-  creator: string
-  image_url: string
+interface dataType extends FanartInterface {
+  captchaToken: string
 }
 
 interface errorType {
   submission?: string
   creator?: string
-  image_url?: string
+  imageUrl?: string
   confirmation?: string
 }
 
 export default function FormFanart(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit } = props
+  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
   const [errors, setErrors] = useState<errorType>({})
 
-  function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
@@ -42,20 +45,31 @@ export default function FormFanart(props: propsInterface) {
       return setErrors({ creator: "This field can't be empty" })
     }
 
-    if (!data.image_url) {
-      return setErrors({ image_url: "This field can't be empty" })
+    if (!data.imageUrl) {
+      return setErrors({ imageUrl: "This field can't be empty" })
     }
 
     if (!confirmation) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
 
+    if (!captchaToken) {
+      return setErrors({ submission: 'Something wrong with Captcha' })
+    }
+    data.captchaToken = captchaToken
+
     setErrors({})
 
-    onSubmit()
+    if (onSubmit) onSubmit()
 
-    // ToDo call API to send data
-    console.log(data)
+    try {
+      await createFanart(data)
+      if (onSuccess) onSuccess()
+    } catch (err) {
+      const message = err.response.data.message
+      setErrors({ submission: message })
+      if (onFail) onFail()
+    }
   }
 
   return (
@@ -70,9 +84,9 @@ export default function FormFanart(props: propsInterface) {
       />
 
       <TextInput
-        name="image_url"
+        name="imageUrl"
         label="The link to the image is ..."
-        error={errors.image_url}
+        error={errors.imageUrl}
       />
 
       <h2>Preview</h2>
