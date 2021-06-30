@@ -23,5 +23,5 @@ export async function getFanart(
 }
 
 export async function createFanart(data: FanartInterface) {
-  await fanartInstance.post('/fanart', data)
+  await fanartInstance.post('/create/fanart', data)
 }
