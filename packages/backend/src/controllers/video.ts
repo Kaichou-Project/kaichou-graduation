@@ -11,7 +11,6 @@ import {
   responseInternalServerError,
   responseSuccess,
 } from '@util/response'
-import { verifyCaptchaToken } from '@util/captcha'
 import {
   isBoolean,
   isString,
@@ -37,11 +36,7 @@ export const getAllVideoController = async (req: Request, res: Response) => {
 export const createVideoController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
-    const { creator, title, videoEmbedUrl, captchaToken } = req.body
-
-    if (!(await verifyCaptchaToken(captchaToken))) {
-      throw new TypeError('Invalid captcha token')
-    }
+    const { creator, title, videoEmbedUrl } = req.body
 
     if (!(creator && title && videoEmbedUrl))
       throw new TypeError('creator, title and videoEmbedUrl is required')
@@ -53,9 +48,14 @@ export const createVideoController = async (req: Request, res: Response) => {
     if (!isValidEmbedUrl(videoEmbedUrl))
       throw new TypeError('videoEmbedUrl invalid')
 
-    const video: VideoDoc = await storeVideo(creator, title, videoEmbedUrl)
+    // Discard records bigger than 4KB (longest possible URL + 2KB for creator and title)
+    if (creator.length + title.length + videoEmbedUrl.length > 4096) {
+      throw new TypeError('request body is too large')
+    }
 
-    return responseCreated(res, video)
+    await storeVideo(creator, title, videoEmbedUrl)
+
+    return responseCreated(res, req.body)
   } catch (error) {
     if (error instanceof TypeError) {
       return responseBadRequest(res, error.message)

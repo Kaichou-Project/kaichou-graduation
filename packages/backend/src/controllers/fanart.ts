@@ -11,7 +11,6 @@ import {
   responseInternalServerError,
   responseSuccess,
 } from '@util/response'
-import { verifyCaptchaToken } from '@util/captcha'
 import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
@@ -31,20 +30,21 @@ export const getAllFanartController = async (req: Request, res: Response) => {
 export const createFanartController = async (req: Request, res: Response) => {
   try {
     // Request body validation
-    const { creator, imageUrl, captchaToken } = req.body
-
-    if (!(await verifyCaptchaToken(captchaToken))) {
-      throw new TypeError('Invalid captcha token')
-    }
+    const { creator, imageUrl } = req.body
 
     if (!(creator && imageUrl))
       throw new TypeError('creator and imageUrl is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')
     if (!isString(imageUrl)) throw new TypeError('imageUrl must be a string')
 
-    const fanart: FanartDoc = await storeFanart({ creator, imageUrl })
+    // Discard records bigger than 4KB (longest possible URL + 2KB for creator)
+    if (creator.length + imageUrl.length > 4096) {
+      throw new TypeError('your url or name is too long')
+    }
 
-    return responseCreated(res, fanart)
+    await storeFanart({ creator, imageUrl })
+
+    return responseCreated(res, req.body)
   } catch (error) {
     if (error instanceof TypeError) {
       return responseBadRequest(res, error.message)
