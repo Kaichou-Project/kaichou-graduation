@@ -15,6 +15,10 @@ interface propsInterface {
   onFail?: () => void
 }
 
+interface dataType extends FanartInterface {
+  confirmation?: string
+}
+
 interface errorType {
   submission?: string
   creator?: string
@@ -28,7 +32,7 @@ export default function FormFanart(props: propsInterface) {
   const [errors, setErrors] = useState<errorType>({})
   const formEl = useRef(null)
 
-  function validate(data: FanartInterface, showError: boolean): boolean {
+  function validate(data: dataType, showError: boolean): boolean {
     data.creator = data.creator.trim()
     if (!data.creator) {
       if (showError) setErrors({ creator: "This field can't be empty" })
@@ -46,9 +50,16 @@ export default function FormFanart(props: propsInterface) {
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
-    const data = getFormData(formEl.current) as FanartInterface
+    const data = getFormData(formEl.current) as dataType
 
     if (!validate(data, true)) return
+
+    const confirmation = !!data.confirmation
+    delete data.confirmation
+
+    if (!confirmation) {
+      return setErrors({ confirmation: 'You must confirm this' })
+    }
 
     setErrors({})
 
@@ -65,7 +76,7 @@ export default function FormFanart(props: propsInterface) {
   }
 
   function handleChange() {
-    const data = getFormData(formEl.current) as FanartInterface
+    const data = getFormData(formEl.current) as dataType
     if (validate(data, false)) setPreview(data)
     else setPreview(null)
   }
