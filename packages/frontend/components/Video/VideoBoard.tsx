@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import { VideoInterface } from '../../interfaces/video'
+import React, { useState } from 'react'
+import { VideoResponseInterface } from '../../interfaces/video'
 import Video from './Video'
 import { getVideo } from '../../api/video'
+import InfiniteScrolling from '../InfiniteScrolling'
 import styles from './videoBoard.module.scss'
 
 export default function VideoBoard() {
-  const [videos, setVideos] = useState<VideoInterface[]>(null)
-
-  useEffect(() => {
-    async function onStart() {
-      const videos = await getVideo()
-      setVideos(videos)
-    }
-    onStart()
-  }, [])
+  const [videos, setVideos] = useState<VideoResponseInterface[]>([])
 
   return (
-    <>
+    <InfiniteScrolling
+      next={getVideo}
+      onData={(data) => setVideos(data as VideoResponseInterface[])}
+    >
       <div className={styles.listContainer}>
-        {videos && videos.map((video, i) => <Video key={i} video={video} />)}
+        {videos.map((video, i) => (
+          <Video key={i.toString()} video={video} />
+        ))}
       </div>
-    </>
+    </InfiniteScrolling>
   )
 }
