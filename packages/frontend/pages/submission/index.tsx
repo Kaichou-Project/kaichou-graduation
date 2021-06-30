@@ -3,7 +3,7 @@ import Navigation, { Page, Mode } from '../../components/Navigation/Navigation'
 import SuccessPopup from '../../components/Forms/SuccessPopup'
 import FormMessage from '../../components/Forms/FormMessage'
 import FormFanart from '../../components/Forms/FormFanart'
-import FormClip from '../../components/Forms/FormClip'
+import FormVideo from '../../components/Forms/FormVideo'
 import tabsEnum from '../../components/Forms/tabsEnum'
 import FormTabs from '../../components/Forms/FormTabs'
 import Captcha from '../../components/Forms/Captcha'
@@ -39,8 +39,8 @@ export default function Submission() {
         onSubmit={() => setTokenCounter(tokenCounter + 1)}
         onSuccess={() => setSubmitted(true)}
       />
-      <FormClip
-        hidden={currentTab !== tabsEnum.CLIP}
+      <FormVideo
+        hidden={currentTab !== tabsEnum.VIDEO}
         captchaToken={captchaToken}
         onSubmit={() => setTokenCounter(tokenCounter + 1)}
         onSuccess={() => setSubmitted(true)}
