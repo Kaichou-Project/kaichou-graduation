@@ -1,0 +1,23 @@
+.credits {
+  color: white;
+
+  .content {
+    margin: 3em 5em;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 3em;
+  }
+  
+  .roles {
+    text-align: center;
+    font-size: 2em;
+  }
+
+  .members {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
