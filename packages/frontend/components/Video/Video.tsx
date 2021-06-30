@@ -19,8 +19,8 @@ export default function Video({ video }: VideoProps) {
     <div>
       <div className={styles.cardContainer}>
         <div className={styles.descriptor}>
-          <p className={styles.title}>{video.title} asdfadfasdfasdfadfasdfasdfasdfasdfasd</p>
-          {/* <p className={styles.creator}> - {video.creator}</p> */}
+          <p className={styles.title}>{video.title}</p>
+          <p className={styles.creator}> - {video.creator}</p>
         </div>
         <div className={styles.playerWrapper}>
           <ReactPlayer
