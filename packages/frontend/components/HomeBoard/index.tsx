@@ -14,6 +14,12 @@ interface itemInterface {
   content: MessageResponseInterface | FanartResponseInterface
 }
 
+const breakpointColumnsObj = {
+  default: 3,
+  1160: 2,
+  860: 1,
+}
+
 export default function HomeBoard() {
   const [items, setItems] = useState<itemInterface[]>(null)
 
@@ -49,7 +55,7 @@ export default function HomeBoard() {
       </Link>
       <div className={styles.masonry}>
         {items && (
-          <MasonryBoard>
+          <MasonryBoard breakpointCols={breakpointColumnsObj}>
             {items.map(({ type, content }, i) =>
               type === 'message' ? (
                 <MessageCard
