@@ -11,7 +11,7 @@ const breakpointColumnsObj = {
   860: 1,
 }
 
-export default function MessageList() {
+export default function MessageBoard() {
   const [messages, setMessages] = useState<MessageResponseInterface[]>()
 
   useEffect(() => {

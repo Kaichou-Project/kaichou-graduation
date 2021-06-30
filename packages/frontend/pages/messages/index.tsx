@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navigation, { Page } from '../../components/Navigation/Navigation'
 import ToTheTopButton from '../../components/ToTheTopButton'
-import MessageBoard from '../../components/MessageCards/MessageList'
+import MessageBoard from '../../components/MessageCards/MessageBoard'
 
 export default function Messages() {
   return (
