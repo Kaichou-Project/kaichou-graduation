@@ -6,15 +6,15 @@ import styles from './index.module.scss'
 export default function Credits() {
   const head_devs = ['RedMaps', 'Nyxordinal', 'Azuraga Melody', 'PS-Soundwave']
   const developers = [
-    'FomTarro (Tom "Skeletom" Farro)',
+    'MeckiMesser',
+    'keijeizei',
+    'yovic',
+    'Reinhek',
+    'FomTarro (Tom “Skeletom” Farro)',
     'GlennPoh',
     'H-isaac23',
-    'keijeizei',
-    'MeckiMesser',
-    'Reinhek',
     'Vince14Genius',
     'VeryCoolMoment',
-    'yovic',
   ]
   const designers = ['RedMaps']
 
