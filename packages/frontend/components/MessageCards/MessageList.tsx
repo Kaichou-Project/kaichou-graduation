@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MessageCard from './MessageCard'
 import styles from '../Fanart/styles.module.scss'
 import MasonryBoard from '../MasonryBoard'
-import { MessageInterface } from '../../interfaces/message'
+import { MessageResponseInterface } from '../../interfaces/message'
 import { getMessages } from '../../api/message'
 
 const breakpointColumnsObj = {
@@ -12,7 +12,7 @@ const breakpointColumnsObj = {
 }
 
 export default function MessageList() {
-  const [messages, setMessages] = useState<MessageInterface[]>()
+  const [messages, setMessages] = useState<MessageResponseInterface[]>()
 
   useEffect(() => {
     async function onStart() {
