@@ -16,7 +16,7 @@ export default function MessageList(props: MessageProps) {
   ))
   return (
     <div className={styles.fanart_board}>
-      <MasonryBoard columnsizing={breakpointColumnsObj}>{cards},</MasonryBoard>
+      <MasonryBoard columnsizing={breakpointColumnsObj}>{cards}</MasonryBoard>
     </div>
   )
 }
