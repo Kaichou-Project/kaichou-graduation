@@ -5,11 +5,6 @@ import { getFanart } from '../../api/fanart'
 import MasonryBoard from '../MasonryBoard'
 import styles from './styles.module.scss'
 
-const breakpointColumnsObj = {
-  default: 3,
-  860: 2,
-  425: 1,
-}
 
 export default function FanartBoard() {
   const [fanarts, setFanarts] = useState<FanartInterface[]>()
@@ -25,7 +20,7 @@ export default function FanartBoard() {
   return (
     <div className={styles.fanart_board}>
       <h2>Click on the images to enlarge them!</h2>
-      <MasonryBoard columnsizing={breakpointColumnsObj}>
+      <MasonryBoard>
         {fanarts &&
           fanarts.map((fanart, i) => <FanartCard key={i} {...fanart} />)}
       </MasonryBoard>
