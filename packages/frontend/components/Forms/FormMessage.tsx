@@ -5,6 +5,7 @@ import CheckConfirm from './CheckConfirm'
 import SubmitButton from './SubmitButton'
 import { MessageInterface } from '../../interfaces/message'
 import { createMessage } from '../../api/message'
+import MessageCard from '../MessageCards/MessageCard'
 import { getFormData } from '../../utils/formData'
 import styles from './Form.module.scss'
 
@@ -109,11 +110,7 @@ export default function FormMessage(props: propsInterface) {
       />
 
       <h2>Preview</h2>
-
-      {/*ToDo remove when preview component done*/}
-      <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
-        ---- Preview goes here ----
-      </div>
+      {preview && <MessageCard {...preview} />}
 
       <CheckConfirm name="confirmation" error={errors.confirmation} />
 
