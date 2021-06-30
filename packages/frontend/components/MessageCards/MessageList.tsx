@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MessageCard from './MessageCard'
-import { MessageInterface } from '../../interfaces/message'
-import { getMessage } from '../../api/message'
 import styles from '../Fanart/styles.module.scss'
 import MasonryBoard from '../MasonryBoard'
+import { MessageInterface } from '../../interfaces/message'
+import { getMessages } from '../../api/message'
 
 const breakpointColumnsObj = {
   default: 3,
@@ -16,8 +16,8 @@ export default function MessageList() {
 
   useEffect(() => {
     async function onStart() {
-      const fanarts = await getMessage()
-      setMessages(fanarts)
+      const messages = await getMessages()
+      setMessages(messages)
     }
 
     onStart()

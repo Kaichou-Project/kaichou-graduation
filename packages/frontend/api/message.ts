@@ -16,3 +16,8 @@ export async function getMessage(): Promise<MessageResponseInterface[]> {
 export async function createMessage(data: MessageInterface) {
   await messageInstance.post('/message', data)
 }
+
+export async function getMessages() {
+  const res = await messageInstance.get('/message')
+  return res.data.content
+}
