@@ -35,15 +35,6 @@ export default function HomeBoard() {
         items.push({ type, content })
       }
 
-      // Time based sorting
-      // messages.forEach((content) => items.push({ type: 'message', content }))
-      // fanarts.forEach((content) => items.push({ type: 'fanarts', content }))
-      // items.sort((item1, item2) => {
-      //   const date1 = new Date(item1.content.createdAt)
-      //   const date2 = new Date(item2.content.createdAt)
-      //   return date1 > date2 ? 1 : -1
-      // })
-
       setItems(items)
     }
 
