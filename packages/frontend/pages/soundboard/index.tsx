@@ -7,7 +7,7 @@ import ToTheTopButton from '../../components/ToTheTopButton'
 
 const soundCategoryList: soundCategory[] = [
   {
-    name: 'Category 1',
+    name: 'Sounds',
     list: [
       {
         title: 'Good morning mother fxcker',
@@ -33,11 +33,6 @@ const soundCategoryList: soundCategory[] = [
         title: 'My sanity',
         url: '/sounds/kiryu-coco-my-sanity.mp3',
       },
-    ],
-  },
-  {
-    name: 'Category 2',
-    list: [
       {
         title: 'Oh wow',
         url: '/sounds/kiryu-coco-oh-wow.mp3',
