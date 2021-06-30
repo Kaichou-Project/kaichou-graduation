@@ -31,18 +31,15 @@ export default function FormClip(props: propsInterface) {
 
     const data = formDataToObject(formData) as ClipInterface
 
-    data.creator = data.creator.trim()
-    if (!data.creator) {
-      return setErrors({ creator: "This field can't be empty" })
-    }
-
-    if (!data.title) {
-      return setErrors({ title: "This field can't be empty" })
-    }
-
+    data.videoEmbedUrl = data.videoEmbedUrl.trim()
     if (!data.videoEmbedUrl) {
       return setErrors({ videoEmbedUrl: "This field can't be empty" })
     }
+
+    // Title and creator can't be empty or else it won't be sent in the request
+    // These metadata will be verified manually
+    data.creator = 'none'
+    data.title = 'none'
 
     setErrors({})
 
@@ -50,9 +47,10 @@ export default function FormClip(props: propsInterface) {
 
     try {
       await createClip(data)
+
       if (onSuccess) onSuccess()
     } catch (err) {
-      const message = err.response.data.message
+      const message = err.message
       setErrors({ submission: message })
       if (onFail) onFail()
     }
@@ -64,18 +62,6 @@ export default function FormClip(props: propsInterface) {
       onSubmit={handleSubmit}
     >
       <TextInput
-        name="creator"
-        label="The creator’s name is ..."
-        error={errors.creator}
-      />
-
-      <TextInput
-        name="title"
-        label="The title of the video is ..."
-        error={errors.title}
-      />
-
-      <TextInput
         name="videoEmbedUrl"
         label="The link to the video is ..."
         error={errors.videoEmbedUrl}
@@ -83,7 +69,6 @@ export default function FormClip(props: propsInterface) {
 
       <h2>Preview</h2>
 
-      {/*ToDo remove when preview component done*/}
       <div style={{ color: 'white', textAlign: 'center', margin: 40 }}>
         ---- Preview goes here ----
       </div>
