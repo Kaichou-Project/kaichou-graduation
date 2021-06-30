@@ -21,7 +21,7 @@ export default function SuccessPopup({ form }: propInterface) {
     >
       <div className={styles.box}>
         <h2>Thank you for your submission</h2>
-        <h3>Your submission will now be verified</h3>
+        <h3>Your submission will now be confirmed by a moderator</h3>
         <Link href="/">
           <div className={styles.button}>Go to Home Page</div>
         </Link>
