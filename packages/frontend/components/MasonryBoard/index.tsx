@@ -2,15 +2,21 @@ import React from 'react'
 import styles from './styles.module.scss'
 import Masonry from 'react-masonry-css'
 
-const breakpointColumnsObj = {
-  default: 2,
-  860: 1,
+interface props {
+  breakpointCols?: any
+  children: any
 }
 
-export default function MasonryBoard({ children }) {
+const defaultBreakpointColumns = {
+  default: 3,
+  860: 2,
+  425: 1,
+}
+
+export default function MasonryBoard({ breakpointCols, children }: props) {
   return (
     <Masonry
-      breakpointCols={breakpointColumnsObj}
+      breakpointCols={breakpointCols || defaultBreakpointColumns}
       className={styles.masonry_grid}
       columnClassName={styles.masonry_grid_col}
     >
