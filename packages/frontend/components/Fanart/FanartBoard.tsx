@@ -4,6 +4,7 @@ import { FanartInterface } from '../../interfaces/fanart'
 import { getFanart } from '../../api/fanart'
 import MasonryBoard from '../MasonryBoard'
 import styles from './styles.module.scss'
+
 const breakpointColumnsObj = {
   default: 3,
   860: 2,
