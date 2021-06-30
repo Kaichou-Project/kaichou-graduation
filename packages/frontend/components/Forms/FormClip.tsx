@@ -9,14 +9,9 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
-  captchaToken: string
   onSubmit?: () => void
   onSuccess?: () => void
   onFail?: () => void
-}
-
-interface dataType extends ClipInterface {
-  captchaToken: string
 }
 
 interface errorType {
@@ -28,7 +23,7 @@ interface errorType {
 }
 
 export default function FormClip(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
+  const { hidden, onSubmit, onSuccess, onFail } = props
   const [errors, setErrors] = useState<errorType>({})
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -39,7 +34,7 @@ export default function FormClip(props: propsInterface) {
     const confirmation = !!formData.get('confirmation')
     formData.delete('confirmation')
 
-    const data = formDataToObject(formData) as dataType
+    const data = formDataToObject(formData) as ClipInterface
 
     data.creator = data.creator.trim()
     if (!data.creator) {
@@ -57,11 +52,6 @@ export default function FormClip(props: propsInterface) {
     if (!confirmation) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
-
-    if (!captchaToken) {
-      return setErrors({ submission: 'Something wrong with Captcha' })
-    }
-    data.captchaToken = captchaToken
 
     setErrors({})
 
