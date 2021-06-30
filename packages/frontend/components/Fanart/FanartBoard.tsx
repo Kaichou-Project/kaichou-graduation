@@ -5,7 +5,6 @@ import { getFanart } from '../../api/fanart'
 import MasonryBoard from '../MasonryBoard'
 import styles from './styles.module.scss'
 
-
 export default function FanartBoard() {
   const [fanarts, setFanarts] = useState<FanartInterface[]>()
 
@@ -17,6 +16,7 @@ export default function FanartBoard() {
 
     onStart()
   }, [])
+
   return (
     <div className={styles.fanart_board}>
       <h2>Click on the images to enlarge them!</h2>
