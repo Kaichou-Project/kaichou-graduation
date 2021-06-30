@@ -1,10 +1,10 @@
 import React from 'react'
 import VideoPlayer from './VideoPlayer'
-import { VideoInterface } from '../../interfaces/video'
+import { VideoInterface, VideoResponseInterface } from '../../interfaces/video'
 import styles from './videoBoard.module.scss'
 
 interface VideoProps {
-  video: VideoInterface
+  video: VideoInterface | VideoResponseInterface
 }
 
 export default function Video({ video }: VideoProps) {

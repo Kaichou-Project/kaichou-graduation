@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 // import { MessageResponseInterface } from '../../interfaces/message'
 import { FanartResponseInterface } from '../../interfaces/fanart'
-// import { ClipResponseInterface } from '../../interfaces/clip'
+import { VideoResponseInterface } from '../../interfaces/video'
+import styles from './styles.module.scss'
 
 const DEFAULT_NUM_DATA_LOAD = 10
 
 type ResponseInterface =
   // | MessageResponseInterface
-  FanartResponseInterface
-// | ClipResponseInterface
+  FanartResponseInterface | VideoResponseInterface
 
 interface propInterface {
   next: (limit: number, lastId: string) => Promise<ResponseInterface[]>
@@ -49,11 +49,9 @@ export default function InfiniteScrolling(props: propInterface) {
       dataLength={data.length}
       next={getNextData}
       hasMore={hasMore}
-      loader={<h4>Loading...</h4>}
+      loader={<h4 className={styles.loading}>Loading...</h4>}
       endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>
+        <div className={styles.end_message}>Yay! You have seen it all</div>
       }
     >
       {children}
