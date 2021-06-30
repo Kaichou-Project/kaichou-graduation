@@ -5,7 +5,6 @@ import { getFanart } from '../../api/fanart'
 import MasonryBoard from '../MasonryBoard'
 import styles from './styles.module.scss'
 
-
 export default function FanartBoard() {
   const [fanarts, setFanarts] = useState<FanartInterface[]>()
 

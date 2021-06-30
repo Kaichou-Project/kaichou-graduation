@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MessageCard from './MessageCard'
-import MessageProps from '../../interfaces/messageProps'
 import styles from '../Fanart/styles.module.scss'
 import MasonryBoard from '../MasonryBoard'
+import { MessageInterface } from '../../interfaces/message'
+import { getMessages } from '../../api/message'
 
 const breakpointColumnsObj = {
   default: 3,
@@ -10,13 +11,32 @@ const breakpointColumnsObj = {
   860: 1,
 }
 
-export default function MessageList(props: MessageProps) {
-  const cards = props.cardData.map((message, i) => (
-    <MessageCard key={i} {...message} />
-  ))
+export default function MessageList() {
+  const [messages, setMessages] = useState<MessageInterface[]>()
+
+  const messageToCardInfo = (message: MessageInterface) => ({
+    title: 'TEST',
+    message: message.content,
+    author: message.creator,
+  })
+
+  useEffect(() => {
+    async function onStart() {
+      const messages = await getMessages()
+      setMessages(messages)
+    }
+
+    onStart()
+  }, [])
+
   return (
     <div className={styles.fanart_board}>
-      <MasonryBoard breakpointCols={breakpointColumnsObj}>{cards}</MasonryBoard>
+      <MasonryBoard breakpointCols={breakpointColumnsObj}>
+        {messages &&
+          messages.map((message, i) => (
+            <MessageCard key={i} {...messageToCardInfo(message)} />
+          ))}
+      </MasonryBoard>
     </div>
   )
 }
