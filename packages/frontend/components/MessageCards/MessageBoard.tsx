@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import MessageCard from './MessageCard'
 import { MessageResponseInterface } from '../../interfaces/message'
-import { getMessage } from '../../api/message'
+import { getMessages } from '../../api/message'
 import InfiniteScrolling from '../InfiniteScrolling'
 import styles from '../Fanart/styles.module.scss'
 import MasonryBoard from '../MasonryBoard'
@@ -18,7 +18,7 @@ export default function MessageBoard() {
   return (
     <div className={styles.fanart_board}>
       <InfiniteScrolling
-        next={getMessage}
+        next={getMessages}
         onData={(data) => setMessages(data as MessageResponseInterface[])}
       >
         <MasonryBoard breakpointCols={breakpointColumnsObj}>
