@@ -12,12 +12,45 @@ $enlarged-background: rgba($background, 0.9);
 
   font-size: $normal-font-size;
 
+  .header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: $white;
+    font-size: inherit;
+    padding: 3em;
+    
+    .button {
+        z-index: 99;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: $orange;
+        width: 12em;
+        height: 2.3em;
+        margin-left: auto;
+        border-radius: 0.4em;
+      }
+    
+    .button:hover {
+        background: $dark-orange;
+    }
+  }
+
   @media only screen and (max-width: $breakpoint-tablet) {
     font-size: $tablet-font-size;
   }
 
   @media only screen and (max-width: $breakpoint-phone) {
     font-size: $phone-font-size;
+
+    .header {
+      .button{
+        margin-left: 0;
+      }
+      justify-content: center;
+    }
   }
 
   h2 {
