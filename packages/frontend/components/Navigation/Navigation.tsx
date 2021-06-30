@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Navigation.module.scss'
 import SakuraParticles from '../SakuraParticles/SakuraParticles'
 import Link from 'next/link'
+import { Parallax } from 'react-parallax'
 
 interface NavProps {
   title: string
@@ -63,39 +64,41 @@ export default function Navigation({
   mode = Mode.DEFAULT,
 }: NavProps) {
   return (
-    <div className={`${styles.navigation} ${mode && styles[mode]}`}>
-      <div className={styles.name}>
-        <img src="navigation/Corner-nofilter.svg" />
-        <p>{cornerText}</p>
-      </div>
-
-      <div className={styles.navigators}>
-        <img src="navigation/Navbar-nofilter.svg" className={styles.navbar} />
-
-        <div className={styles.icons}>
-          {navItems.map((item) => (
-            <Link key={item.iconPath} href={item.page.toString()}>
-              <div className={styles.icon}>
-                <p className={styles.icon_text}>
-                  {item.page.charAt(0).toUpperCase() + item.page.slice(1)}
-                </p>
-                <img src={item.iconPath} alt={item.page.toString()} />
-                {page === item.page ? (
-                  <img src="navigation/Dot.svg" className={styles.active} />
-                ) : null}
-              </div>
-            </Link>
-          ))}
+    <Parallax bgImage="/navigation/sakura-trees.png" strength={200}>
+      <div className={`${styles.navigation} ${mode && styles[mode]}`}>
+        <div className={styles.name}>
+          <img src="navigation/Corner-nofilter.svg" />
+          <p>{cornerText}</p>
         </div>
-      </div>
 
-      <div className={styles.title}>
-        <div className={styles.box}>
-          <p>{title}</p>
+        <div className={styles.navigators}>
+          <img src="navigation/Navbar-nofilter.svg" className={styles.navbar} />
+
+          <div className={styles.icons}>
+            {navItems.map((item) => (
+              <Link key={item.iconPath} href={item.page.toString()}>
+                <div className={styles.icon}>
+                  <p className={styles.icon_text}>
+                    {item.page.charAt(0).toUpperCase() + item.page.slice(1)}
+                  </p>
+                  <img src={item.iconPath} alt={item.page.toString()} />
+                  {page === item.page ? (
+                    <img src="navigation/Dot.svg" className={styles.active} />
+                  ) : null}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {mode != Mode.FORM && <SakuraParticles />}
-    </div>
+        <div className={styles.title}>
+          <div className={styles.box}>
+            <p>{title}</p>
+          </div>
+        </div>
+
+        {mode != Mode.FORM && <SakuraParticles />}
+      </div>
+    </Parallax>
   )
 }
