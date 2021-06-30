@@ -7,11 +7,6 @@ import styles from './styles.module.scss'
 
 export default function FanartBoard() {
   const [fanarts, setFanarts] = useState<FanartInterface[]>()
-  const breakpointColumnsObj = {
-    default: 3,
-    860: 2,
-    425: 1,
-  }
 
   useEffect(() => {
     async function onStart() {
@@ -24,7 +19,7 @@ export default function FanartBoard() {
   return (
     <div className={styles.fanart_board}>
       <h2>Click on the images to enlarge them!</h2>
-      <MasonryBoard breakpointCols={breakpointColumnsObj}>
+      <MasonryBoard>
         {fanarts &&
           fanarts.map((fanart, i) => <FanartCard key={i} {...fanart} />)}
       </MasonryBoard>
