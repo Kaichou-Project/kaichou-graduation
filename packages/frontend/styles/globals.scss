@@ -17,3 +17,15 @@ html {
 body {
   margin: 0;
 }
+
+@media only screen and (max-width: $breakpoint-tablet) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: $breakpoint-phone) {
+  html {
+    font-size: 12px;
+  }
+}
