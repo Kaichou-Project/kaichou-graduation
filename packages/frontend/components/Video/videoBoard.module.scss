@@ -1,53 +1,110 @@
 @import '../../styles/variables';
 
+$normal-font-size: 24px;
+$tablet-font-size: 20px;
+$phone-font-size: 12px;
 
-.listContainer{
-    display: grid;
-    grid-template-columns: 40% 40%;
-    grid-column-gap: 50px;
-    grid-row-gap: 30px;
-    background-color: $background;
-    justify-content: center;
-}
+.container {
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        color: $white;
+        font-size: $normal-font-size;
+        padding: 3em;
+        
+        .button {
+            z-index: 99;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: $orange;
+            width: 12em;
+            height: 2.3em;
+            margin-left: auto;
+            border-radius: 0.4em;
+          }
+        
+        .button:hover {
+            background: $dark-orange;
+        }
+    }
+    
 
-@media screen and (max-width: $breakpoint-tablet) {
     .listContainer{
         display: grid;
-        grid-template-columns: 80% ;
+        grid-template-columns: 40% 40%;
+        grid-column-gap: 50px;
         grid-row-gap: 30px;
         background-color: $background;
         justify-content: center;
+
+        .descriptor{
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .title{
+            display: inline;
+            color: $white;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .creator{
+            display: inline;
+            color: $white;
+            font-style: italic;
+            font-size: 36px;
+            font-weight: 600;
+        }
+        
+        .playerWrapper{
+            position: relative;
+            padding-top: 56.25%;
+        }
+        
+        #player{
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 10px solid $orange;
+        }
     }
+
+    
 }
 
-.descriptor{
-    overflow: hidden;
-    white-space: nowrap;
+
+@media only screen and (max-width: $breakpoint-tablet) {
+    .container {
+        .header {
+            font-size: $tablet-font-size;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            margin-left: -1.5em;
+
+            .button {
+                flex-basis: 12em;
+                margin-left: 0;
+            }
+        }
+        
+        .listContainer{
+            display: grid;
+            grid-template-columns: 80% ;
+            grid-row-gap: 30px;
+            background-color: $background;
+            justify-content: center;
+        }
+    }
+    
 }
 
-.title{
-    display: inline;
-    color: $white;
-    font-size: 36px;
-    font-weight: 700;
-}
-
-.creator{
-    display: inline;
-    color: $white;
-    font-style: italic;
-    font-size: 36px;
-    font-weight: 600;
-}
-
-.playerWrapper{
-    position: relative;
-    padding-top: 56.25%;
-}
-
-#player{
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 10px solid $orange;
+@media only screen and (max-width: $breakpoint-phone) {
+    .container {
+        font-size: $phone-font-size;
+    }
 }
