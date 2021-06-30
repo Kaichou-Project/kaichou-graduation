@@ -1,7 +1,16 @@
 @import '../../styles/variables';
 
+$transparent: #ffffff00;
+
 .credits {
   color: white;
+
+  hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, $transparent, white, $transparent);
+    margin: 5em 0;
+  }
 
   .content {
     margin: 3em 5em;
@@ -19,8 +28,13 @@
 
   .members {
     display: grid;
-    align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    justify-items: center;
+    margin: 3em 5em;
+  }
+
+  .member {
+    margin: 0.2em;
   }
 }
 
