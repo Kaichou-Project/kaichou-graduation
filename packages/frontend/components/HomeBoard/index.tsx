@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getFanart } from '../../api/fanart'
-import { getMessage } from '../../api/message'
+import { getMessages } from '../../api/message'
 import { FanartResponseInterface } from '../../interfaces/fanart'
 import { MessageResponseInterface } from '../../interfaces/message'
 import MessageCard from '../MessageCards/MessageCard'
@@ -19,7 +19,7 @@ export default function HomeBoard() {
 
   useEffect(() => {
     async function onStart() {
-      const [messages, fanarts] = await Promise.all([getMessage(), getFanart()])
+      const [messages, fanarts] = await Promise.all([getMessages(), getFanart()])
       const items: itemInterface[] = []
 
       // Random based soring

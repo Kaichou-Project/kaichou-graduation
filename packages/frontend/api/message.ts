@@ -8,7 +8,7 @@ const messageInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 })
 
-export async function getMessage(): Promise<MessageResponseInterface[]> {
+export async function getMessages(): Promise<MessageResponseInterface[]> {
   const res = await messageInstance.get('/message')
   return res.data.content
 }
@@ -17,7 +17,3 @@ export async function createMessage(data: MessageInterface) {
   await messageInstance.post('/message', data)
 }
 
-export async function getMessages() {
-  const res = await messageInstance.get('/message')
-  return res.data.content
-}
