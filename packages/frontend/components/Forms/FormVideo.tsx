@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import TextInput from './TextInput'
-import { ClipInterface } from '../../interfaces/clip'
-import { createClip } from '../../api/clip'
+import { VideoInterface } from '../../interfaces/video'
+import { createVideo } from '../../api/video'
 import SubmitButton from './SubmitButton'
 import { formDataToObject } from '../../utils/formData'
 import styles from './Form.module.scss'
@@ -20,7 +20,7 @@ interface errorType {
   videoEmbedUrl?: string
 }
 
-export default function FormClip(props: propsInterface) {
+export default function FormVideo(props: propsInterface) {
   const { hidden, onSubmit, onSuccess, onFail } = props
   const [errors, setErrors] = useState<errorType>({})
 
@@ -29,7 +29,7 @@ export default function FormClip(props: propsInterface) {
 
     const formData = new FormData(evt.currentTarget)
 
-    const data = formDataToObject(formData) as ClipInterface
+    const data = formDataToObject(formData) as VideoInterface
 
     data.videoEmbedUrl = data.videoEmbedUrl.trim()
     if (!data.videoEmbedUrl) {
@@ -46,7 +46,7 @@ export default function FormClip(props: propsInterface) {
     if (onSubmit) onSubmit()
 
     try {
-      await createClip(data)
+      await createVideo(data)
 
       if (onSuccess) onSuccess()
     } catch (err) {

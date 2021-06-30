@@ -3,7 +3,7 @@ import Navigation, { Page, Mode } from '../../components/Navigation/Navigation'
 import SuccessPopup from '../../components/Forms/SuccessPopup'
 import FormMessage from '../../components/Forms/FormMessage'
 import FormFanart from '../../components/Forms/FormFanart'
-import FormClip from '../../components/Forms/FormClip'
+import FormVideo from '../../components/Forms/FormVideo'
 import tabsEnum from '../../components/Forms/tabsEnum'
 import FormTabs from '../../components/Forms/FormTabs'
 import Footer from '../../components/Footer/Footer'
@@ -29,7 +29,7 @@ export default function Submission() {
         hidden={currentTab !== tabsEnum.FANART}
         onSuccess={() => setSubmitted(true)}
       />
-      <FormClip
+      <FormVideo
         hidden={currentTab !== tabsEnum.CLIP}
         onSuccess={() => setSubmitted(true)}
       />
