@@ -85,10 +85,13 @@ After you start the backend server, a folder will be created automatically, name
 
 Env variable names inside `package/backend/.env.example` should be self explanatory. Here is more explanation of them:
 
+- `NODE_ENV` => Environment of the project, fill with `development` in your local machine and `production` in your live server
 - `PORT` => Backend service port
 - `DEBUG` => Set to `TRUE` if you want debug messages to show, ideally in dev you set this to `TRUE` and to `FALSE` in production
 - `CLIENT_URL` => frontend's URL
 - `DB_URI` => mongodb connection string, [you can find the details for it here](https://docs.mongodb.com/manual/reference/connection-string/)
+- `KEY` => Path to privkey file (OpenSSL)
+- `CERT` => Path to cert file (OpenSSL)
 
 For frontend, Env variable can be found in `package/frontend/.env.example`, which includes:
 
