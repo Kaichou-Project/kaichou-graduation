@@ -14,12 +14,6 @@ const breakpointColumnsObj = {
 export default function MessageList() {
   const [messages, setMessages] = useState<MessageInterface[]>()
 
-  const messageToCardInfo = (message: MessageInterface) => ({
-    title: 'TEST',
-    message: message.content,
-    author: message.creator,
-  })
-
   useEffect(() => {
     async function onStart() {
       const messages = await getMessages()
@@ -33,9 +27,7 @@ export default function MessageList() {
     <div className={styles.fanart_board}>
       <MasonryBoard breakpointCols={breakpointColumnsObj}>
         {messages &&
-          messages.map((message, i) => (
-            <MessageCard key={i} {...messageToCardInfo(message)} />
-          ))}
+          messages.map((message, i) => <MessageCard key={i} {...message} />)}
       </MasonryBoard>
     </div>
   )
