@@ -1,17 +1,10 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
+import VideoPlayer from './VideoPlayer'
+import { VideoInterface, VideoResponseInterface } from '../../interfaces/video'
 import styles from './videoBoard.module.scss'
 
-export interface VideoInterface {
-  id: string
-  title: string
-  creator: string
-  url: string
-}
-
 interface VideoProps {
-  key: string
-  video: VideoInterface
+  video: VideoInterface | VideoResponseInterface
 }
 
 export default function Video({ video }: VideoProps) {
@@ -22,14 +15,7 @@ export default function Video({ video }: VideoProps) {
           <p className={styles.title}>{video.title}</p>
           <p className={styles.creator}> - {video.creator}</p>
         </div>
-        <div className={styles.playerWrapper}>
-          <ReactPlayer
-            id={styles.player}
-            url={video.url}
-            width={'100%'}
-            height={'100%'}
-          />
-        </div>
+        <VideoPlayer video={video} />
       </div>
     </div>
   )

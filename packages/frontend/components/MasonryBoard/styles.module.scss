@@ -4,9 +4,9 @@ $gap-size: 0.5em;
   width: auto;
 
   & > div {
-    margin: 0 $gap-size;
+    margin: 0 $gap-size ;
     & > div {
-      margin: $gap-size 0;
+      margin: $gap-size * 2 0;
     }
   }
 }
