@@ -15,9 +15,13 @@ export const getAllFanart = async (
 ): Promise<FanartDoc[]> => {
   // if lastId is not given or given an empty string
   if (lastId === 'NULL' || lastId === '') {
-    return FanartModel.find({ isVerified }).limit(limit).exec()
+    return FanartModel.find({ isVerified })
+      .select('-__v -updatedAt')
+      .limit(limit)
+      .exec()
   }
   return FanartModel.find({ _id: { $gt: lastId }, isVerified })
+    .select('-__v -updatedAt')
     .limit(limit)
     .exec()
 }
