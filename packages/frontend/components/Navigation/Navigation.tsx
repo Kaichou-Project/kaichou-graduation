@@ -95,7 +95,7 @@ export default function Navigation({
         </div>
       </div>
 
-      {mode != Mode.FORM && (
+      {mode !== Mode.FORM && (
         <div>
           <img className={styles.coco} src="coco_peek.png" />
           <SakuraParticles />

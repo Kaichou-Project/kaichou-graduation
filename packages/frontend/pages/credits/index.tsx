@@ -44,12 +44,12 @@ export default function Credits() {
         <br />
         <br /> Thank you for all the smiles and laughter you&apos;ve given us
         this past year and a half. We appreciate all the effort you put in to
-        innovate the world of vtubers and paving the way for HoloEN. We grateful
-        for the sacrifices you made for us, and for all of the love that could
-        be felt going both ways. We are truly happy to be able to say we lived
-        in the era of a dragon such as you, and we await your return in 500
-        years. We are not sad because our time is coming to a close, but happy
-        because we had the time together.
+        innovate the world of vtubers and paving the way for HoloEN. We&apos;re
+        grateful for the sacrifices you made for us, and for all of the love
+        that could be felt going both ways. We are truly happy to be able to say
+        we lived in the era of a dragon such as you, and we await your return in
+        500 years. We are not sad because our time is coming to a close, but
+        happy because we had the time together.
         <br />
         <br /> Sincerely, The Kaichou Project
       </p>
