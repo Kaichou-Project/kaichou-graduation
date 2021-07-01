@@ -26,5 +26,5 @@ export async function getMessages(
 }
 
 export async function createMessage(data: MessageInterface) {
-  await messageInstance.post('/message', data)
+  await messageInstance.post('/create/message', data)
 }

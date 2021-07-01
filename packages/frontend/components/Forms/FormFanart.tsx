@@ -10,14 +10,12 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
-  captchaToken: string
   onSubmit?: () => void
   onSuccess?: () => void
   onFail?: () => void
 }
 
 interface dataType extends FanartInterface {
-  captchaToken: string
   confirmation?: string
 }
 
@@ -29,7 +27,7 @@ interface errorType {
 }
 
 export default function FormFanart(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
+  const { hidden, onSubmit, onSuccess, onFail } = props
   const [preview, setPreview] = useState<dataType>(null)
   const [errors, setErrors] = useState<errorType>({})
   const formEl = useRef(null)
@@ -62,11 +60,6 @@ export default function FormFanart(props: propsInterface) {
     if (!confirmation) {
       return setErrors({ confirmation: 'You must confirm this' })
     }
-
-    if (!captchaToken) {
-      return setErrors({ submission: 'Something wrong with Captcha' })
-    }
-    data.captchaToken = captchaToken
 
     setErrors({})
 
