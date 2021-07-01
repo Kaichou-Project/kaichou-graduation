@@ -1,10 +1,9 @@
 import React, { useState, useRef } from 'react'
 import TextInput from './TextInput'
-import TextArea from './TextArea'
+import { VideoInterface } from '../../interfaces/video'
+import { createVideo } from '../../api/video'
 import SubmitButton from './SubmitButton'
-import { MessageInterface } from '../../interfaces/message'
-import { createMessage } from '../../api/message'
-import MessageCard from '../MessageCards/MessageCard'
+import VideoCard from '../Video/Video'
 import { getFormData } from '../../utils/formData'
 import styles from './Form.module.scss'
 
@@ -18,24 +17,19 @@ interface propsInterface {
 interface errorType {
   submission?: string
   creator?: string
-  content?: string
+  title?: string
+  videoEmbedUrl?: string
 }
 
-export default function FormMessage(props: propsInterface) {
+export default function FormVideo(props: propsInterface) {
   const { hidden, onSubmit, onSuccess, onFail } = props
-  const [preview, setPreview] = useState<MessageInterface>(null)
+  const [preview, setPreview] = useState<VideoInterface>(null)
   const [errors, setErrors] = useState<errorType>({})
   const formEl = useRef(null)
 
-  function validate(data: MessageInterface, showError: boolean): boolean {
-    data.creator = data.creator.trim()
-    if (!data.creator) {
-      if (showError) setErrors({ creator: "This field can't be empty" })
-      return false
-    }
-
-    if (!data.content) {
-      if (showError) setErrors({ content: "This field can't be empty" })
+  function validate(data: VideoInterface, showError: boolean): boolean {
+    if (!data.videoEmbedUrl) {
+      if (showError) setErrors({ videoEmbedUrl: "This field can't be empty" })
       return false
     }
 
@@ -45,16 +39,18 @@ export default function FormMessage(props: propsInterface) {
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
-    const data = getFormData(formEl.current) as MessageInterface
+    const data = getFormData(formEl.current) as VideoInterface
 
     if (!validate(data, true)) return
+    data.creator = 'none'
+    data.title = 'none'
 
     setErrors({})
 
     if (onSubmit) onSubmit()
 
     try {
-      await createMessage(data)
+      await createVideo(data)
       if (onSuccess) onSuccess()
     } catch (err) {
       const message = err.response.data.message
@@ -64,7 +60,7 @@ export default function FormMessage(props: propsInterface) {
   }
 
   function handleChange() {
-    const data = getFormData(formEl.current) as MessageInterface
+    const data = getFormData(formEl.current) as VideoInterface
     if (validate(data, false)) setPreview(data)
     else setPreview(null)
   }
@@ -76,21 +72,14 @@ export default function FormMessage(props: propsInterface) {
       onSubmit={handleSubmit}
     >
       <TextInput
-        name="creator"
-        label="My name is ..."
+        name="videoEmbedUrl"
+        label="The link to the video is ..."
         onChange={handleChange}
-        error={errors.creator}
-      />
-
-      <TextArea
-        name="content"
-        label="My message to Coco is ...."
-        onChange={handleChange}
-        error={errors.content}
+        error={errors.videoEmbedUrl}
       />
 
       <h2>Preview</h2>
-      {preview && <MessageCard {...preview} />}
+      {preview && <VideoCard video={preview} />}
 
       <SubmitButton error={errors.submission} />
     </form>
