@@ -47,6 +47,7 @@ export default function InfiniteScrolling(props: propInterface) {
 
   return (
     <InfiniteScroll
+      className={styles.infinite_scroll}
       dataLength={data.length}
       next={getNextData}
       hasMore={hasMore}

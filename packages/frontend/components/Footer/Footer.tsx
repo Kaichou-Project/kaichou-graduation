@@ -21,6 +21,9 @@ export default function Footer() {
               <Link href="/">
                 <a>Home</a>
               </Link>
+              <Link href="/fanart">
+                <a>Fanart</a>
+              </Link>
               <Link href="/videos">
                 <a>Videos</a>
               </Link>
