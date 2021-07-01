@@ -9,10 +9,16 @@ import Logger from '@logger'
 import morganMiddleware from '@middleware/morgan'
 import initDB from 'db'
 import { STATUS_DB_CONNECTED } from '@constant/general'
+import { createServer } from 'https'
+import { readFileSync } from 'fs'
+import rateLimit from 'express-rate-limit'
 
 const PORT = process.env.PORT ?? 5000
 const DB_URI = process.env.DB_URI ?? ''
 const DEBUG = process.env.DEBUG === 'TRUE' ? true : false
+const KEY = process.env.KEY ?? 'privkey.pem'
+const CERT = process.env.CERT ?? 'cert.crt'
+const NODE_ENV = process.env.NODE_ENV
 
 async function startServer() {
   try {
@@ -28,6 +34,15 @@ async function startServer() {
     // Morgan middleware for logging HTTP request
     app.use(morganMiddleware)
 
+    // Rate limiting middleware. Rate limits all requests by IP using in-memory table
+    app.use(
+      '/public/v1/create',
+      rateLimit({
+        windowMs: 60 * 60 * 1000, // 1 hour
+        max: 10,
+      })
+    )
+
     // Apply the routes
     app.use('/public/v1', routes())
 
@@ -39,11 +54,28 @@ async function startServer() {
       }
     }
 
+    // options for https server
+    const options = {
+      key: readFileSync(KEY),
+      cert: readFileSync(CERT),
+    }
+
     // Start the server
-    // eslint-disable-next-line no-console
-    app.listen(PORT, () => {
-      Logger.info(`🚀 listening on http://localhost:${PORT}`)
-    })
+    if (NODE_ENV === 'development') {
+      // dev mode use http server
+      app.listen(PORT, () => {
+        Logger.info(
+          `Backend service listening on http://localhost:${PORT} in ${NODE_ENV} mode`
+        )
+      })
+    } else if (NODE_ENV === 'production') {
+      // prod mode use https server
+      createServer(options, app).listen(PORT, () => {
+        Logger.info(
+          `Backend service listening on https://localhost:${PORT} in ${NODE_ENV} mode`
+        )
+      })
+    }
   } catch (error) {
     Logger.error(error)
   }

@@ -27,19 +27,19 @@ const routes = () => {
 
   // Message route
   router.get('/message', getAllMessagesController)
-  router.post('/message', createMessageController)
+  router.post('/create/message', createMessageController)
   router.put('/message', updateMessageController)
   router.delete('/message', deleteMessageController)
 
   // Video routes here
   router.get('/video', getAllVideoController)
-  router.post('/video', createVideoController)
+  router.post('/create/video', createVideoController)
   router.put('/video', updateVideoController)
   router.delete('/video', deleteVideoController)
 
   // Fanart route
   router.get('/fanart', getAllFanartController)
-  router.post('/fanart', createFanartController)
+  router.post('/create/fanart', createFanartController)
   router.put('/fanart', updateFanartController)
   router.delete('/fanart', deleteFanartController)
 

@@ -11,7 +11,6 @@ import {
   responseInternalServerError,
   responseSuccess,
 } from '@util/response'
-import { verifyCaptchaToken } from '@util/captcha'
 import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
@@ -31,20 +30,21 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 export const createMessageController = async (req: Request, res: Response) => {
   try {
     // Request body validation
-    const { creator, content, captchaToken } = req.body
-
-    if (!(await verifyCaptchaToken(captchaToken))) {
-      throw new TypeError('Invalid captcha token')
-    }
+    const { creator, content } = req.body
 
     if (!(creator && content))
       throw new TypeError('creator and content is required')
     if (!isString(creator)) throw new TypeError('creator must be a string')
     if (!isString(content)) throw new TypeError('content must be a string')
 
-    const message: MessageDoc = await storeMessage({ creator, content })
+    // Discard records bigger than 1MB (You could literally write a novel to her with that limit)
+    if (creator.length + content.length > 1048576) {
+      throw new TypeError('your message is too long')
+    }
 
-    return responseCreated(res, message)
+    await storeMessage({ creator, content })
+
+    return responseCreated(res, req.body)
   } catch (error) {
     if (error instanceof TypeError) {
       return responseBadRequest(res, error.message)

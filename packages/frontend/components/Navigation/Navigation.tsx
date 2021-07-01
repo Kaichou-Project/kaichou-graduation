@@ -14,7 +14,7 @@ export enum Page {
   HOME = 'home',
   MESSAGES = 'messages',
   FANART = 'fanart',
-  CLIPS = 'clips',
+  VIDEOS = 'videos',
   SOUNDBOARD = 'soundboard',
   CREDITS = 'credits',
 }
@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
     iconPath: 'navigation/ImageIcon.svg',
   },
   {
-    page: Page.CLIPS,
+    page: Page.VIDEOS,
     iconPath: 'navigation/VideoIcon.svg',
   },
   {
