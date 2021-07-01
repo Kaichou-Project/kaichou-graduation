@@ -6,7 +6,7 @@ import styles from './index.module.scss'
 export default function Credits() {
   const head_devs = ['RedMap', 'Nyxordinal', 'Azuraga', 'PS-Soundwave']
   const developers = [
-    'MeckiMesser',
+    'Mecki-Messer',
     'keijeizei',
     'yovic',
     'Reinhek',
