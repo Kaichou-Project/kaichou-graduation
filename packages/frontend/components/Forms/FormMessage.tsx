@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import TextInput from './TextInput'
 import TextArea from './TextArea'
-import CheckConfirm from './CheckConfirm'
 import SubmitButton from './SubmitButton'
 import { MessageInterface } from '../../interfaces/message'
 import { createMessage } from '../../api/message'
@@ -11,31 +10,24 @@ import styles from './Form.module.scss'
 
 interface propsInterface {
   hidden: boolean
-  captchaToken: string
   onSubmit?: () => void
   onSuccess?: () => void
   onFail?: () => void
-}
-
-interface dataType extends MessageInterface {
-  captchaToken: string
-  confirmation?: string
 }
 
 interface errorType {
   submission?: string
   creator?: string
   content?: string
-  confirmation?: string
 }
 
 export default function FormMessage(props: propsInterface) {
-  const { hidden, captchaToken, onSubmit, onSuccess, onFail } = props
-  const [preview, setPreview] = useState<dataType>(null)
+  const { hidden, onSubmit, onSuccess, onFail } = props
+  const [preview, setPreview] = useState<MessageInterface>(null)
   const [errors, setErrors] = useState<errorType>({})
   const formEl = useRef(null)
 
-  function validate(data: dataType, showError: boolean): boolean {
+  function validate(data: MessageInterface, showError: boolean): boolean {
     data.creator = data.creator.trim()
     if (!data.creator) {
       if (showError) setErrors({ creator: "This field can't be empty" })
@@ -53,21 +45,9 @@ export default function FormMessage(props: propsInterface) {
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault()
 
-    const data = getFormData(formEl.current) as dataType
+    const data = getFormData(formEl.current) as MessageInterface
 
     if (!validate(data, true)) return
-
-    const confirmation = !!data.confirmation
-    delete data.confirmation
-
-    if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
-    }
-
-    if (!captchaToken) {
-      return setErrors({ submission: 'Something wrong with Captcha' })
-    }
-    data.captchaToken = captchaToken
 
     setErrors({})
 
@@ -84,7 +64,7 @@ export default function FormMessage(props: propsInterface) {
   }
 
   function handleChange() {
-    const data = getFormData(formEl.current) as dataType
+    const data = getFormData(formEl.current) as MessageInterface
     if (validate(data, false)) setPreview(data)
     else setPreview(null)
   }
@@ -111,8 +91,6 @@ export default function FormMessage(props: propsInterface) {
 
       <h2>Preview</h2>
       {preview && <MessageCard {...preview} />}
-
-      <CheckConfirm name="confirmation" error={errors.confirmation} />
 
       <SubmitButton error={errors.submission} />
     </form>

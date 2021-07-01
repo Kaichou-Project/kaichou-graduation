@@ -23,5 +23,5 @@ export async function getVideo(
 }
 
 export async function createVideo(data: VideoInterface) {
-  await videoInstance.post('/video', data)
+  await videoInstance.post('/create/video', data)
 }
