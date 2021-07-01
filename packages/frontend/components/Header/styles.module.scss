@@ -30,22 +30,9 @@ $phone-font-size: 12px;
 
   @media only screen and (max-width: $breakpoint-tablet) {
     font-size: $tablet-font-size;
-    .button {
-      margin-left: 0;
-    }
-
-    align-items: center;
-    justify-content: space-between;
-
-
   }
 
   @media only screen and (max-width: $breakpoint-phone) {
-    //font-size: $phone-font-size;
-    grid-template-columns: 0;
-
-    .h2 {
-      text-align: center;
-    }
+    font-size: $phone-font-size;
   }
 }
