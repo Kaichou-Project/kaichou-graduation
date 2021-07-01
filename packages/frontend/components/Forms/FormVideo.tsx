@@ -53,7 +53,7 @@ export default function FormVideo(props: propsInterface) {
       await createVideo(data)
       if (onSuccess) onSuccess()
     } catch (err) {
-      const message = err.response.data.message
+      const message = err.message
       setErrors({ submission: message })
       if (onFail) onFail()
     }

@@ -25,23 +25,30 @@ export default function HomeBoard() {
 
   useEffect(() => {
     async function onStart() {
-      const [messages, fanarts] = await Promise.all([
-        getMessages(),
-        getFanart(),
-      ])
-      const items: itemInterface[] = []
+      try {
+        const [messages, fanarts] = await Promise.all([
+          getMessages(),
+          getFanart(),
+        ])
+        const items: itemInterface[] = []
 
-      // Random based soring
-      while (messages.length || fanarts.length) {
-        let type = Math.random() > 0.5 ? 'message' : 'fanart'
-        if (type == 'message' && !messages.length) type = 'fanart'
-        if (type == 'fanart' && !fanarts.length) type = 'message'
+        // Random based soring
+        while (messages.length || fanarts.length) {
+          let type = Math.random() > 0.5 ? 'message' : 'fanart'
+          if (type == 'message' && !messages.length) type = 'fanart'
+          if (type == 'fanart' && !fanarts.length) type = 'message'
 
-        const content = type == 'message' ? messages.shift() : fanarts.shift()
-        items.push({ type, content })
+          const content = type == 'message' ? messages.shift() : fanarts.shift()
+          items.push({ type, content })
+        }
+
+        setItems(items)
+      } catch (error) {
+        // if there is error when fetching data
+        // supply with empty array to mitigate unhandled runtime error
+        // TODO: prepare a more proper way of handling this kind or error
+        setItems([])
       }
-
-      setItems(items)
     }
 
     onStart()
