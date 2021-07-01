@@ -9,14 +9,12 @@ interface VideoProps {
 
 export default function Video({ video }: VideoProps) {
   return (
-    <div>
-      <div className={styles.cardContainer}>
-        <div className={styles.descriptor}>
-          <p className={styles.title}>{video.title}</p>
-          <p className={styles.creator}> - {video.creator}</p>
-        </div>
-        <VideoPlayer video={video} />
+    <div className={styles.cardContainer}>
+      <div className={styles.descriptor}>
+        <p className={styles.title}>{video.title}</p>
+        <p className={styles.creator}> - {video.creator}</p>
       </div>
+      <VideoPlayer video={video} />
     </div>
   )
 }

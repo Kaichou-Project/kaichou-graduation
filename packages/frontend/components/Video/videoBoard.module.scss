@@ -5,7 +5,6 @@
   grid-template-columns: 40% 40%;
   grid-column-gap: 50px;
   grid-row-gap: 30px;
-  background-color: $background;
   justify-content: center;
 }
 
@@ -14,7 +13,6 @@
     display: grid;
     grid-template-columns: 80%;
     grid-row-gap: 30px;
-    background-color: $background;
     justify-content: center;
   }
 }
@@ -24,26 +22,19 @@
   white-space: nowrap;
 }
 
-.title {
+.title{
   display: inline;
   color: $white;
-  font-size: 36px;
+  font-size: 1.5em;
   font-weight: 700;
 }
 
-.title{
-    display: inline;
-    color: $white;
-    font-size: 1.5em;
-    font-weight: 700;
-}
-
 .creator{
-    display: inline;
-    color: $white;
-    font-style: italic;
-    font-size: 1.75em;
-    font-weight: 600;
+  display: inline;
+  color: $white;
+  font-style: italic;
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
 .playerWrapper {
