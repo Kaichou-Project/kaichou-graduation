@@ -28,14 +28,23 @@ $transparent: #ffffff00;
   }
 
   .members {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     margin: 2em 5em 3em 5em; 
   }
 
   .member {
+    flex: 0 0 240px;
+    text-align: center;
     margin: 0.2em;
+  }
+
+  .kiryu_coco {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
   }
 }
 
