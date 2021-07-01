@@ -7,7 +7,6 @@ import MessageCard from '../MessageCards/MessageCard'
 import FanartCard from '../Fanart/FanartCard'
 import MasonryBoard from '../MasonryBoard'
 import styles from './styles.module.scss'
-import Link from 'next/link'
 
 interface itemInterface {
   type: string
@@ -49,10 +48,10 @@ export default function HomeBoard() {
 
   return (
     <div className={styles.container}>
-      <h2>Messages from the Community</h2>
-      <Link href="/submission">
-        <div className={styles.button}>Submit your own</div>
-      </Link>
+      {/*<h2>Messages from the Community</h2>*/}
+      {/*<Link href="/submission">*/}
+      {/*  <div className={styles.button}>Submit your own</div>*/}
+      {/*</Link>*/}
       <div className={styles.masonry}>
         {items && (
           <MasonryBoard breakpointCols={breakpointColumnsObj}>
