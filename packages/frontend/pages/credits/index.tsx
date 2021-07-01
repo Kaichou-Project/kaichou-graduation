@@ -18,7 +18,7 @@ export default function Credits() {
     'Austinx88',
     'TakoLeakest ( JGQ )',
   ]
-  const designers = ['RedMap']
+  const designers = ['RedMap', 'F4b1']
   const special_thanks = ['Weewoo', 'Mochi', 'CHOCO VIRUS', 'Josie']
 
   return (
