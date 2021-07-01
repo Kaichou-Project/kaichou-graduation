@@ -31,7 +31,6 @@
   font-weight: 700;
 }
 
-<<<<<<< HEAD
 .title{
     display: inline;
     color: $white;
@@ -45,20 +44,12 @@
     font-style: italic;
     font-size: 1.75em;
     font-weight: 600;
-=======
-.creator {
-  display: inline;
-  color: $white;
-  font-style: italic;
-  font-size: 36px;
-  font-weight: 600;
 }
 
 .playerWrapper {
-  width: 100%;
-  aspect-ratio: 1280/720;
-  border: 10px solid $orange;
->>>>>>> ad803aa4d3c685cb9916794378ed8b6373d524a3
+	width: 100%;
+	aspect-ratio: 1280/720;
+	border: 10px solid $orange;
 }
 
 #player {
