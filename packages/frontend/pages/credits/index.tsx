@@ -4,7 +4,7 @@ import Footer from '../../components/Footer/Footer'
 import styles from './index.module.scss'
 
 export default function Credits() {
-  const head_devs = ['RedMap', 'Nyxordinal', 'Azuraga Melody', 'PS-Soundwave']
+  const head_devs = ['RedMap', 'Nyxordinal', 'Azuraga', 'PS-Soundwave']
   const developers = [
     'MeckiMesser',
     'keijeizei',
