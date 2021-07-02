@@ -3,18 +3,19 @@
 .listContainer {
   display: grid;
   grid-template-columns: 40% 40%;
-  grid-column-gap: 50px;
-  grid-row-gap: 30px;
+  grid-gap: 30px 50px;
   justify-content: center;
 }
 
 @media screen and (max-width: $breakpoint-tablet) {
   .listContainer {
-    display: grid;
     grid-template-columns: 80%;
-    grid-row-gap: 30px;
-    justify-content: center;
   }
+}
+
+.videoContainer {
+  display: grid;
+  justify-items: center;
 }
 
 .descriptor {
