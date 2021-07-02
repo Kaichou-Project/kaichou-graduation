@@ -8,6 +8,11 @@
 .end_message {
   color: $white;
   text-align: center;
+  font-size: 1.25rem;
   width: 100%;
   margin: 1em 0;
+}
+
+.infinite_scroll {
+  overflow: visible !important;
 }

@@ -27,7 +27,7 @@
     'title image';
 
   .name {
-    z-index: 1;
+    z-index: 2;
     grid-area: name;
     justify-self: left;
 
@@ -47,7 +47,7 @@
 
   .navigators {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 
     .navbar {
       position: absolute;
@@ -114,7 +114,7 @@
     display: flex;
     margin-top: 20vh;
     margin-left: 10rem;
-    z-index: 1;
+    z-index: 2;
 
     .box {
       background-image: url('/navigation/Title.svg');
@@ -130,6 +130,15 @@
         font-size: 2.5rem;
       }
     }
+  }
+
+  .coco {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 75vh;
+    z-index: 1;
   }
 }
 
@@ -180,10 +189,6 @@
           
           img {
             height: 10vw;
-          }
-          
-          .icon_text {
-            font-size: 0.7em;
           }
         }
       }

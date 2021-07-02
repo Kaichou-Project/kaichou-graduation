@@ -22,8 +22,7 @@ $height: 2.4em;
     height: $height;
     width: 8.4em;
     border-radius: 10px;
-
-    font-size: 36px;
+    font-size: 2em;
     font-style: normal;
     font-weight: 700;
 
@@ -46,7 +45,7 @@ $height: 2.4em;
 @media only screen and (max-width: $breakpoint-tablet) {
   .container {
     .button {
-      font-size: 6vw;
+      font-size: 1.5em;
     }
   }
 }
