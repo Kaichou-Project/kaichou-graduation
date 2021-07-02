@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start -p 80",
+    "start": "node server.js",
     "test:types": "yarn tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
