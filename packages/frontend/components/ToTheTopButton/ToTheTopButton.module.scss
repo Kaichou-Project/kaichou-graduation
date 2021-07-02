@@ -1,8 +1,14 @@
 @import 'styles/variables';
+$height: 2.4em;
 
 .container {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
   display: grid;
   justify-content: center;
+  padding: 1em;
 
   .button {
     cursor: pointer;
@@ -10,17 +16,16 @@
     grid-template-columns: auto auto;
     align-items: center;
     z-index: 1;
-  
+
     color: $white;
     background: $gray;
-    height: 2.4em;
+    height: $height;
     width: 8.4em;
     border-radius: 10px;
-  
-    font-size: 36px;
+    font-size: 2em;
     font-style: normal;
     font-weight: 700;
-  
+
     img {
       width: 1em;
       right: 0;
@@ -33,10 +38,14 @@
   }
 }
 
+.container.hide {
+  bottom: -4 * $height;
+}
+
 @media only screen and (max-width: $breakpoint-tablet) {
   .container {
     .button {
-      font-size: 6vw;
+      font-size: 1.5em;
     }
   }
 }

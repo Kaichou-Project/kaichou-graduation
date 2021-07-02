@@ -1,53 +1,57 @@
 @import '../../styles/variables';
 
-
-.listContainer{
-    display: grid;
-    grid-template-columns: 40% 40%;
-    grid-column-gap: 50px;
-    grid-row-gap: 30px;
-    background-color: $background;
-    justify-content: center;
+.listContainer {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  grid-gap: 30px 50px;
+  justify-content: center;
 }
 
 @media screen and (max-width: $breakpoint-tablet) {
-    .listContainer{
-        display: grid;
-        grid-template-columns: 80% ;
-        grid-row-gap: 30px;
-        background-color: $background;
-        justify-content: center;
-    }
+  .listContainer {
+    grid-template-columns: 80%;
+  }
 }
 
-.descriptor{
-    overflow: hidden;
-    white-space: nowrap;
+.videoContainer {
+  display: grid;
+  justify-items: center;
+}
+
+.descriptor {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .title{
-    display: inline;
-    color: $white;
-    font-size: 36px;
-    font-weight: 700;
+  display: inline;
+  color: $white;
+  font-size: 1.5em;
+  font-weight: 700;
 }
 
 .creator{
-    display: inline;
-    color: $white;
-    font-style: italic;
-    font-size: 36px;
-    font-weight: 600;
+  display: inline;
+  color: $white;
+  font-style: italic;
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
-.playerWrapper{
-    position: relative;
-    padding-top: 56.25%;
+.playerWrapper {
+	width: 100%;
+	aspect-ratio: 1280/720;
+	border: 10px solid $orange;
 }
 
-#player{
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 10px solid $orange;
+#player {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel {
+  .playerWrapper {
+    width: calc(100% - 50px);
+    margin: auto;
+  }
 }

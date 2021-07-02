@@ -1,33 +1,33 @@
-import { FanartInterface } from '../interfaces/fanart'
-import https from 'https'
+import { AxiosResponse } from 'axios'
+import { APIResponse } from '../interfaces/api'
+import { FanartInterface, FanartResponseInterface } from '../interfaces/fanart'
+import AxiosInstance from './axios'
+
+export async function getFanart(
+  limit?: number,
+  lastId?: string
+): Promise<FanartResponseInterface[]> {
+  try {
+    const res: AxiosResponse<APIResponse<FanartResponseInterface[]>> =
+      await AxiosInstance.get('/fanart', {
+        params: {
+          limit,
+          lastId,
+        },
+      })
+    return res.data.content
+  } catch (err) {
+    throw TypeError(err.message)
+  }
+}
 
 export async function createFanart(data: FanartInterface) {
-  const options = {
-    method: 'POST',
-    hostname: process.env.NEXT_PUBLIC_API_HOSTNAME ?? 'localhost',
-    port: process.env.NEXT_PUBLIC_API_PORT ?? 5000,
-    path: '/public/v1/create/fanart',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  try {
+    await AxiosInstance.post('/create/fanart', data)
+  } catch (error) {
+    if (error.response.status === 429) {
+      throw new TypeError('Submission limit reached. Try again in an hour.')
+    }
+    throw new TypeError(error.message)
   }
-
-  return new Promise((resolve, reject) => {
-    const req = https
-      .request(options, (res) => {
-        res.resume()
-      })
-      .on('response', (res) => {
-        if (res.statusCode == 429) {
-          reject(new Error('Submission limit reached. Try again in an hour.'))
-        }
-        resolve(undefined)
-      })
-
-    const body = JSON.stringify(data)
-
-    req.write(body)
-
-    req.end()
-  })
 }

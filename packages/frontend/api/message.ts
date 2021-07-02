@@ -1,33 +1,36 @@
-import { MessageInterface } from '../interfaces/message'
-import https from 'https'
+import { AxiosResponse } from 'axios'
+import { APIResponse } from '../interfaces/api'
+import {
+  MessageInterface,
+  MessageResponseInterface,
+} from '../interfaces/message'
+import AxiosInstance from './axios'
+
+export async function getMessages(
+  limit?: number,
+  lastId?: string
+): Promise<MessageResponseInterface[]> {
+  try {
+    const res: AxiosResponse<APIResponse<MessageResponseInterface[]>> =
+      await AxiosInstance.get('/message', {
+        params: {
+          limit,
+          lastId,
+        },
+      })
+    return res.data.content
+  } catch (err) {
+    throw TypeError(err.message)
+  }
+}
 
 export async function createMessage(data: MessageInterface) {
-  const options = {
-    method: 'POST',
-    hostname: process.env.NEXT_PUBLIC_API_HOSTNAME ?? 'localhost',
-    port: process.env.NEXT_PUBLIC_API_PORT ?? 5000,
-    path: '/public/v1/create/message',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  try {
+    await AxiosInstance.post('/create/message', data)
+  } catch (error) {
+    if (error.response.status === 429) {
+      throw new TypeError('Submission limit reached. Try again in an hour.')
+    }
+    throw new TypeError(error.message)
   }
-
-  return new Promise((resolve, reject) => {
-    const req = https
-      .request(options, (res) => {
-        res.resume()
-      })
-      .on('response', (res) => {
-        if (res.statusCode == 429) {
-          reject(new Error('Submission limit reached. Try again in an hour.'))
-        }
-        resolve(undefined)
-      })
-
-    const body = JSON.stringify(data)
-
-    req.write(body)
-
-    req.end()
-  })
 }

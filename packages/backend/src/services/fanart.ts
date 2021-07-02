@@ -8,16 +8,20 @@ import { StoreFanartParameter } from 'interface/service'
  * @param isVerified set to true to fetch verified fanart and vice versa
  * @returns array of fanart document
  */
-export const getAllFanart = async (
+export const getFanart = async (
   lastId: string,
   limit: number,
   isVerified: boolean
 ): Promise<FanartDoc[]> => {
   // if lastId is not given or given an empty string
   if (lastId === 'NULL' || lastId === '') {
-    return FanartModel.find({ isVerified }).limit(limit).exec()
+    return FanartModel.find({ isVerified })
+      .select('-__v -updatedAt -createdAt -isVerified')
+      .limit(limit)
+      .exec()
   }
   return FanartModel.find({ _id: { $gt: lastId }, isVerified })
+    .select('-__v -updatedAt -createdAt -isVerified')
     .limit(limit)
     .exec()
 }

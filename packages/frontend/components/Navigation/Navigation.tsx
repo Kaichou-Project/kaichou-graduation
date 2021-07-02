@@ -14,7 +14,7 @@ export enum Page {
   HOME = 'home',
   MESSAGES = 'messages',
   FANART = 'fanart',
-  CLIPS = 'clips',
+  VIDEOS = 'videos',
   SOUNDBOARD = 'soundboard',
   CREDITS = 'credits',
 }
@@ -30,7 +30,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  /*{
+  {
     page: Page.HOME,
     iconPath: 'navigation/HomeIcon.svg',
   },
@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
     iconPath: 'navigation/ImageIcon.svg',
   },
   {
-    page: Page.CLIPS,
+    page: Page.VIDEOS,
     iconPath: 'navigation/VideoIcon.svg',
   },
   {
@@ -53,7 +53,7 @@ const navItems: NavItem[] = [
   {
     page: Page.CREDITS,
     iconPath: 'navigation/InfoIcon.svg',
-  },*/
+  },
 ]
 
 export default function Navigation({
@@ -95,7 +95,12 @@ export default function Navigation({
         </div>
       </div>
 
-      {mode != Mode.FORM && <SakuraParticles />}
+      {mode !== Mode.FORM && (
+        <div>
+          <img className={styles.coco} src="coco_peek.png" />
+          <SakuraParticles />
+        </div>
+      )}
     </div>
   )
 }

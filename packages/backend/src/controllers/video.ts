@@ -1,10 +1,5 @@
 import { VideoDoc } from '@model/video'
-import {
-  deleteVideo,
-  getAllVideos,
-  storeVideo,
-  updateVideo,
-} from '@service/video'
+import { deleteVideo, getVideos, storeVideo, updateVideo } from '@service/video'
 import {
   responseBadRequest,
   responseCreated,
@@ -21,11 +16,11 @@ import {
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
 
-export const getAllVideoController = async (req: Request, res: Response) => {
+export const getVideoController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] videos after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const messages: VideoDoc[] = await getAllVideos(lastId, +limit, true)
+    const messages: VideoDoc[] = await getVideos(lastId, +limit, true)
 
     return responseSuccess(res, messages)
   } catch (error) {
@@ -37,8 +32,10 @@ export const createVideoController = async (req: Request, res: Response) => {
   try {
     //   Request body validation
     const { creator, title, videoEmbedUrl } = req.body
+
     if (!(creator && title && videoEmbedUrl))
       throw new TypeError('creator, title and videoEmbedUrl is required')
+
     if (!isString(creator)) throw new TypeError('creator must be a string')
     if (!isString(title)) throw new TypeError('title must be a string')
     if (!isString(videoEmbedUrl))

@@ -32,7 +32,6 @@
     "express-rate-limit": "^5.2.6",
     "mongoose": "^5.12.14",
     "morgan": "^1.10.0",
-    "react-google-recaptcha-v3": "^1.9.4",
     "ts-node": "^10.0.0",
     "winston": "^3.3.3"
   },

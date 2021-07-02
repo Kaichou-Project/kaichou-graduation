@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+
+$transparent: #ffffff00;
+
+.credits {
+  color: white;
+
+  hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, $transparent, white, $transparent);
+    margin: 5em 0;
+  }
+
+  .content {
+    margin: 3em 20%;
+    font-size: 1.15em;
+  }
+
+  .title {
+    margin: 0 1em;
+    text-align: center;
+    font-size: 3em;
+  }
+
+  .roles {
+    text-align: center;
+    font-size: 2em;
+  }
+
+  .members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2em 5em 3em 5em; 
+  }
+
+  .member {
+    flex: 0 0 100%;
+    text-align: center;
+    margin: 0.2em;
+  }
+
+  .kiryu_coco {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: $breakpoint-phone) {
+  .credits {
+    .content {
+      margin: 2em;
+      text-align: center;
+    }
+
+    .members {
+      margin: 2em 0 3em 0;
+    }
+  }
+}

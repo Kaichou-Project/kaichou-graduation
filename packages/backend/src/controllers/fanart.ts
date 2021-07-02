@@ -1,7 +1,7 @@
 import { FanartDoc } from '@model/fanart'
 import {
   deleteFanart,
-  getAllFanart,
+  getFanart,
   storeFanart,
   updateFanart,
 } from '@service/fanart'
@@ -15,11 +15,11 @@ import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
 
-export const getAllFanartController = async (req: Request, res: Response) => {
+export const getFanartController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] fanart after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const fanarts: FanartDoc[] = await getAllFanart(lastId, +limit, true)
+    const fanarts: FanartDoc[] = await getFanart(lastId, +limit, true)
 
     return responseSuccess(res, fanarts)
   } catch (error) {

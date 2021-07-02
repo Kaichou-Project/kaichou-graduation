@@ -1,0 +1,58 @@
+@import 'styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap');
+
+.container {
+  background: $background;
+  overflow: hidden;
+  justify-content: center;
+  margin: 80px;
+  padding: 20px;
+  align-content: flex-start;
+}
+
+.card {
+  background-color: $orange;
+  aspect-ratio: auto;
+  border-radius: 10px;
+  color: $white;
+  font-family: 'Open Sans';
+  padding: 5px;
+  position: relative;
+  overflow: visible;
+
+  .title {
+    text-align: left;
+    margin-top: 12px;
+    font-size: 20px;
+    margin-left: 49px;
+    font-family: 'Open Sans';
+  }
+
+  img {
+    float: right;
+    position: relative;
+    top: -25px;
+    left: 20px;
+    height: 105px;
+  }
+
+  .message {
+    font-size: 1em;
+    text-align: left;
+    margin-top: 40px;
+    margin-left: 49px;
+    margin-right: 60px;
+    font-family: 'Open Sans';
+    font-weight: 700;
+  }
+
+  .author {
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 14px;
+    font-size: 1.2em;
+    font-family: 'Open Sans';
+    font-weight: 800;
+  }
+}

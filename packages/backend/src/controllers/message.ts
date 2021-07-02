@@ -1,6 +1,6 @@
 import { MessageDoc } from '@model/message'
 import {
-  getAllMessages,
+  getMessages,
   storeMessage,
   updateMessage,
   deleteMessage,
@@ -15,11 +15,11 @@ import { isBoolean, isString, isUndefined, isValidId } from '@util/validate'
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
 
-export const getAllMessagesController = async (req: Request, res: Response) => {
+export const getMessagesController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] messages after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const messages: MessageDoc[] = await getAllMessages(lastId, +limit, true)
+    const messages: MessageDoc[] = await getMessages(lastId, +limit, true)
 
     return responseSuccess(res, messages)
   } catch (error) {
@@ -29,7 +29,7 @@ export const getAllMessagesController = async (req: Request, res: Response) => {
 
 export const createMessageController = async (req: Request, res: Response) => {
   try {
-    //   Request body validation
+    // Request body validation
     const { creator, content } = req.body
 
     if (!(creator && content))

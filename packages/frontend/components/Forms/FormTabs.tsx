@@ -35,9 +35,9 @@ export default function FormTabs({ onChange }: propsInterface) {
         FANART
       </div>
       <div
-        onClick={() => changeTab(tabsEnum.CLIP)}
+        onClick={() => changeTab(tabsEnum.VIDEO)}
         className={`${styles.button} ${
-          currentTab === tabsEnum.CLIP ? styles.selected : ''
+          currentTab === tabsEnum.VIDEO ? styles.selected : ''
         }`}
       >
         VIDEO/CLIP

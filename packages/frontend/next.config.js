@@ -6,11 +6,6 @@ module.exports = {
         destination: '/',
         permanent: true,
       },
-      {
-        source: '/',
-        destination: '/submission',
-        permanent: false,
-      },
     ]
   },
 }

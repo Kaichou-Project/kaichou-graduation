@@ -1,33 +1,33 @@
-import { VideoInterface } from '../interfaces/video'
-import https from 'https'
+import { AxiosResponse } from 'axios'
+import { APIResponse } from '../interfaces/api'
+import { VideoInterface, VideoResponseInterface } from '../interfaces/video'
+import AxiosInstance from './axios'
+
+export async function getVideo(
+  limit?: number,
+  lastId?: string
+): Promise<VideoResponseInterface[]> {
+  try {
+    const res: AxiosResponse<APIResponse<VideoResponseInterface[]>> =
+      await AxiosInstance.get('/video', {
+        params: {
+          limit,
+          lastId,
+        },
+      })
+    return res.data.content
+  } catch (err) {
+    throw TypeError(err.message)
+  }
+}
 
 export async function createVideo(data: VideoInterface) {
-  const options = {
-    method: 'POST',
-    hostname: process.env.NEXT_PUBLIC_API_HOSTNAME ?? 'localhost',
-    port: process.env.NEXT_PUBLIC_API_PORT ?? 5000,
-    path: '/public/v1/create/video',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  try {
+    await AxiosInstance.post('/create/video', data)
+  } catch (error) {
+    if (error.response.status === 429) {
+      throw new TypeError('Submission limit reached. Try again in an hour.')
+    }
+    throw new TypeError(error.message)
   }
-
-  return new Promise((resolve, reject) => {
-    const req = https
-      .request(options, (res) => {
-        res.resume()
-      })
-      .on('response', (res) => {
-        if (res.statusCode == 429) {
-          reject(new Error('Submission limit reached. Try again in an hour.'))
-        }
-        resolve(undefined)
-      })
-
-    const body = JSON.stringify(data)
-
-    req.write(body)
-
-    req.end()
-  })
 }

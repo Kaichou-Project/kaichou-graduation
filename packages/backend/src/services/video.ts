@@ -7,15 +7,19 @@ import { VideoModel, VideoDoc, VideoInterface } from '@model/video'
  * @param isVerified set to true to fetch verified video and vice versa
  * @returns array of video document
  */
-export const getAllVideos = async (
+export const getVideos = async (
   lastId: string,
   limit: number,
   isVerified: boolean
 ): Promise<VideoDoc[]> => {
   if (lastId === 'NULL' || lastId === '') {
-    return VideoModel.find({ isVerified }).limit(limit).exec()
+    return VideoModel.find({ isVerified })
+      .select('-__v -updatedAt -createdAt -isVerified')
+      .limit(limit)
+      .exec()
   }
   return VideoModel.find({ _id: { $gt: lastId }, isVerified })
+    .select('-__v -updatedAt -createdAt -isVerified')
     .limit(limit)
     .exec()
 }
