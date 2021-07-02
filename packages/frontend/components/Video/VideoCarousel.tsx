@@ -25,8 +25,15 @@ export default function VideoCarousel() {
 
   useEffect(() => {
     async function onStart() {
-      const videos = await getVideo()
-      setVideos(videos)
+      try {
+        const videos = await getVideo()
+        setVideos(videos)
+      } catch (error) {
+        // if there is error when fetching data
+        // supply with empty array to mitigate unhandled runtime error
+        // TODO: prepare a more proper way of handling this kind or error
+        setVideos(null)
+      }
     }
     onStart()
 

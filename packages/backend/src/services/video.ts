@@ -13,9 +13,13 @@ export const getAllVideos = async (
   isVerified: boolean
 ): Promise<VideoDoc[]> => {
   if (lastId === 'NULL' || lastId === '') {
-    return VideoModel.find({ isVerified }).limit(limit).exec()
+    return VideoModel.find({ isVerified })
+      .select('-__v -updatedAt')
+      .limit(limit)
+      .exec()
   }
   return VideoModel.find({ _id: { $gt: lastId }, isVerified })
+    .select('-__v -updatedAt')
     .limit(limit)
     .exec()
 }

@@ -57,7 +57,7 @@ export default function FormMessage(props: propsInterface) {
       await createMessage(data)
       if (onSuccess) onSuccess()
     } catch (err) {
-      const message = err.response.data.message
+      const message = err.message
       setErrors({ submission: message })
       if (onFail) onFail()
     }
