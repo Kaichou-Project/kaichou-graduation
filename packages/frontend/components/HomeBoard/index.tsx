@@ -47,7 +47,7 @@ export default function HomeBoard() {
         // if there is error when fetching data
         // supply with empty array to mitigate unhandled runtime error
         // TODO: prepare a more proper way of handling this kind or error
-        setItems([])
+        setItems(null)
       }
     }
 

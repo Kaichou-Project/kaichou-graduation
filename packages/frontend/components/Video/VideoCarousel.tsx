@@ -32,7 +32,7 @@ export default function VideoCarousel() {
         // if there is error when fetching data
         // supply with empty array to mitigate unhandled runtime error
         // TODO: prepare a more proper way of handling this kind or error
-        setVideos([])
+        setVideos(null)
       }
     }
     onStart()
