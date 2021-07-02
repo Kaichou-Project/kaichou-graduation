@@ -61,7 +61,8 @@ export default function Credits() {
       </p>
       <h2 className={styles.title}>Kiryukai Project</h2>
       <p className={styles.content}>
-        Thank you for the Memories Coco! 会長、僕たちとコミュニティ全体のためにあなたが
+        Thank you for the Memories Coco!
+        会長、僕たちとコミュニティ全体のためにあなたが
         してくれたすべてのことに感謝します。僕たちはあなたを僕たちの生活の一部として迎えてくれ
         て本当に恵まれています。僕たちは永遠に感謝しています。またお会いできるのを楽しみにして
         います。ホロライブの龍は不滅です、僕は君に世界で最高のことを願っています。500年後にま
