@@ -8,25 +8,28 @@ $phone-font-size: 12px;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
-  grid-row-gap: 1em;
-  justify-content: space-between;
-  align-items: center;
   color: $white;
   font-size: $normal-font-size;
-  padding: 3em;
+  padding: 0 3em 3em;
 
-  .masonry {
-    grid-column: 1 / 3;
+  .button {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: $orange;
+    width: 12em;
+    height: 2.3em;
+    margin-left: auto;
+    border-radius: 0.4em;
+  }
+
+  .button:hover {
+    background: $dark-orange;
   }
 
   @media only screen and (max-width: $breakpoint-tablet) {
     font-size: $tablet-font-size;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-
-    .masonry {
-      grid-column: 1;
-    }
   }
 
   @media only screen and (max-width: $breakpoint-phone) {

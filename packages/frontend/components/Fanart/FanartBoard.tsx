@@ -11,6 +11,11 @@ export default function FanartBoard() {
 
   return (
     <div className={styles.fanart_board}>
+      <h2>Click on the images to enlarge them!</h2>
+      <MasonryBoard>
+        {fanarts &&
+          fanarts.map((fanart, i) => <FanartCard key={i} {...fanart} />)}
+      </MasonryBoard>
       <InfiniteScrolling
         next={getFanart}
         onData={(data) => setFanarts(data as FanartResponseInterface[])}

@@ -12,12 +12,14 @@ $enlarged-background: rgba($background, 0.9);
 
   font-size: $normal-font-size;
 
+
   @media only screen and (max-width: $breakpoint-tablet) {
     font-size: $tablet-font-size;
   }
 
   @media only screen and (max-width: $breakpoint-phone) {
     font-size: $phone-font-size;
+
   }
 
   h2 {

@@ -9,15 +9,17 @@ export default function VideoBoard() {
   const [videos, setVideos] = useState<VideoResponseInterface[]>([])
 
   return (
-    <InfiniteScrolling
-      next={getVideo}
-      onData={(data) => setVideos(data as VideoResponseInterface[])}
-    >
-      <div className={styles.listContainer}>
-        {videos.map((video, i) => (
-          <Video key={i.toString()} video={video} />
-        ))}
-      </div>
-    </InfiniteScrolling>
+    <div className={styles.container}>
+      <InfiniteScrolling
+        next={getVideo}
+        onData={(data) => setVideos(data as VideoResponseInterface[])}
+      >
+        <div className={styles.listContainer}>
+          {videos.map((video, i) => (
+            <Video key={i.toString()} video={video} />
+          ))}
+        </div>
+      </InfiniteScrolling>
+    </div>
   )
 }
