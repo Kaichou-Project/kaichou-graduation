@@ -61,6 +61,8 @@ export default function FormVideo(props: propsInterface) {
 
   function handleChange() {
     const data = getFormData(formEl.current) as VideoInterface
+    data.title = '<Title>'
+    data.creator = '<Creator>'
     if (validate(data, false)) setPreview(data)
     else setPreview(null)
   }
