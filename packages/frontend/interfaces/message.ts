@@ -5,5 +5,4 @@ export interface MessageInterface {
 
 export interface MessageResponseInterface extends MessageInterface {
   _id: string
-  createdAt: string
 }

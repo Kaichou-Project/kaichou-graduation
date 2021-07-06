@@ -4,7 +4,7 @@ import Footer from '../../components/Footer/Footer'
 import styles from './index.module.scss'
 
 export default function Credits() {
-  const head_devs = ['RedMap', 'Nyxordinal', 'Azuraga', 'PS-Soundwave']
+  const head_devs = ['RedMap', 'Nyxordinal', 'Azuraga']
   const developers = [
     'Mecki-Messer',
     'keijeizei',
@@ -18,7 +18,7 @@ export default function Credits() {
     'Austinx88',
     'TakoLeakest ( JGQ )',
   ]
-  const designers = ['RedMap', 'F4b1']
+  const designers = ['RedMap', 'F4b1', 'VitaVictus']
   const special_thanks = ['Weewoo', 'Mochi', 'CHOCO VIRUS', 'Josie']
 
   return (

@@ -17,9 +17,6 @@ export async function getVideo(
       })
     return res.data.content
   } catch (err) {
-    if (err.response.data) {
-      throw TypeError(err.response.data.message)
-    }
     throw TypeError(err.message)
   }
 }
@@ -30,9 +27,6 @@ export async function createVideo(data: VideoInterface) {
   } catch (error) {
     if (error.response.status === 429) {
       throw new TypeError('Submission limit reached. Try again in an hour.')
-    }
-    if (error.response.data) {
-      throw new TypeError(error.response.data.message)
     }
     throw new TypeError(error.message)
   }

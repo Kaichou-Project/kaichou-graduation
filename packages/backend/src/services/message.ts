@@ -8,19 +8,19 @@ import { StoreMessageParameter } from 'interface/service'
  * @param isVerified set to true to fetch verified message and vice versa
  * @returns array of message document
  */
-export const getAllMessages = async (
+export const getMessages = async (
   lastId: string,
   limit: number,
   isVerified: boolean
 ): Promise<MessageDoc[]> => {
   if (lastId === 'NULL' || lastId === '') {
     return MessageModel.find({ isVerified })
-      .select('-__v -updatedAt')
+      .select('-__v -updatedAt -createdAt -isVerified')
       .limit(limit)
       .exec()
   }
   return MessageModel.find({ _id: { $gt: lastId }, isVerified })
-    .select('-__v -updatedAt')
+    .select('-__v -updatedAt -createdAt -isVerified')
     .limit(limit)
     .exec()
 }

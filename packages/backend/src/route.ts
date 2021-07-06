@@ -2,22 +2,10 @@ import { Router } from 'express'
 import { indexController } from '@controller/front'
 import {
   createMessageController,
-  getAllMessagesController,
-  updateMessageController,
-  deleteMessageController,
+  getMessagesController,
 } from '@controller/message'
-import {
-  createVideoController,
-  deleteVideoController,
-  getAllVideoController,
-  updateVideoController,
-} from '@controller/video'
-import {
-  createFanartController,
-  deleteFanartController,
-  getAllFanartController,
-  updateFanartController,
-} from '@controller/fanart'
+import { createVideoController, getVideoController } from '@controller/video'
+import { createFanartController, getFanartController } from '@controller/fanart'
 
 const routes = () => {
   const router: Router = Router()
@@ -26,22 +14,22 @@ const routes = () => {
   router.get('/', indexController)
 
   // Message route
-  router.get('/message', getAllMessagesController)
+  router.get('/message', getMessagesController)
   router.post('/create/message', createMessageController)
-  router.put('/message', updateMessageController)
-  router.delete('/message', deleteMessageController)
+  // router.put('/message', updateMessageController)
+  // router.delete('/message', deleteMessageController)
 
   // Video routes here
-  router.get('/video', getAllVideoController)
+  router.get('/video', getVideoController)
   router.post('/create/video', createVideoController)
-  router.put('/video', updateVideoController)
-  router.delete('/video', deleteVideoController)
+  // router.put('/video', updateVideoController)
+  // router.delete('/video', deleteVideoController)
 
   // Fanart route
-  router.get('/fanart', getAllFanartController)
+  router.get('/fanart', getFanartController)
   router.post('/create/fanart', createFanartController)
-  router.put('/fanart', updateFanartController)
-  router.delete('/fanart', deleteFanartController)
+  // router.put('/fanart', updateFanartController)
+  // router.delete('/fanart', deleteFanartController)
 
   return router
 }

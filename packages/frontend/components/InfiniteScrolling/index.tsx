@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { MessageResponseInterface } from '../../interfaces/message'
 import { FanartResponseInterface } from '../../interfaces/fanart'
@@ -25,6 +25,14 @@ export default function InfiniteScrolling(props: propInterface) {
   const [hasMore, setHasMore] = useState(true)
   const [lastId, setLastId] = useState<string>()
 
+  const getNextDataCallback = useCallback(getNextData, [
+    data,
+    lastId,
+    next,
+    numDataLoad,
+    onData,
+  ])
+
   async function getNextData() {
     try {
       const newData = await next(numDataLoad, lastId)
@@ -42,8 +50,8 @@ export default function InfiniteScrolling(props: propInterface) {
   }
 
   useEffect(() => {
-    getNextData()
-  }, [])
+    getNextDataCallback
+  }, [getNextDataCallback])
 
   return (
     <InfiniteScroll

@@ -5,5 +5,4 @@ export interface FanartInterface {
 
 export interface FanartResponseInterface extends FanartInterface {
   _id: string
-  createdAt: string
 }

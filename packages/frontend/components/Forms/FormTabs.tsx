@@ -3,7 +3,7 @@ import tabsEnum from './tabsEnum'
 import styles from './Form.module.scss'
 
 interface propsInterface {
-  onChange: (tab: tabsEnum) => any
+  onChange: (tab: tabsEnum) => void
 }
 
 export default function FormTabs({ onChange }: propsInterface) {

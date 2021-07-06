@@ -11,13 +11,14 @@
   ],
   "scripts": {
     "dev": "concurrently \"cd packages/backend && yarn dev\"  \"cd packages/frontend && yarn dev\"",
-    "start": "concurrently \"yarn start:client\" \"yarn start:server\"",
-    "start:client": "yarn workspace @kaichou-graduation/client start",
-    "start:server": "yarn workspace @kaichou-graduation/server start",
+    "start": "concurrently \"cd packages/backend && yarn start\" \"cd packages/frontend && yarn start\"",
+    "startFrontend": "cd packages/frontend && yarn start",
+    "startBackend": "cd packages/backend && yarn start",
     "lint": "eslint . --format=pretty --cache --color",
     "test:types": "lerna run test:types",
     "pre-commit": "yarn lint && yarn test:types && cd packages && cd backend && yarn test:jest",
-    "prepare": "husky install && npx shx rm -rf .git/hooks && npx shx ln -s ../.husky .git/hooks"
+    "prepare": "husky install && npx shx rm -rf .git/hooks && npx shx ln -s ../.husky .git/hooks",
+    "build": "cd packages/frontend && yarn build"
   },
   "devDependencies": {
     "@types/react": "^17.0.11",

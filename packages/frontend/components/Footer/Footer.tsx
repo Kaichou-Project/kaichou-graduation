@@ -55,18 +55,6 @@ export default function Footer() {
                 <a>Kiryukai Project</a>
               </Link>
             </div>
-            <div className={styles.column}>
-              <p>Legal</p>
-              <Link href="/terms">
-                <a>Terms</a>
-              </Link>
-              <Link href="/privacy">
-                <a>Privacy</a>
-              </Link>
-              <Link href="/accessibility">
-                <a>Accessibility</a>
-              </Link>
-            </div>
           </div>
           <div className={styles.socials}>
             <Link href="https://github.com/Kaichou-Project/kaichou-graduation">

@@ -1,10 +1,5 @@
 import { VideoDoc } from '@model/video'
-import {
-  deleteVideo,
-  getAllVideos,
-  storeVideo,
-  updateVideo,
-} from '@service/video'
+import { deleteVideo, getVideos, storeVideo, updateVideo } from '@service/video'
 import {
   responseBadRequest,
   responseCreated,
@@ -21,11 +16,11 @@ import {
 import { Request, Response } from 'express'
 import { PaginateQuery } from 'interface/request'
 
-export const getAllVideoController = async (req: Request, res: Response) => {
+export const getVideoController = async (req: Request, res: Response) => {
   try {
     //  Gets [limit] videos after _id [lastId]
     const { lastId = 'NULL', limit = '10' }: PaginateQuery = req.query
-    const messages: VideoDoc[] = await getAllVideos(lastId, +limit, true)
+    const messages: VideoDoc[] = await getVideos(lastId, +limit, true)
 
     return responseSuccess(res, messages)
   } catch (error) {

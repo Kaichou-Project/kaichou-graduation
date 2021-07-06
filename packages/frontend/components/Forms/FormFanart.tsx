@@ -58,7 +58,7 @@ export default function FormFanart(props: propsInterface) {
     delete data.confirmation
 
     if (!confirmation) {
-      return setErrors({ confirmation: 'You must confirm this' })
+      return setErrors({ confirmation: 'You must confirm this to submit' })
     }
 
     setErrors({})
